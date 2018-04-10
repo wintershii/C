@@ -17,12 +17,16 @@ struct student *Creat(){
 	struct student *pNew,*pEnd;
 	icount=0;
 	pEnd=pNew=(struct student *)malloc(sizeof(struct student));
-	printf("请输入学生的姓名 学号 班内序号 手机号：\n");
+	printf("请输入学生信息：");
+	printf("\n姓名："); 
 	scanf("%s",pNew->iname);
+	printf("\n学号：");
 	scanf("%s",pNew->snum);
+	printf("\n班内序号：");
 	scanf("%d",&pNew->inumber);
+	printf("\n手机号：");
 	scanf("%s",pNew->iPhone);
-	while(){
+	while(pNew->inumber!=0){
 		icount++;
 		if(icount==1){
 			pNew->next=pHead;
@@ -35,11 +39,15 @@ struct student *Creat(){
 			pEnd=pNew;
 		}
 		pNew=(struct student *)malloc(sizeof(struct student));
-		printf("继续录入,姓名为空时停止\n");
+		printf("继续录入,班内序号为0时停止\n");
+		printf("\n姓名："); 
 		scanf("%s",pNew->iname);
+		printf("\n学号：");
 		scanf("%s",pNew->snum);
+		printf("\n班内序号：");
 		scanf("%d",&pNew->inumber);
-		scanf("%d",pNew->iPhone);
+		printf("\n手机号：");
+		scanf("%s",pNew->iPhone);
 	}
 	free(pNew);
 	return pHead;
@@ -68,12 +76,16 @@ struct student *Insert(struct student *pHead){
 	if(index>icount)
 	  printf("输入错误！\n");
 	else if(index==1){
-		printf("请输入学生的姓名和学号：\n");
+		printf("请输入学生的信息：\n");
 		pNew=(struct student *)malloc(sizeof(struct student));
+		printf("\n姓名：");
 		scanf("%s",pNew->iname);
+		printf("\n学号：");
 		scanf("%s",pNew->snum);
+		printf("\n班内序号：");
 		scanf("%d",&pNew->inumber);
-		scanf("%d",pNew->iPhone);
+		printf("\n手机号：");
+		scanf("%s",pNew->iPhone);
 		pNew->next=pHead;
 		pHead=pNew;
 	  return pHead;
@@ -83,9 +95,13 @@ struct student *Insert(struct student *pHead){
 		p=p->next;
 	printf("请输入学生的姓名和学号：\n");
 		pNew=(struct student *)malloc(sizeof(struct student));
+		printf("\n姓名：");
 		scanf("%s",pNew->iname);
+		printf("\n学号：");
 		scanf("%s",pNew->snum);
+		printf("\n班内序号：");
 		scanf("%d",&pNew->inumber);
+		printf("\n手机号：");
 		scanf("%s",pNew->iPhone);
 		pNew->next=p->next;
 		p->next=pNew;
