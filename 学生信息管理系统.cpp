@@ -2,6 +2,7 @@
 #include<stdlib.h>
 #include<string.h>
 #include<conio.h>
+#include<windows.h>
 
 struct student{
 	char iname[20];
@@ -11,7 +12,66 @@ struct student{
 	struct student *next;
 };
 
-int icount;
+
+
+int now1_student(){                  
+	int i=1;
+	char j[100000];
+	FILE *info;
+	info=fopen("d:\\stuifo.txt","rt");
+	rewind(info);
+	   	while(fgets(j,sizeof(struct student),info)!=NULL)
+	   	{
+	   	    fseek(info,sizeof(struct student)*i,0);
+	   	    i++;
+		}
+		fclose(info);
+        return i-1;                                         
+}
+
+int icount=now1_student();
+
+struct student *read(){
+	struct student *pHead,*pEnd,*pNew;
+	FILE *fp;                                                                        //创建链表，并将文件内数据读入链表 
+	fp=fopen("d:\\stuifo.txt","rt");
+	if(fp==NULL){
+		printf("未在本地找到学生信息文件！\n");
+		return NULL;
+	}
+	int i=1,count=0;
+	while(i<=now1_student()){
+		count++;
+		pNew=(struct student *)malloc(sizeof(struct student));
+		fread(pNew,sizeof(struct student),1,fp);
+		if(count==1){
+			pNew->next=pHead;
+			pEnd=pNew;
+			pHead=pNew;
+		}
+		else{
+			pNew->next=NULL;
+			pEnd->next=pNew;
+			pEnd=pNew;
+		}
+		i++;
+	}
+	fclose(fp);
+	return pHead;
+}
+
+void save(struct student *pHead){
+	    struct student *pTemp=pHead; 
+	    FILE *fp;
+		fp=fopen("d:\\stuifo.txt","wt");
+		while(pTemp!=NULL){
+			fwrite(pTemp,sizeof(struct student),1,fp);
+			pTemp=pTemp->next;
+		}
+		printf("成功将信息保存至本地文件！");
+		fclose(fp);
+	
+}
 
 int _ifblank(char judge[]){
 	char ch;
@@ -32,9 +92,9 @@ int _ifblank(char judge[]){
 struct student *Creat(){
 	struct student *pHead=NULL;
 	struct student *pNew,*pEnd;
-	char judge[2]={" "};
-	printf("%d",strlen(judge));
-	icount=0;
+	struct student *pTemp;
+	int judge;
+	int count=0;
 	pEnd=pNew=(struct student *)malloc(sizeof(struct student));
 	printf("请输入学生信息：");
 	printf("\n姓名："); 
@@ -46,8 +106,8 @@ struct student *Creat(){
 	printf("手机号：");
 	scanf("%s",pNew->iPhone);
 	while(1){
-		icount++;
-		if(icount==1){
+		count++;
+		if(count==1){
 			pNew->next=pHead;
 			pEnd=pNew;
 			pHead=pNew;
@@ -72,10 +132,20 @@ struct student *Creat(){
 		scanf("%s",pNew->iPhone);
 	}
 	free(pNew);
+	pTemp=pHead;
+	printf("是否保存这些学生信息? 1-是 0-否");
+	scanf("%d",&judge);
+	if(judge==1){
+		save(pHead);
+	}
 	return pHead;
 } 
 
-void print(struct student *pHead){
+void print(){
+	int count=0;
+	struct student *pHead=NULL;
+	struct student *pTemp,*pEnd,*pNew;
+	pHead=read();
 	struct student *temp;
 	int index=1;
 	temp=pHead;
@@ -90,80 +160,116 @@ void print(struct student *pHead){
 	}
 }
 
-struct student *Insert(struct student *pHead){
+void Insert(){
 	int index;
-	struct student *pNew,*p=pHead,*pPre;
-	printf("请输入要插入的学生班内序号：");
+	struct student *pHead;
+	struct student *ipnew,*p,*pPre,*pTemp;
+	struct student *pNew,*pEnd;
+	
+	pHead=read();
+	
+	printf("请输入要插入的学生班内序号：");                                                    //将学生信息插入进链表 
 	scanf("%d",&index);
-	if(index>icount)
+	printf("\t\t\t\t\t\t-----------当前已录入%d人---------\n",now1_student());
+	if(index>now1_student())
 	  printf("输入错误！\n");
-	else if(index==1){
-		printf("请输入学生的信息：\n");
-		pNew=(struct student *)malloc(sizeof(struct student));
+	  
+	    printf("请输入学生的信息：\n");
+		ipnew=(struct student *)malloc(sizeof(struct student));
 		printf("姓名：");
-		scanf("%s",pNew->iname);
+		scanf("%s",ipnew->iname);
 		printf("学号：");
-		scanf("%s",pNew->snum);
+		scanf("%s",ipnew->snum);
 		printf("班内序号：");
-		scanf("%d",&pNew->inumber);
+		scanf("%d",&ipnew->inumber);
 		printf("手机号：");
-		scanf("%s",pNew->iPhone);
-		pNew->next=pHead;
-		pHead=pNew;
-	  return pHead;
-	}
+		scanf("%s",ipnew->iPhone);
+		
+    if(index==1){
+		ipnew->next=pHead;
+		pHead=ipnew;
+	    }
 	else{
+		p=pHead;
 	for(int i=1;i<index-1;i++)
 		p=p->next;
-	printf("请输入学生的姓名和学号：\n");
-		pNew=(struct student *)malloc(sizeof(struct student));
-		printf("姓名：");
-		scanf("%s",pNew->iname);
-		printf("学号：");
-		scanf("%s",pNew->snum);
-		printf("班内序号：");
-		scanf("%d",&pNew->inumber);
-		printf("手机号：");
-		scanf("%s",pNew->iPhone);
-		pNew->next=p->next;
-		p->next=pNew;
-		icount++;
-		return pHead;
+        
+		ipnew->next=p->next;
+		p->next=ipnew;
   }
-  return pHead;
+        save(pHead);
+  return;
 }
 
-void Delete(struct student *pHead){
+void Delete(){
+	struct student *pHead;
 	int i,index;
 	struct student *pTemp;
     struct student *pPre;
+    
+   pHead=read();
+    
     pTemp=pHead;
     pPre=pTemp;
 	printf("请输入要删除的学生班内序号：");
 	scanf("%d",&index);
+	if(index>now1_student()){
+		printf("输入有误！\n");
+		return;
+	}
+	
 	for(i=1;i<index;i++){
 		pPre=pTemp;
 		pTemp=pTemp->next;
 	}
 	pPre->next=pTemp->next;
 	free(pTemp);
-	icount--;
+	
+	save(pHead);
+	printf("学生信息删除成功！\n");
 }
 
-/*void seek(struct student *pHead){
-	struct student pTemp;
+void seek(){
+	struct student *pHead;
+	struct student *pTemp;
 	int inum;
+	printf("请输入要查找学生的班内序号：");
+	scanf("%d",&inum);
+	pHead=read();
+	pTemp=pHead;
+	while(pTemp->inumber!=inum){
+		pTemp=pTemp->next;
+	if(pTemp==NULL){
+	  printf("未查找到此学生信息！\n");
+	  getch();
+      return;
+ 	   }
+	}
+	printf("姓名：%s\n",pTemp->iname);
+	printf("学号：%s\n",pTemp->snum);
+	printf("班内序号：%d\n",pTemp->inumber);
+	printf("手机号：%s",pTemp->iPhone);
 	
-} */
+} 
 
 int main(){
 	int choice=-1;
 	struct student *pHead;
 	while(choice!=0){
-	printf("\t\t\t\t\t\t-------学生信息管理系统------\n");
+	//	system("cls");
+	printf("\n\t\t\t\t\t\t-------学生信息管理系统------\n");
+    if(now1_student()==0){
+
+    printf("\t\t\t\t\t\t------目前还未录入过信息------\n");
+    printf("\t\t\t\t\t\t---------请开始首次录入-------\n");
+    }
+    else{
+	printf("\t\t\t\t\t\t-----------已录入%d人---------\n",now1_student());
+	printf("\t\t\t\t\t\t--若需新增学生信息请选则添加--\n");
+    }
 	printf("\t\t\t\t\t\t-----------------------------\n");
 	printf("\t\t\t\t\t\t || 1. 录入学生信息        ||\n");
-	printf("\t\t\t\t\t\t || 2. 插入学生信息        ||\n");
+	printf("\t\t\t\t\t\t || 2. 添加学生信息        ||\n");
 	printf("\t\t\t\t\t\t || 3. 删除学生信息        ||\n");
 	printf("\t\t\t\t\t\t || 4. 打印学生信息表      ||\n");
 	printf("\t\t\t\t\t\t || 5. 查找学生信息        ||\n");
@@ -171,15 +277,26 @@ int main(){
 	printf("\t\t\t\t\t\t----------------------------\n");
 	scanf("%d",&choice);
 		switch(choice){
-			case 1:pHead=Creat();
+			case 1:
+			if(now1_student()!=0){ 
+			  printf("您已录入过初始信息，请选择2. 添加学生信息!\n");
+			  getch();
+			   continue;
+			  } 
+			pHead=Creat();
+			getch();
 			 break;
-			case 2:pHead=Insert(pHead);
+			case 2:Insert();
+			getch();
 			 break;
-			case 3:Delete(pHead);
+			case 3:Delete();
+			getch();
 			 break;
-			case 4:print(pHead); 
+			case 4:print();
+			getch(); 
 			 break;
-		//	 case 5:seek(pHead); 
+			 case 5:seek(); 
+			 getch();
 			 break;
 			case 0:
 				break;
