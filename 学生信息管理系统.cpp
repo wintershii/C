@@ -33,7 +33,7 @@ int icount=now1_student();
 
 struct student *read(){
 	struct student *pHead,*pEnd,*pNew;
-	FILE *fp;                                                                        //创建链表，并将文件内数据读入链表 
+	FILE *fp;                                                                         //创建链表，并将文件内数据读入链表 
 	fp=fopen("d:\\stuifo.txt","rt");
 	if(fp==NULL){
 		printf("未在本地找到学生信息文件！\n");
@@ -95,6 +95,29 @@ struct student *Creat(){
 	struct student *pTemp;
 	int judge;
 	int count=0;
+	if(now1_student>0){
+		pHead=read();
+		pTemp=pHead;
+		while(pTemp->next!=NULL)
+			pTemp=pTemp->next;
+			
+		pNew=(struct student *)malloc(sizeof(struct student));
+		printf("添加学生信息：\n");
+		printf("姓名：");
+		gets(pNew->iname);
+		gets(pNew->iname); 
+		printf("学号：");
+		scanf("%s",pNew->snum);
+		printf("班内序号：");
+		scanf("%d",&pNew->inumber);
+		printf("手机号：");
+		scanf("%s",pNew->iPhone);
+		    pNew->next=NULL;
+			pTemp->next=pNew;
+			save(pHead);
+			printf("添加成功！\n");
+			return pHead;
+	}
 	pEnd=pNew=(struct student *)malloc(sizeof(struct student));
 	printf("请输入学生信息：");
 	printf("\n姓名："); 
@@ -205,7 +228,7 @@ void Delete(){
 	struct student *pHead;
 	int i,index;
 	struct student *pTemp;
-    struct student *pPre;
+    struct student *pPre,*p;
     
    pHead=read();
     
@@ -218,7 +241,7 @@ void Delete(){
 		return;
 	}
 	
-	for(i=1;i<index;i++){
+	while(pTemp->inumber!=index){                                          //无法删除头节点 
 		pPre=pTemp;
 		pTemp=pTemp->next;
 	}
@@ -269,7 +292,7 @@ int main(){
     }
 	printf("\t\t\t\t\t\t-----------------------------\n");
 	printf("\t\t\t\t\t\t || 1. 录入学生信息        ||\n");
-	printf("\t\t\t\t\t\t || 2. 添加学生信息        ||\n");
+	printf("\t\t\t\t\t\t || 2. 插入学生信息        ||\n");
 	printf("\t\t\t\t\t\t || 3. 删除学生信息        ||\n");
 	printf("\t\t\t\t\t\t || 4. 打印学生信息表      ||\n");
 	printf("\t\t\t\t\t\t || 5. 查找学生信息        ||\n");
@@ -278,11 +301,8 @@ int main(){
 	scanf("%d",&choice);
 		switch(choice){
 			case 1:
-			if(now1_student()!=0){ 
-			  printf("您已录入过初始信息，请选择2. 添加学生信息!\n");
-			  getch();
-			   continue;
-			  } 
+			if(now1_student()!=0)
+			  printf("您已录入过初始信息，请继续录入学生信息!\n");
 			pHead=Creat();
 			getch();
 			 break;
