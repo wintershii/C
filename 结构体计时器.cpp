@@ -2,19 +2,19 @@
 #include<conio.h>
 #include<windows.h>
 
-struct clock{
+struct clock{                                                     // 结构体的定义 
 	int hours;
 	int minutes;
 	int seconds;
 };
 
-void display(struct clock t){
+void display(struct clock t){                                     //显示当前时间 
 	printf("\r%02d:",t.hours);
 	printf("%02d:",t.minutes);
 	printf("%02d",t.seconds);
 }
 
-struct clock update(struct clock t){
+struct clock update(struct clock t){                              //更新时间，60秒进1分，60分进1时，24时后归零 
    t.seconds++;
 	if(t.seconds==60){
 		t.minutes++;
@@ -26,7 +26,7 @@ struct clock update(struct clock t){
 	}
 	if(t.hours==24)
 	    t.hours=0;
-   Sleep(1000);
+   Sleep(1000);                                                    //休眠函数   括号内1000代表休眠时间为1000ms 即1秒 
    return t;
 }
 
@@ -41,7 +41,7 @@ int main(){
 		if(ch=='e'||ch=='E'){
 			cl=update(cl);
 			display(cl);
-			if(kbhit()){
+			if(kbhit()){                                           //判断是否有键盘录入的函数，若有，则返回1，没有返回0； 
 				ch=getch();
 				if(ch=='s'||ch=='S')
 				 break;
@@ -50,7 +50,7 @@ int main(){
 		 else if(ch=='s'||ch=='S')
 		   break;
 		 else
-		   ch=getch();
+		     ch=getch();
 	}
 	return 0;
 }
