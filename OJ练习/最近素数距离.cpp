@@ -18,7 +18,7 @@ int main(){
 			continue;
 		}
 		if(i>sqrt(x)){
-		   printf("%d %d\n",x,dis1);
+		   printf("%d 0\n",x);
 			  continue;
 		    }
 		
