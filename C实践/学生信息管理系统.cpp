@@ -12,9 +12,7 @@ struct student{
 	struct student *next;
 };
 
-
-
-int now1_student(){                  
+int now1_student(){                                                                //显示文件中现在已录入的学生数                 
 	int i=1;
 	char j[100000];
 	FILE *info;
@@ -31,7 +29,7 @@ int now1_student(){
 
 int icount=now1_student();
 
-struct student *read(){
+struct student *read(){                                                               //读入文件内的信息，并返回链表头指针的地址 
 	struct student *pHead,*pEnd,*pNew;
 	FILE *fp;                                                                         //创建链表，并将文件内数据读入链表 
 	fp=fopen("d:\\stuifo.txt","rt");
@@ -60,7 +58,7 @@ struct student *read(){
 	return pHead;
 }
 
-void save(struct student *pHead){
+void save(struct student *pHead){                                      //保存当前的链表至本地文件 
 	    struct student *pTemp=pHead; 
 	    FILE *fp;
 		fp=fopen("d:\\stuifo.txt","wt");
@@ -73,7 +71,7 @@ void save(struct student *pHead){
 	
 }
 
-int _ifblank(char judge[]){
+int _ifblank(char judge[]){                                     //判断字符串是否只有空格，若只有空格则返回0，否则返回字符串中非空格字符数目 
 	char ch;
 	char true_[20];
 	int i,j;
@@ -89,9 +87,9 @@ int _ifblank(char judge[]){
 	return strlen(true_);
 }
 
-struct student *Creat(){
-	struct student *pHead=NULL;
-	struct student *pNew,*pEnd;
+struct student *Creat(){                                      //创建链表，初始创建时，可以保持多次录入，当姓名为空格时停止录入 
+	struct student *pHead=NULL;                               //若已录入过信息，则添加新的节点进入链表，放在最后 
+ 	struct student *pNew,*pEnd;
 	struct student *pTemp;
 	int judge;
 	int count=0;
@@ -164,7 +162,7 @@ struct student *Creat(){
 	return pHead;
 } 
 
-void print(){
+void print(){                                                              //打印出本地文件内的学生信息 
 	int count=0;
 	struct student *pHead=NULL;
 	struct student *pTemp,*pEnd,*pNew;
@@ -183,7 +181,7 @@ void print(){
 	}
 }
 
-void Insert(){
+void Insert(){                                                              
 	int index;
 	struct student *pHead;
 	struct student *ipnew,*p,*pPre,*pTemp;
@@ -224,13 +222,13 @@ void Insert(){
   return;
 }
 
-void Delete(){
+void Delete(){                                                              //删除学生信息 
 	struct student *pHead;
 	int i,index;
 	struct student *pTemp;
     struct student *pPre,*p;
     
-   pHead=read();
+    pHead=read();
     
     pTemp=pHead;
     pPre=pTemp;
@@ -240,7 +238,12 @@ void Delete(){
 		printf("输入有误！\n");
 		return;
 	}
-	
+	if(index==1){
+		pHead=pHead->next;
+		save(pHead);
+	    printf("学生信息删除成功！\n");
+		return;
+	}
 	while(pTemp->inumber!=index){                                          //无法删除头节点 
 		pPre=pTemp;
 		pTemp=pTemp->next;
@@ -252,7 +255,7 @@ void Delete(){
 	printf("学生信息删除成功！\n");
 }
 
-void seek(){
+void seek(){                                                                  //根据班内序号查找学生信息 
 	struct student *pHead;
 	struct student *pTemp;
 	int inum;
@@ -302,7 +305,7 @@ int main(){
 		switch(choice){
 			case 1:
 			if(now1_student()!=0)
-			  printf("您已录入过初始信息，请继续录入学生信息!\n");
+			  printf("您已录入过初始信息，请继续添加学生信息!\n");
 			pHead=Creat();
 			getch();
 			 break;
