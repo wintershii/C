@@ -17,6 +17,8 @@ int now1_student(){                                                             
 	char j[100000];
 	FILE *info;
 	info=fopen("d:\\stuifo.txt","rt");
+	if(info==NULL)
+		return 0;
 	rewind(info);
 	   	while(fgets(j,sizeof(struct student),info)!=NULL)
 	   	{
@@ -37,6 +39,7 @@ struct student *read(){                                                         
 		printf("未在本地找到学生信息文件！\n");
 		return NULL;
 	}
+	pHead=NULL;
 	int i=1,count=0;
 	while(i<=now1_student()){
 		count++;
@@ -93,7 +96,7 @@ struct student *Creat(){                                      //创建链表，初始创
 	struct student *pTemp;
 	int judge;
 	int count=0;
-	if(now1_student>0){
+	if(now1_student()>0){ 
 		pHead=read();
 		pTemp=pHead;
 		while(pTemp->next!=NULL)
@@ -116,7 +119,7 @@ struct student *Creat(){                                      //创建链表，初始创
 			printf("添加成功！\n");
 			return pHead;
 	}
-	pEnd=pNew=(struct student *)malloc(sizeof(struct student));
+	pNew=(struct student *)malloc(sizeof(struct student));
 	printf("请输入学生信息：");
 	printf("\n姓名："); 
 	scanf("%s",pNew->iname);
@@ -156,9 +159,8 @@ struct student *Creat(){                                      //创建链表，初始创
 	pTemp=pHead;
 	printf("是否保存这些学生信息? 1-是 0-否");
 	scanf("%d",&judge);
-	if(judge==1){
+	if(judge==1)
 		save(pHead);
-	}
 	return pHead;
 } 
 
