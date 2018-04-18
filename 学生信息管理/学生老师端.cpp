@@ -1,4 +1,4 @@
-void student_(){
+/*void student_(){
 	int choice=-1;
 	while(choice!=0){
 		printf("\t\t\t\t\t\t || 1.     查看我的信息    ||\n");
@@ -9,4 +9,4 @@ void student_(){
 		} 
 	}
 	return;
-}
+}                                              */ 
