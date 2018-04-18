@@ -12,6 +12,10 @@ void print();
 void Insert();
 void Delete();
 void seek();
+void stu_seek();
+void student_();
 int start(); 
 int checkkey(char key[]);
 void secretword(char key[]);
+
+
