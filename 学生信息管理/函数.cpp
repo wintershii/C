@@ -317,11 +317,11 @@ void stu_seek(){
      pTemp=pHead;
      while(pTemp!=NULL){
      	if(strcmp(pTemp->stu.iname,name)==0&&strcmp(pTemp->stu.snum,snum)==0){ 
-     	    printf("\t\t\t\t\t\t 你的信息如下：\n");
+     	    printf("\n\t\t\t\t\t\t 你的信息如下：\n");
      	    printf("\t\t\t\t\t\t 姓名：%s\n",pTemp->stu.iname);
      	    printf("\t\t\t\t\t\t 学号：%s\n",pTemp->stu.snum);
      	    printf("\t\t\t\t\t\t 班内序号：%d\n",pTemp->stu.inumber);
-     	    printf("\t\t\t\t\t\t 手机号：%s\n",pTemp->stu.iPhone);
+     	    printf("\t\t\t\t\t\t 手机号：%s\n\n",pTemp->stu.iPhone);
      	    return;
      	    ;
      	} 
@@ -336,8 +336,8 @@ void stu_seek(){
 void student_(){
 	int choice=-1;
 	while(choice!=0){
-		printf("\t\t\t\t\t\t || 1.     查看我的信息    ||\n");
-		printf("\t\t\t\t\t\t || 0.         退出        ||\n");
+		printf("\t\t\t\t\t\t || 1.     查看我的信息      ||\n");
+		printf("\t\t\t\t\t\t || 0.         退出          ||\n");
 		scanf("%d",&choice);
 		switch(choice){
 			case 1:
@@ -358,11 +358,11 @@ int start(){
 	printf("\n\t\t\t\t\t\t-------学生信息管理系统------\n");
 
 	printf("\t\t\t\t\t\t-----------------------------\n");
-	printf("\t\t\t\t\t\t ||   1. 我是学生          ||\n");
-	printf("\t\t\t\t\t\t ||   2. 本人是老师        ||\n");
-	printf("\t\t\t\t\t\t ||   3. 老子是管理员      ||\n");
-	printf("\t\t\t\t\t\t ||   0. 不好意思走错了    ||\n");
-	printf("\t\t\t\t\t\t----------------------------\n");
+	printf("\t\t\t\t\t\t||   1. 我是学生           ||\n");
+	printf("\t\t\t\t\t\t||   2. 本人是老师         ||\n");
+	printf("\t\t\t\t\t\t||   3. 老子是管理员       ||\n");
+	printf("\t\t\t\t\t\t||   0. 不好意思走错了     ||\n");
+	printf("\t\t\t\t\t\t-----------------------------\n");
 	scanf("%d",&choice);
 		switch(choice){
 			case 1:

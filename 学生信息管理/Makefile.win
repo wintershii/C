@@ -4,8 +4,8 @@
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = main.o 函数.o 学生老师端.o
-LINKOBJ  = main.o 函数.o 学生老师端.o
+OBJ      = main.o 函数.o
+LINKOBJ  = main.o 函数.o
 LIBS     = -L"D:/学习/Dev-Cpp/MinGW64/lib" -L"D:/学习/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc
 INCS     = -I"D:/学习/Dev-Cpp/MinGW64/include" -I"D:/学习/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"D:/学习/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.8.1/include"
 CXXINCS  = -I"D:/学习/Dev-Cpp/MinGW64/include" -I"D:/学习/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"D:/学习/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.8.1/include" -I"D:/学习/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.8.1/include/c++"
@@ -29,6 +29,3 @@ main.o: main.cpp
 
 函数.o: 函数.cpp
 	$(CPP) -c 函数.cpp -o 函数.o $(CXXFLAGS)
-
-学生老师端.o: 学生老师端.cpp
-	$(CPP) -c 学生老师端.cpp -o 学生老师端.o $(CXXFLAGS)
