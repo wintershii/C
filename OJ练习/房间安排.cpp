@@ -1,21 +1,24 @@
 #include<stdio.h>
 int main(){
-	int t,n,a,b,c;
+	int t,n,a,b,c,i,j;
 	scanf("%d",&t);
 	while(t--){
-		int sum[200]={0};
+		int sum[200]={0};  
 		scanf("%d",&n);
-		int t=0;
+		int s=0;
 		while(n--){
 		  scanf("%d %d %d",&a,&b,&c);
-		  for(int i=b;i<b+c;i++)
+		  for(i=b;i<b+c;i++){ 
 		      sum[i]+=a;
-		  for(int j=0;j<200;j++){
-		      if(t<sum[j]);
-		        t=sum[j];
+		    } 
+		    
+		  for(j=0;j<200;j++){
+		      if(s<sum[j]){
+		        s=sum[j];
+		       }
 		    }
-	}
-		printf("%d\n",t);
+	   }
+		printf("%d\n",s);
 	}
 	return 0;
 }
