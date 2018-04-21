@@ -4,8 +4,8 @@
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = main.o 函数.o
-LINKOBJ  = main.o 函数.o
+OBJ      = main.o teacher.o student.o basic.o function.o manager.o
+LINKOBJ  = main.o teacher.o student.o basic.o function.o manager.o
 LIBS     = -L"D:/学习/Dev-Cpp/MinGW64/lib" -L"D:/学习/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc
 INCS     = -I"D:/学习/Dev-Cpp/MinGW64/include" -I"D:/学习/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"D:/学习/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.8.1/include"
 CXXINCS  = -I"D:/学习/Dev-Cpp/MinGW64/include" -I"D:/学习/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"D:/学习/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.8.1/include" -I"D:/学习/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.8.1/include/c++"
@@ -27,5 +27,17 @@ $(BIN): $(OBJ)
 main.o: main.cpp
 	$(CPP) -c main.cpp -o main.o $(CXXFLAGS)
 
-函数.o: 函数.cpp
-	$(CPP) -c 函数.cpp -o 函数.o $(CXXFLAGS)
+teacher.o: teacher.cpp
+	$(CPP) -c teacher.cpp -o teacher.o $(CXXFLAGS)
+
+student.o: student.cpp
+	$(CPP) -c student.cpp -o student.o $(CXXFLAGS)
+
+basic.o: basic.cpp
+	$(CPP) -c basic.cpp -o basic.o $(CXXFLAGS)
+
+function.o: function.cpp
+	$(CPP) -c function.cpp -o function.o $(CXXFLAGS)
+
+manager.o: manager.cpp
+	$(CPP) -c manager.cpp -o manager.o $(CXXFLAGS)

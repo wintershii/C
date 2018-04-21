@@ -15,7 +15,29 @@ void seek();
 void stu_seek();
 void student_();
 int start(); 
-int checkkey(char key[]);
+int checkkey(char user[],char key[],int len1,int len2);
 void secretword(char key[]);
+void enter();
+int manager();
+void tea_enter();
+void teacher(); 
 
+struct infomation{
+	char iname[20];
+	int inumber;
+	char snum[10];
+	char iPhone[20];
+};
+
+/*struct grade{
+	int math;
+	int english;
+	int c;
+};     */
+
+struct student{
+	struct infomation stu;
+//	struct grade gra;
+	struct student *next;
+};
 
