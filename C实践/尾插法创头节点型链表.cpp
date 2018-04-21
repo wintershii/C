@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
+
 struct NODE{
 	int date;
 	struct NODE *next;
@@ -72,7 +73,7 @@ int main(){
 	node pHead;
 	pHead=creat();
 	print(pHead);
-	insert(pHead);
+	pHead=insert(pHead);
 	print(pHead);
 	pHead=_delete(pHead);
 	print(pHead);
