@@ -21,13 +21,14 @@ int main() {
 			break;
 			case 2:
 				printf("\t\t\t\t\t\t ||           ÇëµÇÂ½£¡       ||\n");
+				    tea_enter();
 			getch();
 			 break;
 			case 3:
                 printf("\t\t\t\t\t\t ||           ÇëµÇÂ½£¡       ||\n\n");
-                  enter(); 
+                    enter(); 
 			getch();
-			  return 1;
+			  break;
 			case 0:
 				exit(0);
 			default:

@@ -15,9 +15,7 @@ void tea_enter(){
 	   scanf("%s",user);
 	   printf("\n\t\t\t\t\tÃÜÂë£º");
 	   secretword(key);
-	   int len1=strlen(user);
-	   int len2=strlen(key);
-	   if(checkkey(user,key,len1,len2)==0){
+	   if(t_checkkey(user,key)==0){
 	   		printf("ÕËºÅÃÜÂëÓĞÎó£¡\n");
 	   		getch();
 	       continue;
@@ -26,20 +24,22 @@ void tea_enter(){
       }
 }
 
-int t_checkkey(char user[],char key[],int len1,int len2){
+int t_checkkey(char user[],char key[]){
 	FILE *fp;
 	char set1[20]; 
 	char set2[20]; 
 	fp=fopen("D:\\t_key.txt","rt");
-	fread(set1,len1,1,fp);
-	fread(set2,len2,1,fp);
-	fclose(fp);
-	if(strcmp(set1,user)==0&&strcmp(set2,key)==0){ 
-	   printf("\t\t\t\t\t\t ||×ğ¾´µÄÀÏÊ¦£¬»¶Ó­Äú||\n");
-	   getch();
-	   teacher();
-	   return 1;
+	while(!feof(fp)){
+		fread(set1,sizeof(set1),1,fp);
+	    fread(set2,sizeof(set2),1,fp);
+	    if(strcmp(set1,user)==0&&strcmp(set2,key)==0){ 
+	       printf("\t\t\t\t\t\t ||×ğ¾´µÄÀÏÊ¦£¬»¶Ó­Äú||\n");
+	       getch();
+	       teacher();
+	       return 1;
 	   }
+	}
+	
 	return 0;
 }
 
@@ -82,6 +82,7 @@ void teacher(){
 			getch(); 
 			 break;
 			 case 4: 
+			 seek();
 			 getch();
 			 break;
 			case 0:
@@ -91,6 +92,6 @@ void teacher(){
 		}
 	}
 }
-
+               
 
 

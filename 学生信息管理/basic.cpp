@@ -76,10 +76,8 @@ void enter(){
 		scanf("%s",set1);
 		printf("\n\t\t\t\t\tÃÜÂë£º");
 		scanf("%s",set2);
-		int len1=strlen(set1);
-		int len2=strlen(set2);
-		fwrite(set1,len1,1,fp);
-		fwrite(set2,len2,1,fp);
+		fwrite(set1,sizeof(set1),1,fp);
+		fwrite(set2,sizeof(set2),1,fp);
 		fclose(fp);
 		manager();
 		return;
@@ -88,9 +86,7 @@ void enter(){
 	   scanf("%s",user);
 	   printf("\n\t\t\t\t\tÃÜÂë£º");
 	   secretword(key);
-	   int len1=strlen(user);
-	   int len2=strlen(key);
-	   if(checkkey(user,key,len1,len2)==0){
+	   if(checkkey(user,key)==0){
 	   		printf("ÕËºÅÃÜÂëÓĞÎó£¡\n");
 	   		getch();
 	       continue;

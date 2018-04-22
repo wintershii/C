@@ -15,12 +15,14 @@ void seek();
 void stu_seek();
 void student_();
 int start(); 
-int checkkey(char user[],char key[],int len1,int len2);
+int checkkey(char user[],char key[]);
 void secretword(char key[]);
 void enter();
 int manager();
 void tea_enter();
 void teacher(); 
+int t_checkkey(char user[],char key[]);
+void new_teacher();
 
 struct infomation{
 	char iname[20];

@@ -21,9 +21,9 @@ int manager() {
 	printf("\t\t\t\t\t\t || 3. 删除学生信息        ||\n");
 	printf("\t\t\t\t\t\t || 4. 打印学生信息表      ||\n");
 	printf("\t\t\t\t\t\t || 5. 查找学生信息        ||\n");
-	printf("\t\t\t\t\t\t || 6. 添加老师信息        ||\n");
+	printf("\t\t\t\t\t\t || 6. 新增老师信息        ||\n");
 	printf("\t\t\t\t\t\t || 0. 退出                ||\n");
-	printf("\t\t\t\t\t\t----------------------------\n");
+	printf("\t\t\t\t\t\t-----------------------------\n");
 	scanf("%d",&choice);
 		switch(choice){
 			case 1:
@@ -44,7 +44,7 @@ int manager() {
 			 case 5:seek(); 
 			 getch();
 			 break;
-			 case 6://new_teacher();
+			 case 6:new_teacher();
 			 getch();
 			 break;
 			case 0:
@@ -274,13 +274,13 @@ void seek(){                                                                  //
 	
 }
 
-int checkkey(char user[],char key[],int len1,int len2){
+int checkkey(char user[],char key[]){
 	FILE *fp;
 	char set1[20]; 
 	char set2[20]; 
 	fp=fopen("D:\\key.txt","rt");
-	fread(set1,len1,1,fp);
-	fread(set2,len2,1,fp);
+	fread(set1,sizeof(set1),1,fp);
+	fread(set2,sizeof(set2),1,fp);
 	fclose(fp);
 	if(strcmp(set1,user)==0&&strcmp(set2,key)==0){ 
 	   printf("\t\t\t\t\t\t ||尊敬的管理员，欢迎您||\n");
@@ -292,6 +292,18 @@ int checkkey(char user[],char key[],int len1,int len2){
 }
 
 
-/*void new_teacher(){
-	int
-}    */
+void new_teacher(){
+	FILE *fp;
+	char set1[20];
+	char set2[20];
+	printf("请设置新增教师账号密码：\n");
+	printf("账号：");
+	scanf("%s",set1);
+	printf("密码：");
+	scanf("%s",set2);
+	fp=fopen("D:\\t_key.txt","at");
+	fwrite(set1,sizeof(set1),1,fp);
+	fwrite(set2,sizeof(set2),1,fp);
+	fclose(fp);
+	printf("新增教师信息成功！\n");
+}  
