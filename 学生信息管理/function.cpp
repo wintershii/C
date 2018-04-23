@@ -16,7 +16,7 @@ int _ifblank(char judge[]){                                     //ÅĞ¶Ï×Ö·û´®ÊÇ·ñ
 	return strlen(true_);
 }
 
-void secretword(char key[]){
+void secretword(char key[]){                                    //ÊäÈëÃÜÂëÊ±»ØÏÔ* 
 	char c;
 	int i=0;
 	while((c=getch())!='\r'){

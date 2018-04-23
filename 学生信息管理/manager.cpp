@@ -1,5 +1,58 @@
 #include"STUDENT.h"
+
 void print_tea();
+
+void enter(){                                                //µÇÂ½¹ÜÀíÔ±ÕË»§ 
+	FILE *fp;
+	char set1[20]; 
+	char set2[20]; 
+	char key[20];
+	char user[20];
+	while(1){
+		fp=fopen("D:\\key.txt","rt");
+		if(fp==NULL){
+		  fp=fopen("D:\\key.txt","wt");
+		  printf("\t\t\t\t\tÇëÖÆ¶¨¹ÜÀíÔ±ÕËºÅÓëÃÜÂë£º\n");
+		  printf("\t\t\t\t\tÕËºÅ£º");
+		  scanf("%s",set1);
+		  printf("\t\t\t\t\tÃÜÂë£º");
+		  scanf("%s",set2);
+		  fwrite(set1,sizeof(set1),1,fp);
+		  fwrite(set2,sizeof(set2),1,fp);
+		  fclose(fp);
+		   manager();
+		    return;
+	    }
+	   printf("\t\t\t\t\tÕËºÅ£º");
+	   scanf("%s",user);
+	   printf("\t\t\t\t\tÃÜÂë£º");
+	   secretword(key);
+	   if(checkkey(user,key)==0){
+	   		printf("ÕËºÅÃÜÂëÓĞÎó£¡\n");
+	   		getch();
+	       continue;
+	    }
+	return;
+    }
+}
+
+int checkkey(char user[],char key[]){                          //¼ì²â¹ÜÀíÔ±ÕË»§ÃÜÂëÊÇ·ñÕıÈ· 
+	FILE *fp;
+	char set1[20]; 
+	char set2[20]; 
+	fp=fopen("D:\\key.txt","rt");
+	fread(set1,sizeof(set1),1,fp);
+	fread(set2,sizeof(set2),1,fp);
+	fclose(fp);
+	if(strcmp(set1,user)==0&&strcmp(set2,key)==0){ 
+	   printf("\t\t\t\t\t\t ||  ×ğ¾´µÄ¹ÜÀíÔ±£¬»¶Ó­Äú  ||\n");
+	   getch();
+	   manager();
+	   return 1;
+	   }
+	return 0;
+}
+
 int manager() {
 	int choice=-1;
 	struct student *pHead;
@@ -59,7 +112,6 @@ int manager() {
 	}
 	return 0;
 }
-
 
 struct student *Creat(){                                      //´´½¨Á´±í£¬³õÊ¼´´½¨Ê±£¬¿ÉÒÔ±£³Ö¶à´ÎÂ¼Èë£¬µ±ĞÕÃûÎª¿Õ¸ñÊ±Í£Ö¹Â¼Èë 
 	struct student *pHead=NULL;                               //ÈôÒÑÂ¼Èë¹ıĞÅÏ¢£¬ÔòÌí¼ÓĞÂµÄ½Úµã½øÈëÁ´±í£¬·ÅÔÚ×îºó 
@@ -153,6 +205,7 @@ void print(){                                                              //´òÓ
 		printf("\t\t\t\t\t\tÑ§ºÅ£º%s\n",temp->stu.snum);
 		printf("\t\t\t\t\t\t°àÄÚĞòºÅ£º%d\n",temp->stu.inumber);
 		printf("\t\t\t\t\t\tÊÖ»úºÅ£º%s\n\n",temp->stu.iPhone);
+		printf("\t\t\t\t\t\t-----------------------------\n");
 		temp=temp->next;
 		index++;
 	}
@@ -166,7 +219,7 @@ void Insert(){
 	
 	pHead=read();
 	
-	printf("\t\t\t\t\t\tÇëÊäÈëÒª²åÈëµÄÑ§Éú°àÄÚĞòºÅ£º");                                                    //½«Ñ§ÉúĞÅÏ¢²åÈë½øÁ´±í 
+	printf("\t\t\t\t\t\tÇëÊäÈëÒª²åÈëµÄÑ§Éú°àÄÚĞòºÅ£º");                                     //½«Ñ§ÉúĞÅÏ¢²åÈë½øÁ´±í ²¢±£´æÖÁ±¾µØ 
 	scanf("%d",&index);
 	printf("\t\t\t\t\t\t-----------µ±Ç°ÒÑÂ¼Èë%dÈË---------\n",now1_student());
 	if(index>now1_student())
@@ -212,15 +265,12 @@ void Insert(){
   return;
 }
 
-void Delete(){                                                              //É¾³ıÑ§ÉúĞÅÏ¢ 
+void Delete(){                                                              //É¾³ıÑ§ÉúĞÅÏ¢ ²¢±£´æ 
 	struct student *pHead;
 	int i,index;
 	struct student *pTemp;
     struct student *pPre,*p;
-    
     pHead=read();
-    
-    
 	printf("\t\t\t\t\t\tÇëÊäÈëÒªÉ¾³ıµÄÑ§Éú°àÄÚĞòºÅ£º");
 	scanf("%d",&index);
 	if(index>now1_student()){
@@ -278,24 +328,8 @@ void seek(){                                                                  //
 	
 }
 
-int checkkey(char user[],char key[]){
-	FILE *fp;
-	char set1[20]; 
-	char set2[20]; 
-	fp=fopen("D:\\key.txt","rt");
-	fread(set1,sizeof(set1),1,fp);
-	fread(set2,sizeof(set2),1,fp);
-	fclose(fp);
-	if(strcmp(set1,user)==0&&strcmp(set2,key)==0){ 
-	   printf("\t\t\t\t\t\t ||  ×ğ¾´µÄ¹ÜÀíÔ±£¬»¶Ó­Äú  ||\n");
-	   getch();
-	   manager();
-	   return 1;
-	   }
-	return 0;
-}
 
-void new_teacher(){
+void new_teacher(){                                                        //ĞÂÔö½ÌÊ¦ĞÅÏ¢ÖÁ±¾µØ 
 	FILE *fp;
 	char set1[20];
 	char set2[20];
@@ -311,7 +345,7 @@ void new_teacher(){
 	printf("ĞÂÔö½ÌÊ¦ĞÅÏ¢³É¹¦£¡\n");
 }  
 
-void print_tea(){
+void print_tea(){                                                       //´òÓ¡½ÌÊ¦ĞÅÏ¢ 
 	FILE *fp;
 	fp=fopen("d:\\t_key.txt","rt");
 	if(fp==NULL){

@@ -1,7 +1,7 @@
 #include"STUDENT.h"
-
-void tea_enter(){
-	FILE *fp;
+                                 //教师端主界面 
+void tea_enter(){                                   
+	FILE *fp;                                                 //登陆教师账户 
 	char set1[20]; 
 	char set2[20]; 
 	char key[20];
@@ -24,7 +24,7 @@ void tea_enter(){
     }
 }
 
-int t_checkkey(char user[],char key[]){
+int t_checkkey(char user[],char key[]){                         //检测教师账号密码是否正确 
 	FILE *fp;
 	char set1[20]; 
 	char set2[20]; 
@@ -42,7 +42,7 @@ int t_checkkey(char user[],char key[]){
 	return 0;
 }
 
-void teacher(){
+void teacher(){                                                 //教师端主界面 
 	int choice=-1;
 	struct student *pHead;
 	while(choice!=0){
@@ -67,26 +67,24 @@ void teacher(){
 	scanf("%d",&choice);
 		switch(choice){
 			case 1:
-			if(now1_student()!=0)
-			  printf("您已录入过初始信息，请继续添加学生信息!\n");
-			pHead=Creat();
-			getch();
-			 break;
+			   if(now1_student()!=0)
+			       printf("您已录入过初始信息，请继续添加学生信息!\n");
+			   pHead=Creat();
+			     getch();
+			       break;
 			case 2:Insert();
-			getch();
-			 break;
-			 break;
+			   getch();
+			     break;
 			case 3:print();
-			getch(); 
-			 break;
-			 case 4: 
-			 seek();
-			 getch();
-			 break;
+			   getch(); 
+			     break;
+			case 4: seek();
+			   getch();
+			     break;
 			case 0:
-				break;
+				 break;
 			default:
-				break;
+				 break;
 		}
 	}
 }

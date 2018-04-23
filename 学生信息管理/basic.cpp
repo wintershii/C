@@ -60,39 +60,4 @@ void save(struct student *pHead){                                      //±£´æµ±Ç
 		printf("\t\t\t\t\t\t³É¹¦½«ĞÅÏ¢±£´æÖÁ±¾µØÎÄ¼ş£¡");
 		fclose(fp);
 }
-
-void enter(){
-	FILE *fp;
-	char set1[20]; 
-	char set2[20]; 
-	char key[20];
-	char user[20];
-	while(1){
-		fp=fopen("D:\\key.txt","rt");
-		if(fp==NULL){
-		fp=fopen("D:\\key.txt","wt");
-		printf("\t\t\t\t\tÇëÖÆ¶¨¹ÜÀíÔ±ÕËºÅÓëÃÜÂë£º\n");
-		printf("\t\t\t\t\tÕËºÅ£º");
-		scanf("%s",set1);
-		printf("\t\t\t\t\tÃÜÂë£º");
-		scanf("%s",set2);
-		fwrite(set1,sizeof(set1),1,fp);
-		fwrite(set2,sizeof(set2),1,fp);
-		fclose(fp);
-		manager();
-		return;
-	}
-	   printf("\t\t\t\t\tÕËºÅ£º");
-	   scanf("%s",user);
-	   printf("\t\t\t\t\tÃÜÂë£º");
-	   secretword(key);
-	   if(checkkey(user,key)==0){
-	   		printf("ÕËºÅÃÜÂëÓĞÎó£¡\n");
-	   		getch();
-	       continue;
-	     }
-	    return;
-      }
-}
-
-
+ 

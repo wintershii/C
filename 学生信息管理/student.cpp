@@ -1,5 +1,5 @@
 #include"STUDENT.h"
-                                 //学生端的源代码 
+                                   //学生端的源代码 
 
 void student_(){                                                    //学生端主界面 
 	int choice=-1;
