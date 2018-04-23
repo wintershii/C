@@ -1,6 +1,24 @@
 #include"STUDENT.h"
+                                 //学生端的源代码 
 
-void stu_seek(){
+void student_(){                                                    //学生端主界面 
+	int choice=-1;
+	while(choice!=0){
+		printf("\t\t\t\t\t\t || 1.    查看我的信息     ||\n");
+		printf("\t\t\t\t\t\t || 0.        退出         ||\n");
+		scanf("%d",&choice);
+		 switch(choice){
+			case 1:
+				stu_seek();
+				  break;
+			case 0:
+			      return; 
+		 } 
+	}
+	return;
+}
+
+void stu_seek(){                                  //通过姓名+学号 查询自己的信息                         
 	struct student *pHead,*pTemp;
 	char name[20];
 	char snum[10]; 
@@ -18,29 +36,10 @@ void stu_seek(){
      	    printf("\t\t\t\t\t\t 学号：%s\n",pTemp->stu.snum);
      	    printf("\t\t\t\t\t\t 班内序号：%d\n",pTemp->stu.inumber);
      	    printf("\t\t\t\t\t\t 手机号：%s\n\n",pTemp->stu.iPhone);
-     	    return;
-     	    ;
+     	       return;
      	} 
      	pTemp=pTemp->next;
 	 }
         printf("\n\t\t\t\t\t\t未查找到此人信息！\n");
-
   return;
-}    
-
-void student_(){
-	int choice=-1;
-	while(choice!=0){
-		printf("\t\t\t\t\t\t || 1.     查看我的信息      ||\n");
-		printf("\t\t\t\t\t\t || 0.         退出          ||\n");
-		scanf("%d",&choice);
-		switch(choice){
-			case 1:
-				stu_seek();
-				break;
-			case 0:
-			    return; 
-		} 
-	}
-	return;
 }

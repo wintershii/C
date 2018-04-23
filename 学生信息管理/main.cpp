@@ -1,12 +1,11 @@
 #include"STUDENT.h"
 
-int main() {
-	int choice=-1;
-	while(choice!=0){
-		system("cls");
-	printf("\n\t\t\t\t\t\t-------学生信息管理系统------\n");
-
-	printf("\t\t\t\t\t\t-----------------------------\n");
+int main() {                                                       
+	int choice=-1;                  
+	while(choice!=0){                                                    //打印主页面，分三个端口 
+		system("cls");                                                   //学生端，学生只可查询自己的信息和成绩 
+	printf("\n\t\t\t\t\t\t-------学生信息管理系统------\n");             //教师端，教师可以管理学生的信息和成绩 
+	printf("\t\t\t\t\t\t-----------------------------\n");               //管理员端，管理员可以管理学生和老师的信息 
 	printf("\t\t\t\t\t\t||   1. 我是学生           ||\n");
 	printf("\t\t\t\t\t\t||   2. 本人是老师         ||\n");
 	printf("\t\t\t\t\t\t||   3. 老子是管理员       ||\n");
@@ -15,24 +14,24 @@ int main() {
 	scanf("%d",&choice);
 		switch(choice){
 			case 1:
-			    printf("\t\t\t\t\t\t ||  学生只能查询自己的信息  ||\n");
+			    printf("\t\t\t\t\t\t || 学生只能查询自己的信息 ||\n");
 			        student_();
-			getch();
-			break;
+			          getch();
+			            break;
 			case 2:
-				printf("\t\t\t\t\t\t ||           请登陆！       ||\n");
-				    tea_enter();
-			getch();
-			 break;
+				printf("\t\t\t\t\t\t ||          请登陆！      ||\n");            //教师端和管理员端都需要账号密码登陆 
+				    tea_enter();                                                  //教师端的账号密码可由管理员设置 
+			          getch();
+			            break;
 			case 3:
-                printf("\t\t\t\t\t\t ||           请登陆！       ||\n\n");
+                printf("\t\t\t\t\t\t ||          请登陆！      ||\n\n");          //管理员初次使用系统可以设置账号密码 
                     enter(); 
-			getch();
-			  break;
+			          getch();
+			            break;
 			case 0:
-				exit(0);
+				        exit(0);
 			default:
-				exit(0); 
+				        exit(0); 
 		}
 	}
 }

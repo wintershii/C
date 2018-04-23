@@ -23,6 +23,8 @@ void tea_enter();
 void teacher(); 
 int t_checkkey(char user[],char key[]);
 void new_teacher();
+void print_tea();
+
 
 struct infomation{
 	char iname[20];

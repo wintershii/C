@@ -1,11 +1,11 @@
 #include"STUDENT.h"
-
+void print_tea();
 int manager() {
 	int choice=-1;
 	struct student *pHead;
 	while(choice!=0){
 		system("cls");
-	printf("\n\t\t\t\t\t\t-------学生信息管理系统------\n");
+	printf("\n\t\t\t\t\t\t-------教务信息管理系统------\n");
     if(now1_student()==0){
 
     printf("\t\t\t\t\t\t------目前还未录入过信息------\n");
@@ -21,7 +21,8 @@ int manager() {
 	printf("\t\t\t\t\t\t || 3. 删除学生信息        ||\n");
 	printf("\t\t\t\t\t\t || 4. 打印学生信息表      ||\n");
 	printf("\t\t\t\t\t\t || 5. 查找学生信息        ||\n");
-	printf("\t\t\t\t\t\t || 6. 新增老师信息        ||\n");
+	printf("\t\t\t\t\t\t || 6. 新增教师信息        ||\n");
+	printf("\t\t\t\t\t\t || 7. 打印教师信息        ||\n");
 	printf("\t\t\t\t\t\t || 0. 退出                ||\n");
 	printf("\t\t\t\t\t\t-----------------------------\n");
 	scanf("%d",&choice);
@@ -45,6 +46,9 @@ int manager() {
 			 getch();
 			 break;
 			 case 6:new_teacher();
+			 getch();
+			 break;
+			 case 7:print_tea();
 			 getch();
 			 break;
 			case 0:
@@ -283,7 +287,7 @@ int checkkey(char user[],char key[]){
 	fread(set2,sizeof(set2),1,fp);
 	fclose(fp);
 	if(strcmp(set1,user)==0&&strcmp(set2,key)==0){ 
-	   printf("\t\t\t\t\t\t ||尊敬的管理员，欢迎您||\n");
+	   printf("\t\t\t\t\t\t ||  尊敬的管理员，欢迎您  ||\n");
 	   getch();
 	   manager();
 	   return 1;
@@ -291,15 +295,14 @@ int checkkey(char user[],char key[]){
 	return 0;
 }
 
-
 void new_teacher(){
 	FILE *fp;
 	char set1[20];
 	char set2[20];
-	printf("请设置新增教师账号密码：\n");
-	printf("账号：");
+	printf("\t\t\t\t\t请设置新增教师账号密码：\n");
+	printf("\t\t\t\t\t账号：");
 	scanf("%s",set1);
-	printf("密码：");
+	printf("\t\t\t\t\t密码：");
 	scanf("%s",set2);
 	fp=fopen("D:\\t_key.txt","at");
 	fwrite(set1,sizeof(set1),1,fp);
@@ -307,3 +310,25 @@ void new_teacher(){
 	fclose(fp);
 	printf("新增教师信息成功！\n");
 }  
+
+void print_tea(){
+	FILE *fp;
+	fp=fopen("d:\\t_key.txt","rt");
+	if(fp==NULL){
+		printf("暂时没有教师信息！\n");
+		return;
+	}
+	while(!feof(fp)){
+		char user[20],key[20];
+		fread(user,sizeof(user),1,fp);
+		fread(key,sizeof(key),1,fp);
+		printf("\n");
+		printf("\t\t\t\t\t\t用户名：");
+		printf("%s\n",user);
+		printf("\t\t\t\t\t\t密码：");
+		printf("%s\n",key);
+		printf("\t\t\t\t\t\t-----------------------------\n");
+	}
+	fclose(fp);
+	return;
+}
