@@ -1,6 +1,6 @@
 #include"STUDENT.h"
 
-void print_tea();
+//void print_tea();
 
 void enter(){                                                //µÇÂ½¹ÜÀíÔ±ÕË»§ 
 	FILE *fp;
@@ -45,7 +45,7 @@ int checkkey(char user[],char key[]){                          //¼ì²â¹ÜÀíÔ±ÕË»§Ã
 	fread(set2,sizeof(set2),1,fp);
 	fclose(fp);
 	if(strcmp(set1,user)==0&&strcmp(set2,key)==0){ 
-	   printf("\t\t\t\t\t\t ||  ×ð¾´µÄ¹ÜÀíÔ±£¬»¶Ó­Äú  ||\n");
+	   printf("\t\t\t\t\t\t||  ×ð¾´µÄ¹ÜÀíÔ±£¬»¶Ó­Äú   ||\n");
 	   getch();
 	   manager();
 	   return 1;
@@ -83,31 +83,31 @@ int manager() {
 			case 1:
 			if(now1_student()!=0)
 			  printf("ÄúÒÑÂ¼Èë¹ý³õÊ¼ÐÅÏ¢£¬Çë¼ÌÐøÌí¼ÓÑ§ÉúÐÅÏ¢!\n");
-			pHead=Creat();
-			getch();
-			 break;
+			         pHead=Creat();
+			               getch();
+			                 break;
 			case 2:Insert();
-			getch();
-			 break;
+			       getch();
+			           break;
 			case 3:Delete();
-			getch();
-			 break;
+			       getch();
+			           break;
 			case 4:print();
-			getch(); 
-			 break;
-			 case 5:seek(); 
-			 getch();
-			 break;
-			 case 6:new_teacher();
-			 getch();
-			 break;
-			 case 7:print_tea();
-			 getch();
-			 break;
+			        getch(); 
+			           break;
+			case 5:seek(); 
+			        getch();
+				       break;
+			case 6:new_teacher();
+			 		getch();
+			 		   break;
+			case 7:print_tea();
+			 		getch();
+			 		   break;
 			case 0:
-				break;
+				    break;
 			default:
-				break;
+					break;
 		}
 	}
 	return 0;
@@ -235,6 +235,10 @@ void Insert(){
 		printf("\t\t\t\t\t\t°àÄÚÐòºÅ£º%d\n",ipnew->stu.inumber);
 		printf("\t\t\t\t\t\tÊÖ»úºÅ£º");
 		scanf("%s",ipnew->stu.iPhone);
+		printf("%s\t%s\t%d  %s\n",ipnew->stu.iname,ipnew->stu.snum,ipnew->stu.inumber,ipnew->stu.iPhone);
+		
+		
+		
 		
     if(index==1){
 		ipnew->next=pHead;

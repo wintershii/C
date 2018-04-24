@@ -14,25 +14,26 @@ int main() {
 	scanf("%d",&choice);
 		switch(choice){
 			case 1:
-			    printf("\t\t\t\t\t\t || 学生只能查询自己的信息 ||\n");
+			    printf("\t\t\t\t\t\t|| 学生只能查询自己的信息  ||\n");
 			        student_();
 			          getch();
 			            break;
 			case 2:
-				printf("\t\t\t\t\t\t ||          请登陆！      ||\n");            //教师端和管理员端都需要账号密码登陆 
+				printf("\t\t\t\t\t\t||          请登陆！       ||\n");            //教师端和管理员端都需要账号密码登陆 
 				    tea_enter();                                                  //教师端的账号密码可由管理员设置 
 			          getch();
 			            break;
 			case 3:
-                printf("\t\t\t\t\t\t ||          请登陆！      ||\n\n");          //管理员初次使用系统可以设置账号密码 
+                printf("\t\t\t\t\t\t||          请登陆！       ||\n\n");          //管理员初次使用系统可以设置账号密码 
                     enter(); 
 			          getch();
 			            break;
 			case 0:
-				        exit(0);
+				    exit(0);
 			default:
-				        exit(0); 
+				    printf("请正确输入所提示的内容！\n");
+				       getch();
+				        break;
 		}
 	}
 }
-

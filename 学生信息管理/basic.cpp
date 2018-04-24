@@ -52,7 +52,7 @@ struct student *read(){                                                         
 void save(struct student *pHead){                                      //保存当前的链表至本地文件 
 	    struct student *pTemp=pHead; 
 	    FILE *fp;
-		fp=fopen("d:\\stuifo.txt","wt");
+		fp=fopen("d:\\stuifo.txt","w+");
 		while(pTemp!=NULL){
 			fwrite(pTemp,sizeof(struct student),1,fp);
 			pTemp=pTemp->next;

@@ -24,7 +24,8 @@ void teacher();
 int t_checkkey(char user[],char key[]);
 void new_teacher();
 void print_tea();
-
+void scanf_score();
+void print_score();
 
 struct infomation{
 	char iname[20];
@@ -33,15 +34,15 @@ struct infomation{
 	char iPhone[20];
 };
 
-/*struct grade{
+struct grade{
 	int math;
 	int english;
 	int c;
-};     */
+};     
 
 struct student{
 	struct infomation stu;
-//	struct grade gra;
+	struct grade gra;
 	struct student *next;
 };
 

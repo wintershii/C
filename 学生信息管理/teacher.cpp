@@ -1,4 +1,5 @@
 #include"STUDENT.h"
+
                                  //教师端主界面 
 void tea_enter(){                                   
 	FILE *fp;                                                 //登陆教师账户 
@@ -33,7 +34,8 @@ int t_checkkey(char user[],char key[]){                         //检测教师账号密
 		fread(set1,sizeof(set1),1,fp);
 	    fread(set2,sizeof(set2),1,fp);
 	    if(strcmp(set1,user)==0&&strcmp(set2,key)==0){ 
-	       printf("\t\t\t\t\t\t ||   尊敬的老师，欢迎您   ||\n");
+	       printf("\t\t\t\t\t\t||   尊敬的老师，欢迎您    ||\n");
+
 	       getch();
 	         teacher();
 	       return 1;
@@ -62,6 +64,7 @@ void teacher(){                                                 //教师端主界面
 	printf("\t\t\t\t\t\t || 3. 打印学生信息表      ||\n");
 	printf("\t\t\t\t\t\t || 4. 查找学生信息        ||\n");
 	printf("\t\t\t\t\t\t || 5. 录入成绩信息        ||\n");
+	printf("\t\t\t\t\t\t || 6. 打印成绩信息        ||\n");
 	printf("\t\t\t\t\t\t || 0. 退出                ||\n");
 	printf("\t\t\t\t\t\t----------------------------\n");
 	scanf("%d",&choice);
@@ -81,6 +84,12 @@ void teacher(){                                                 //教师端主界面
 			case 4: seek();
 			   getch();
 			     break;
+			case 5: scanf_score();
+			   getch();
+			     break;
+			case 6: print_score();
+			   getch();
+			     break;
 			case 0:
 				 break;
 			default:
@@ -89,5 +98,35 @@ void teacher(){                                                 //教师端主界面
 	}
 }
                
+void scanf_score(){
+	struct student *pHead,*pTemp;
+	pHead=read();
+	pTemp=pHead;
+	printf("开始录入成绩，按\n");
+	while(pTemp != NULL){
+		char ch;
+		printf("%d  %s\t%s\n",pTemp->stu.inumber,pTemp->stu.iname,pTemp->stu.snum);
+		printf("此人成绩：");
+		printf("数学:");
+		scanf("%d",&pTemp->gra.math);
+		printf("英语:");
+		scanf("%d",&pTemp->gra.english);
+		printf("C语言:");
+		scanf("%d",&pTemp->gra.c);
+		if(kbhit()&&(ch=getchar())==27)
+		   break;
+	}
+	save(pHead);
+}
 
-
+void print_score(){
+	struct student *pHead,*pTemp;
+	pHead=read();
+	pHead=pHead;
+	while(pTemp!=NULL){
+		printf("班内序号：%d\t姓名：%s\n",pTemp->stu.inumber,pTemp->stu.iname);
+		printf("数学：\n",pTemp->gra.math);
+		printf("英语：\n",pTemp->gra.english);
+		printf("C语言：\n",pTemp->gra.c);
+	}
+}
