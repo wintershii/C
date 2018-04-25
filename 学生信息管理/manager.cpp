@@ -120,7 +120,7 @@ struct student *Creat(){                                      //创建链表，初始创
 	int judge;
 	int count=0;
 	int ojbk=now1_student();
-	if(now1_student()>0){ 
+	if(now1_student()>0){
 		pHead=read();
 		pTemp=pHead;
 		while(pTemp->next!=NULL)
@@ -189,7 +189,7 @@ struct student *Creat(){                                      //创建链表，初始创
 	if(judge==1)
 		save(pHead);
 	return pHead;
-} 
+}
 
 void print(){                                                              //打印出本地文件内的学生信息 
 	int count=0;
@@ -234,12 +234,7 @@ void Insert(){
 		ipnew->stu.inumber=index;
 		printf("\t\t\t\t\t\t班内序号：%d\n",ipnew->stu.inumber);
 		printf("\t\t\t\t\t\t手机号：");
-		scanf("%s",ipnew->stu.iPhone);
-		printf("%s\t%s\t%d  %s\n",ipnew->stu.iname,ipnew->stu.snum,ipnew->stu.inumber,ipnew->stu.iPhone);
-		
-		
-		
-		
+		scanf("%s",ipnew->stu.iPhone);	
     if(index==1){
 		ipnew->next=pHead;
 		pHead=ipnew;
@@ -263,7 +258,6 @@ void Insert(){
 			pTemp->stu.inumber++;
 			pTemp=pTemp->next;
 	    }
-		
   }
         save(pHead);
   return;

@@ -4,8 +4,11 @@
 #include<conio.h>
 #include<windows.h>
 int now1_student();
+int now2_student();
 struct student *read();
+struct student *read_score();
 void save(struct student *pHead);
+void save_score(struct student *pHead);
 int _ifblank(char judge[]);
 struct student *Creat();
 void print();
@@ -24,8 +27,11 @@ void teacher();
 int t_checkkey(char user[],char key[]);
 void new_teacher();
 void print_tea();
-void scanf_score();
+struct student *scanf_score();
 void print_score();
+void change_score();
+void sort_score();
+void score_seek(); 
 
 struct infomation{
 	char iname[20];

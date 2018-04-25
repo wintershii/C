@@ -55,7 +55,8 @@ void teacher(){                                                 //教师端主界面
     printf("\t\t\t\t\t\t---------请开始首次录入-------\n");
     }
     else{
-	printf("\t\t\t\t\t\t-----------已录入%d人---------\n",now1_student());
+	printf("\t\t\t\t\t\t---------学籍已录入%d人-------\n",now1_student());
+	printf("\t\t\t\t\t\t---------成绩已录入%d人-------\n",now2_student());
 	printf("\t\t\t\t\t\t--若需新增学生信息请选则添加--\n");
     }
 	printf("\t\t\t\t\t\t-----------------------------\n");
@@ -65,6 +66,8 @@ void teacher(){                                                 //教师端主界面
 	printf("\t\t\t\t\t\t || 4. 查找学生信息        ||\n");
 	printf("\t\t\t\t\t\t || 5. 录入成绩信息        ||\n");
 	printf("\t\t\t\t\t\t || 6. 打印成绩信息        ||\n");
+	printf("\t\t\t\t\t\t || 7. 修改成绩信息        ||\n");
+	printf("\t\t\t\t\t\t || 8. 班内成绩排名        ||\n");	
 	printf("\t\t\t\t\t\t || 0. 退出                ||\n");
 	printf("\t\t\t\t\t\t----------------------------\n");
 	scanf("%d",&choice);
@@ -84,10 +87,16 @@ void teacher(){                                                 //教师端主界面
 			case 4: seek();
 			   getch();
 			     break;
-			case 5: scanf_score();
+			case 5: pHead=scanf_score();
 			   getch();
 			     break;
 			case 6: print_score();
+			   getch();
+			     break;
+			case 7: change_score();
+			   getch();
+			     break;
+			case 8: sort_score();
 			   getch();
 			     break;
 			case 0:
@@ -97,36 +106,224 @@ void teacher(){                                                 //教师端主界面
 		}
 	}
 }
-               
-void scanf_score(){
-	struct student *pHead,*pTemp;
-	pHead=read();
-	pTemp=pHead;
-	printf("开始录入成绩，按\n");
-	while(pTemp != NULL){
-		char ch;
-		printf("%d  %s\t%s\n",pTemp->stu.inumber,pTemp->stu.iname,pTemp->stu.snum);
-		printf("此人成绩：");
-		printf("数学:");
-		scanf("%d",&pTemp->gra.math);
-		printf("英语:");
-		scanf("%d",&pTemp->gra.english);
-		printf("C语言:");
-		scanf("%d",&pTemp->gra.c);
-		if(kbhit()&&(ch=getchar())==27)
-		   break;
+  
+  
+struct student *scanf_score(){                                      //创建链表，初始创建时，可以保持多次录入，当姓名为空格时停止录入 
+	struct student *pHead=NULL,*pHead2=read();                               //若已录入过信息，则添加新的节点进入链表，放在最后 
+ 	struct student *pNew,*pEnd;
+	struct student *pTemp,*pTemp2=pHead2;
+	int judge;
+	int count=0;
+		if(now2_student()>0){
+			printf("您已经录入过学生成绩！请添加暂未录入的成绩信息\n");
+			pHead=read_score();
+			pTemp=pHead;
+			while(pTemp->next->next!=NULL){
+			      pTemp=pTemp->next;
+			      pTemp2=pTemp2->next;
+			}
+			pTemp2=pTemp2->next;
+			printf("%d  %s\t%s\n",pTemp2->stu.inumber,pTemp2->stu.iname,pTemp2->stu.snum);
+	        pNew=(struct student *)malloc(sizeof(struct student));
+	        printf("\t\t\t\t\t\t请输入成绩信息：");
+	        printf("\n\t\t\t\t\t\t数学："); 
+            scanf("%d",&pNew->gra.math);
+	        printf("\t\t\t\t\t\t英语：");
+            scanf("%d",&pNew->gra.english);
+	        printf("\t\t\t\t\t\tC语言：");
+	        scanf("%d",&pNew->gra.c);
+	        pNew->next=NULL;
+			pTemp->next=pNew;
+			printf("新增成绩信息成功！\n");
+			save_score(pHead);
+			return pHead;
+		}
+	while(pTemp2!=NULL){
+		printf("%d  %s\t%s\n",pTemp2->stu.inumber,pTemp2->stu.iname,pTemp2->stu.snum);
+	pNew=(struct student *)malloc(sizeof(struct student));
+	printf("\t\t\t\t\t\t请输入成绩信息：");
+	printf("\n\t\t\t\t\t\t数学："); 
+      scanf("%d",&pNew->gra.math);
+	printf("\t\t\t\t\t\t英语：");
+      scanf("%d",&pNew->gra.english);
+	printf("\t\t\t\t\t\tC语言：");
+	  scanf("%d",&pNew->gra.c);
+		
+		count++;
+		if(count==1){
+			pNew->next=pHead;
+			pEnd=pNew;
+			pHead=pNew;
+		}
+		else{
+			pNew->next=NULL;
+			pEnd->next=pNew;
+			pEnd=pNew;
+		}
+		pTemp2=pTemp2->next;
 	}
-	save(pHead);
+	printf("\t\t\t\t\t\t是否保存这些成绩信息? 1-是 0-否");
+	scanf("%d",&judge);
+	if(judge==1)
+		save_score(pHead);
+	return pHead;
+}
+              
+void print_score(){
+	struct student *pHead,*pTemp,*pHead2,*pTemp2;
+	pHead=read_score();
+	pHead2=read();
+	pTemp=pHead;
+	pTemp2=pHead2;
+	while(pTemp!=NULL){
+		printf("班内序号：%d\t姓名：%s\n",pTemp2->stu.inumber,pTemp2->stu.iname);
+		printf("数学：%d\n",pTemp->gra.math);
+		printf("英语：%d\n",pTemp->gra.english);
+		printf("C语言：%d\n",pTemp->gra.c);
+		pTemp=pTemp->next;
+		pTemp2=pTemp2->next;
+	}
 }
 
-void print_score(){
-	struct student *pHead,*pTemp;
-	pHead=read();
-	pHead=pHead;
-	while(pTemp!=NULL){
-		printf("班内序号：%d\t姓名：%s\n",pTemp->stu.inumber,pTemp->stu.iname);
-		printf("数学：\n",pTemp->gra.math);
-		printf("英语：\n",pTemp->gra.english);
-		printf("C语言：\n",pTemp->gra.c);
+void change_score(){
+	struct student *pHead=NULL,*pHead2=NULL;
+    pHead=read_score();
+	pHead2=read();
+	struct student *pTemp=pHead,*pTemp2=pHead2;
+	int index;
+
+	printf("请输入要修改成绩的学生班内序号：");
+	scanf("%d",&index);
+	if(index>now2_student()){
+		printf("输入有误！\n");
+		return;
 	}
+	while(pTemp2->stu.inumber != index){
+		pTemp=pTemp->next;
+		pTemp2=pTemp2->next;
+	}
+		printf("班内序号：%d\t姓名：%s\n",pTemp2->stu.inumber,pTemp2->stu.iname);
+		printf("\t\t\t\t\t\t请输入成绩信息：");
+	printf("\n\t\t\t\t\t\t数学："); 
+      scanf("%d",&pTemp->gra.math);
+	printf("\t\t\t\t\t\t英语：");
+      scanf("%d",&pTemp->gra.english);
+	printf("\t\t\t\t\t\tC语言：");
+	  scanf("%d",&pTemp->gra.c);
+		save_score(pHead);
+		printf("保存成功！\n");
+		return;
 }
+
+void sort_score(){
+	struct student *pHead=NULL,*pHead2=NULL;
+	pHead=read_score();
+	pHead2=read();
+	struct student *pTemp=pHead,*pTemp2=pHead2;
+	int index;
+	printf("请选择要排名的成绩：");
+	printf("\n\t\t\t1.数学\n\t\t\t2.英语\n\t\t\t3.C语言"); 
+	scanf("%d",&index);
+	if(index==1){
+		struct student *pfirst=NULL,*pend=NULL;
+		pfirst=pHead;
+		while( pfirst!= pend){
+			while(pfirst->next != pend){
+			     if(pfirst->gra.math < pfirst->next->gra.math){
+			     	 struct grade temp=pfirst->gra;
+			     	 pfirst->gra=pfirst->next->gra;
+			     	 pfirst->next->gra=temp;
+			     	 struct infomation temp2=pTemp2->stu;
+			     	 pTemp2->stu=pTemp2->next->stu;
+			     	 pTemp2->next->stu=temp2;
+				 }
+				 pfirst=pfirst->next;
+				 pTemp2=pTemp2->next;
+			}
+			pend=pfirst;
+			pfirst=pHead;
+			pTemp2=pHead2;
+		}
+		pTemp=pHead;pTemp2=pHead2;
+		int sort=1;
+		printf("\t\t\t\t\t数学成绩排名：\n"); 
+		while(pTemp!=NULL){
+			printf("第%d名：  ",sort++);
+				printf("班内序号：%d\t姓名：%s\n",pTemp2->stu.inumber,pTemp2->stu.iname);
+		printf("\t成绩：%d 分\n",pTemp->gra.math);
+		pTemp=pTemp->next;
+		pTemp2=pTemp2->next;
+		}
+	}
+	
+	else if(index==2){
+		struct student *pfirst=NULL,*pend=NULL;
+		pfirst=pHead;
+		while( pfirst!= pend){
+			while(pfirst->next != pend){
+			     if(pfirst->gra.english < pfirst->next->gra.english){
+			     	 struct grade temp=pfirst->gra;
+			     	 pfirst->gra=pfirst->next->gra;
+			     	 pfirst->next->gra=temp;
+			     	 struct infomation temp2=pTemp2->stu;
+			     	 pTemp2->stu=pTemp2->next->stu;
+			     	 pTemp2->next->stu=temp2;
+				 }
+				 pfirst=pfirst->next;
+				 pTemp2=pTemp2->next;
+			}
+			pend=pfirst;
+			pfirst=pHead;
+			pTemp2=pHead2;
+		}
+		pTemp=pHead;pTemp2=pHead2;
+		int sort=1;
+		printf("\t\t\t\t\t英语成绩排名：\n"); 
+		while(pTemp!=NULL){
+			printf("第%d名：  ",sort++);
+				printf("班内序号：%d\t姓名：%s\n",pTemp2->stu.inumber,pTemp2->stu.iname);
+		printf("\t成绩：%d 分\n",pTemp->gra.english);
+		pTemp=pTemp->next;
+		pTemp2=pTemp2->next;
+		}
+	}
+	
+	else if(index==3){
+		struct student *pfirst=NULL,*pend=NULL;
+		pfirst=pHead;
+		while( pfirst!= pend){
+			while(pfirst->next != pend){
+			     if(pfirst->gra.c < pfirst->next->gra.c){
+			     	 struct grade temp=pfirst->gra;
+			     	 pfirst->gra=pfirst->next->gra;
+			     	 pfirst->next->gra=temp;
+			     	 struct infomation temp2=pTemp2->stu;
+			     	 pTemp2->stu=pTemp2->next->stu;
+			     	 pTemp2->next->stu=temp2;
+				 }
+				 pfirst=pfirst->next;
+				 pTemp2=pTemp2->next;
+			}
+			pend=pfirst;
+			pfirst=pHead;
+			pTemp2=pHead2;
+		}
+		pTemp=pHead;pTemp2=pHead2;
+		int sort=1;
+		printf("\t\t\t\t\tC语言成绩排名：\n"); 
+		while(pTemp!=NULL){
+			printf("第%d名：  ",sort++);
+				printf("班内序号：%d\t姓名：%s\n",pTemp2->stu.inumber,pTemp2->stu.iname);
+		printf("\t成绩：%d 分\n",pTemp->gra.c);
+		pTemp=pTemp->next;
+		pTemp2=pTemp2->next;
+		}
+	}
+	else{
+		printf("输入有误！");
+		return;
+	}
+	   
+}
+
+
