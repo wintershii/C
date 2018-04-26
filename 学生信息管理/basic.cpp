@@ -35,6 +35,24 @@ int now2_student(){                                                             
         return i-1;                                         
 }
 
+int now_tea(){                                                                //显示文件中现在已录入的学生数                 
+	int i=1;
+	char j[100000];
+	char set[20];
+	FILE *info;
+	info=fopen("d:\\t_key.txt","rt");
+	if(info==NULL)
+		return 0;
+	rewind(info);
+	   	while(fgets(j,sizeof(set),info)!=NULL)
+	   	{
+	   	    fseek(info,sizeof(set)*i,0);
+	   	    i++;
+		}
+		fclose(info);
+        return (i-1)/2;                                         
+}
+
 int icount=now1_student();
 
 struct student *read(){                                                      //读入学籍文件内的信息，并返回链表头指针的地址 

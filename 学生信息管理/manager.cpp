@@ -65,7 +65,8 @@ int manager() {
     printf("\t\t\t\t\t\t---------Çë¿ªÊ¼Ê×´ÎÂ¼Èë-------\n");
     }
     else{
-	printf("\t\t\t\t\t\t-----------ÒÑÂ¼Èë%dÈË---------\n",now1_student());
+	printf("\t\t\t\t\t\t----------ÒÑÂ¼Èë%dÑ§Éú--------\n",now1_student());
+	printf("\t\t\t\t\t\t----------ÒÑÂ¼Èë%d½ÌÊ¦--------\n",now_tea());
 	printf("\t\t\t\t\t\t--ÈôĞèĞÂÔöÑ§ÉúĞÅÏ¢ÇëÑ¡ÔòÌí¼Ó--\n");
     }
 	printf("\t\t\t\t\t\t-----------------------------\n");
@@ -76,6 +77,7 @@ int manager() {
 	printf("\t\t\t\t\t\t || 5. ²éÕÒÑ§ÉúĞÅÏ¢        ||\n");
 	printf("\t\t\t\t\t\t || 6. ĞÂÔö½ÌÊ¦ĞÅÏ¢        ||\n");
 	printf("\t\t\t\t\t\t || 7. ´òÓ¡½ÌÊ¦ĞÅÏ¢        ||\n");
+	printf("\t\t\t\t\t\t || 8. É¾³ı½ÌÊ¦ĞÅÏ¢        ||\n");
 	printf("\t\t\t\t\t\t || 0. ÍË³ö                ||\n");
 	printf("\t\t\t\t\t\t-----------------------------\n");
 	scanf("%d",&choice);
@@ -102,6 +104,9 @@ int manager() {
 			 		getch();
 			 		   break;
 			case 7:print_tea();
+			 		getch();
+			 		   break;
+			case 8:delete_tea();
 			 		getch();
 			 		   break;
 			case 0:
@@ -345,12 +350,13 @@ void new_teacher(){                                                        //ĞÂÔ
 
 void print_tea(){                                                       //´òÓ¡½ÌÊ¦ĞÅÏ¢ 
 	FILE *fp;
+	int index=0;
 	fp=fopen("d:\\t_key.txt","rt");
 	if(fp==NULL){
 		printf("ÔİÊ±Ã»ÓĞ½ÌÊ¦ĞÅÏ¢£¡\n");
 		return;
 	}
-	while(!feof(fp)){
+	while(index<now_tea()){
 		char user[20],key[20];
 		fread(user,sizeof(user),1,fp);
 		fread(key,sizeof(key),1,fp);
@@ -360,7 +366,39 @@ void print_tea(){                                                       //´òÓ¡½Ì
 		printf("\t\t\t\t\t\tÃÜÂë£º");
 		printf("%s\n",key);
 		printf("\t\t\t\t\t\t-----------------------------\n");
+		index++;
 	}
 	fclose(fp);
 	return;
+}
+
+void delete_tea(){
+	FILE *fp,*ft;
+	char set[20];
+	int index=0;
+	printf("ÇëÊäÈëÒªÉ¾³ıµÄ½ÌÊ¦ÓÃ»§Ãû£º");
+	scanf("%s",set);
+	char key[20];
+	fp=fopen("d:\\t_key.txt","r");
+	ft=fopen("d:\\temp.txt","w");
+	if(fp==NULL || ft==NULL){
+		printf("´íÎó£¡\n");
+		return;
+	}
+	while(fread(key,sizeof(key),1,fp)){
+		if(strcmp(key,set)!=0){
+		   fwrite(key,sizeof(key),1,ft);
+		   index++;
+		}
+		else{
+			rewind(fp);
+			fseek(fp,sizeof(key)*(index+2),0);
+		}
+	}
+		fclose(fp);
+		fclose(ft);
+		remove("d:\\t_key.txt");
+		rename("d:\\temp.txt","d:\\t_key.txt");
+		printf("½ÌÊ¦ĞÅÏ¢É¾³ı³É¹¦£¡\n");
+	
 }

@@ -32,6 +32,8 @@ void print_score();
 void change_score();
 void sort_score();
 void score_seek(); 
+void delete_tea();
+int now_tea();
 
 struct infomation{
 	char iname[20];
