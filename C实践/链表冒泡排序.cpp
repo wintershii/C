@@ -9,6 +9,7 @@ int count = 0;
 
 node creat(){
 	node pHead=NULL,pNew,pEnd;
+	printf("输入数据，当输入-1时停止\n");
 	pNew=(node)malloc(sizeof(struct NODE));
 	scanf("%d",&pNew->date);
 	while(pNew->date != -1){
@@ -31,8 +32,10 @@ node creat(){
 }
 
 void print(node pHead){
+	int index=1;
 	node pTemp=pHead;
 	while(pTemp!=NULL){
+		printf("第%d个数据：",index++);
 		printf("%d\n",pTemp->date);
 		pTemp=pTemp->next;
 	}
@@ -59,8 +62,10 @@ node sort(node pHead){
 int main(){
 	node pHead=NULL;
 	pHead=creat();
+	printf("排序前：\n");
 	print(pHead);
 	pHead=sort(pHead);
+	printf("排序后：\n");
 	print(pHead);
 	return 0;
 }
