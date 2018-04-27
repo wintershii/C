@@ -13,12 +13,10 @@ int main(){
 			buf[1] = '0';
 		}
 		len = strlen(buf);                      //len表示整个数据的长度 
-		// printf("%d\n",len);
 		if(ch = strchr(buf, '.')) {             //strchr()用来查找在字符串中 字符第一次出现的位置 失败返回NULL 
 		dot = ch - buf;                         //对指针进行算数运算，dot代表不含小数部分的长度 
 		} 
 		else dot = len;
-		//	printf("%d\n",dot);
 		if(len - dot > 3) {                      //小数部分  大于两位时情况 
 			if(buf[dot+3] > '4') {                  //第三位小数大于等于5时 
 				if(++buf[dot+2] > '9'){                //第二位小数可以进位时 

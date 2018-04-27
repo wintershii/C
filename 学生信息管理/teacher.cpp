@@ -19,6 +19,11 @@ void tea_enter(){
 	    if(t_checkkey(user,key)==0){
 	   		printf("账号密码有误！\n");
 	   		  getch();
+	   		printf("按ESC键取消登陆，按任意键继续登陆！\n");
+	   		char ch;
+	   		ch=getch();
+	   		if(ch==27)
+	   			return;
 	          continue;
 	    }
 	    return;

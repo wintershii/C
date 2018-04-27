@@ -15,6 +15,7 @@ int main() {
 		switch(choice){
 			case 1:
 			    printf("\t\t\t\t\t\t|| 学生只能查询自己的信息  ||\n");
+			      	getch();
 			        student_();
 			          getch();
 			            break;

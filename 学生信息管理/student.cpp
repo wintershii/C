@@ -3,8 +3,8 @@
 
 void student_(){                                                    //学生端主界面 
 	int choice=-1;
-    system("cls");
 	while(choice!=0){
+		system("cls");
 		printf("\t\t\t\t\t\t-----------------------------\n");  
 		printf("\t\t\t\t\t\t|| 1.    查看我的信息      ||\n");
 		printf("\t\t\t\t\t\t|| 2.    查询我的成绩      ||\n");
@@ -14,10 +14,12 @@ void student_(){                                                    //学生端主界
 		 switch(choice){
 			case 1:
 				stu_seek();
-				  break;
+					getch(); 
+				  		break;
 			case 2:
 				score_seek();
-				  break;
+					getch();
+				  		break;
 			case 0:
 			    return;
 		 } 
@@ -39,10 +41,10 @@ void stu_seek(){                                  //通过姓名+学号 查询自己的学籍
      while(pTemp!=NULL){
      	if(strcmp(pTemp->stu.iname,name)==0&&strcmp(pTemp->stu.snum,snum)==0){ 
      	    printf("\n\t\t\t\t\t 你的信息如下：\n");
-     	    printf("\t\t\t\t\t 姓名：%s\n",pTemp->stu.iname);
-     	    printf("\t\t\t\t\t 学号：%s\n",pTemp->stu.snum);
-     	    printf("\t\t\t\t\t 班内序号：%d\n",pTemp->stu.inumber);
-     	    printf("\t\t\t\t\t 手机号：%s\n\n",pTemp->stu.iPhone);
+     	    printf("\t\t\t\t\t\t\t 姓名：%s\n",pTemp->stu.iname);
+     	    printf("\t\t\t\t\t\t\t 学号：%s\n",pTemp->stu.snum);
+     	    printf("\t\t\t\t\t\t\t 班内序号：%d\n",pTemp->stu.inumber);
+     	    printf("\t\t\t\t\t\t\t 手机号：%s\n\n",pTemp->stu.iPhone);
      	       return;
      	} 
      	pTemp=pTemp->next;
@@ -67,7 +69,7 @@ void score_seek(){                                  //通过姓名+学号 查询自己的成
      pTemp2=pHead2;
      while(pTemp!=NULL){
      	if(strcmp(pTemp2->stu.iname,name)==0&&strcmp(pTemp2->stu.snum,snum)==0){ 
-     	    printf("\n\t\t\t\t成绩信息如下：\n");
+     	    printf("\n\t\t\t成绩信息如下：\n");
      	    printf("\t\t\t\t\t 姓名：%s\n",pTemp2->stu.iname);
      	    printf("\t\t\t\t\t 学号：%s\n",pTemp2->stu.snum);
      	    printf("\t\t\t\t\t 班内序号：%d\n",pTemp2->stu.inumber);
