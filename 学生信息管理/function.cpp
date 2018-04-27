@@ -1,5 +1,5 @@
 #include"STUDENT.h"
-
+                    //功能函数：判断字符串真实长度（除去空格后的长度），密码回显* 
 int _ifblank(char judge[]){                                     //判断字符串是否只有空格，若只有空格则返回0，否则返回字符串中非空格字符数目 
 	char ch;
 	char true_[20];

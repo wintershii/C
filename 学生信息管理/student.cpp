@@ -1,5 +1,5 @@
 #include"STUDENT.h"
-                                   //学生端的源代码 
+                                   //学生端的函数 
 
 void student_(){                                                    //学生端主界面 
 	int choice=-1;
@@ -25,7 +25,7 @@ void student_(){                                                    //学生端主界
 	return;
 }
 
-void stu_seek(){                                  //通过姓名+学号 查询自己的信息                         
+void stu_seek(){                                  //通过姓名+学号 查询自己的学籍信息                         
 	struct student *pHead,*pTemp;
 	char name[20];
 	char snum[10]; 
@@ -51,7 +51,7 @@ void stu_seek(){                                  //通过姓名+学号 查询自己的信息
     return;
 }
 
-void score_seek(){                                  //通过姓名+学号 查询自己的信息                         
+void score_seek(){                                  //通过姓名+学号 查询自己的成绩信息                         
 	struct student *pHead=NULL,*pTemp=NULL;
 	struct student *pHead2=NULL,*pTemp2=NULL;
 	char name[20];

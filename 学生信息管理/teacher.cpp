@@ -2,7 +2,7 @@
 
                                  //教师端主界面 
 void tea_enter(){                                   
-	FILE *fp;                                                 //登陆教师账户 
+	FILE *fp;                                                  //登陆教师账户 
 	char set1[20]; 
 	char set2[20]; 
 	char key[20];
@@ -108,8 +108,8 @@ void teacher(){                                                 //教师端主界面
 }
   
   
-struct student *scanf_score(){                                      //创建链表，初始创建时，可以保持多次录入，当姓名为空格时停止录入 
-	struct student *pHead=NULL,*pHead2=read();                               //若已录入过信息，则添加新的节点进入链表，放在最后 
+struct student *scanf_score(){   //创建链表，开始录入学生成绩信息，首次录入时有几个学生学籍信息就录入几个成绩信息 
+	struct student *pHead=NULL,*pHead2=read();     //若已录入过信息，但有新的学籍信息录入，就继续录入此学生的成绩 
  	struct student *pNew,*pEnd;
 	struct student *pTemp,*pTemp2=pHead2;
 	int judge;
@@ -169,7 +169,7 @@ struct student *scanf_score(){                                      //创建链表，
 	return pHead;
 }
               
-void print_score(){
+void print_score(){                                   // 按照班内序号顺序打印出学生信息 
 	struct student *pHead,*pTemp,*pHead2,*pTemp2;
 	pHead=read_score();
 	pHead2=read();
@@ -185,7 +185,7 @@ void print_score(){
 	}
 }
 
-void change_score(){
+void change_score(){                                  // 修改制定班内序号学生的成绩信息 
 	struct student *pHead=NULL,*pHead2=NULL;
     pHead=read_score();
 	pHead2=read();
@@ -215,7 +215,7 @@ void change_score(){
 		return;
 }
 
-void sort_score(){
+void sort_score(){                                     // 可以对不同科目从高到低进行成绩排名 
 	struct student *pHead=NULL,*pHead2=NULL;
 	pHead=read_score();
 	pHead2=read();
@@ -224,7 +224,7 @@ void sort_score(){
 	printf("请选择要排名的成绩：");
 	printf("\n\t\t\t1.数学\n\t\t\t2.英语\n\t\t\t3.C语言"); 
 	scanf("%d",&index);
-	if(index==1){
+	if(index==1){                                            //数学成绩排名 排序用到了链表的冒泡排序 
 		struct student *pfirst=NULL,*pend=NULL;
 		pfirst=pHead;
 		while( pfirst!= pend){
@@ -256,7 +256,7 @@ void sort_score(){
 		}
 	}
 	
-	else if(index==2){
+	else if(index==2){                                      // 英语成绩排名 
 		struct student *pfirst=NULL,*pend=NULL;
 		pfirst=pHead;
 		while( pfirst!= pend){
@@ -288,7 +288,7 @@ void sort_score(){
 		}
 	}
 	
-	else if(index==3){
+	else if(index==3){                                     // C语言成绩排名 
 		struct student *pfirst=NULL,*pend=NULL;
 		pfirst=pHead;
 		while( pfirst!= pend){
@@ -325,5 +325,3 @@ void sort_score(){
 	}
 	   
 }
-
-

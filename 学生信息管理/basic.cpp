@@ -1,6 +1,7 @@
 #include"STUDENT.h"
-
-int now1_student(){                                                                //ÏÔÊ¾ÎÄ¼şÖĞÏÖÔÚÒÑÂ¼ÈëµÄÑ§ÉúÊı                 
+                //»ù±¾¹¦ÄÜº¯Êı£º°üÀ¨ ¶ÁÈ¡ÎÄ¼ş£¬±£´æÁ´±íÖÁÎÄ¼ş£¬ÏÔÊ¾ÎÄ¼şÄÚĞÅÏ¢ÊıÄ¿µÈ³£ÓÃº¯Êı 
+                
+int now1_student(){                                         //ÏÔÊ¾ÎÄ¼şÖĞÏÖÔÚÒÑÂ¼ÈëÑ§¼®ĞÅÏ¢µÄÑ§ÉúÊı                 
 	int i=1;
 	char j[100000];
 	FILE *info;
@@ -18,7 +19,7 @@ int now1_student(){                                                             
 }
 
 
-int now2_student(){                                                                //ÏÔÊ¾ÎÄ¼şÖĞÏÖÔÚÒÑÂ¼ÈëµÄÑ§ÉúÊı                 
+int now2_student(){                                        //ÏÔÊ¾ÎÄ¼şÖĞÏÖÔÚÒÑÂ¼Èë³É¼¨ĞÅÏ¢µÄÑ§ÉúÊı                 
 	int i=1;
 	char j[100000];
 	FILE *info;
@@ -35,7 +36,7 @@ int now2_student(){                                                             
         return i-1;                                         
 }
 
-int now_tea(){                                                                //ÏÔÊ¾ÎÄ¼şÖĞÏÖÔÚÒÑÂ¼ÈëµÄÑ§ÉúÊı                 
+int now_tea(){                                                  //ÏÔÊ¾ÎÄ¼şÖĞÏÖÔÚÒÑÂ¼ÈëµÄ½ÌÊ¦Êı                 
 	int i=1;
 	char j[100000];
 	char set[20];
@@ -55,9 +56,9 @@ int now_tea(){                                                                //
 
 int icount=now1_student();
 
-struct student *read(){                                                      //¶ÁÈëÑ§¼®ÎÄ¼şÄÚµÄĞÅÏ¢£¬²¢·µ»ØÁ´±íÍ·Ö¸ÕëµÄµØÖ· 
+struct student *read(){                                       //¶ÁÈëÑ§¼®ÎÄ¼şÄÚµÄĞÅÏ¢£¬²¢·µ»ØÁ´±íÍ·Ö¸ÕëµÄµØÖ· 
 	struct student *pHead,*pEnd,*pNew;
-	FILE *fp;                                                                 //´´½¨Á´±í£¬²¢½«Ñ§¼®ÎÄ¼şÄÚÊı¾İ¶ÁÈëÁ´±í 
+	FILE *fp;                                                    //´´½¨Á´±í£¬²¢½«Ñ§¼®ÎÄ¼şÄÚÊı¾İ¶ÁÈëÁ´±í 
 	fp=fopen("d:\\stuifo.txt","rt");
 	if(fp==NULL){
 		printf("\t\t\t\t\t\tÎ´ÔÚ±¾µØÕÒµ½Ñ§ÉúĞÅÏ¢ÎÄ¼ş£¡\n");
@@ -68,8 +69,7 @@ struct student *read(){                                                      //¶
 	while(i<=now1_student()){
 		count++;
 		pNew=(struct student *)malloc(sizeof(struct student));
-		fread(&pNew->stu,sizeof(struct infomation),1,fp);
-	//	fread(&pNew->gra,sizeof(struct grade),1,fp);
+		fread(&pNew->stu,sizeof(struct infomation),1,fp);         //¶ÁÈë½á¹¹ÌåÖĞÑ§¼®ĞÅÏ¢µÄ½á¹¹Ìå 
 		if(count==1){
 			pNew->next=pHead;
 			pEnd=pNew;
@@ -86,22 +86,21 @@ struct student *read(){                                                      //¶
 	return pHead;
 }
 
-void save(struct student *pHead){                                      //±£´æµ±Ç°µÄÁ´±íÖÁ±¾µØÑ§¼®ÎÄ¼ş 
+void save(struct student *pHead){                            //±£´æµ±Ç°µÄÁ´±íÖÁ±¾µØÑ§¼®ÎÄ¼ş 
 	    struct student *pTemp=pHead; 
 	    FILE *fp;
 		fp=fopen("d:\\stuifo.txt","w+");
 		while(pTemp!=NULL){
-			fwrite(&pTemp->stu,sizeof(struct infomation),1,fp);
-	//		fwrite(&pTemp->gra,sizeof(struct grade),1,fp);
+			fwrite(&pTemp->stu,sizeof(struct infomation),1,fp);   //½«½á¹¹ÌåÄÚÑ§¼®ĞÅÏ¢µÄ½á¹¹ÌåĞ´ÈëÎÄ¼ş 
 			pTemp=pTemp->next;
 		}
 		printf("\t\t\t\t\t\t³É¹¦½«ĞÅÏ¢±£´æÖÁ±¾µØÎÄ¼ş£¡");
 		fclose(fp);
 }
 
-struct student *read_score(){                                                   //¶ÁÈë³É¼¨ÎÄ¼şÄÚµÄĞÅÏ¢£¬²¢·µ»ØÁ´±íÍ·Ö¸ÕëµÄµØÖ· 
+struct student *read_score(){                           //¶ÁÈë³É¼¨ÎÄ¼şÄÚµÄĞÅÏ¢£¬²¢·µ»ØÁ´±íÍ·Ö¸ÕëµÄµØÖ· 
 	struct student *pHead,*pEnd,*pNew;
-	FILE *fp;                                                                   //´´½¨Á´±í£¬²¢½«³É¼¨ÎÄ¼şÄÚÊı¾İ¶ÁÈëÁ´±í 
+	FILE *fp;                                             //´´½¨Á´±í£¬²¢½«³É¼¨ÎÄ¼şÄÚÊı¾İ¶ÁÈëÁ´±í 
 	fp=fopen("d:\\score.txt","rt");
 	if(fp==NULL){
 		printf("\t\t\t\t\t\tÎ´ÔÚ±¾µØÕÒµ½Ñ§ÉúĞÅÏ¢ÎÄ¼ş£¡\n");
@@ -129,7 +128,7 @@ struct student *read_score(){                                                   
 	return pHead;
 }
 
-void save_score(struct student *pHead){                                      //±£´æµ±Ç°µÄÁ´±íÖÁ±¾µØ³É¼¨ÎÄ¼ş 
+void save_score(struct student *pHead){                        //±£´æµ±Ç°µÄÁ´±íÖÁ±¾µØ³É¼¨ÎÄ¼ş 
 	    struct student *pTemp=pHead; 
 	    FILE *fp;
 		fp=fopen("d:\\score.txt","wt+");

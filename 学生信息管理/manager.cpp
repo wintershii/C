@@ -160,7 +160,7 @@ struct student *Creat(){                                      //创建链表，初始创
 	printf("\t\t\t\t\t\t手机号：");
 	scanf("%s",pNew->stu.iPhone);
 	ojbk=now1_student()+1;
-	while(1){
+	while(1){                                                 // 无头结点类型的链表 
 		count++;
 		if(count==1){
 			pNew->next=pHead;
@@ -224,7 +224,7 @@ void Insert(){
 	
 	pHead=read();
 	
-	printf("\t\t\t\t\t\t请输入要插入的学生班内序号：");                                     //将学生信息插入进链表 并保存至本地 
+	printf("\t\t\t\t\t\t请输入要插入的学生班内序号：");               //将学生信息插入进链表 并保存至本地 
 	scanf("%d",&index);
 	printf("\t\t\t\t\t\t-----------当前已录入%d人---------\n",now1_student());
 	if(index>now1_student())
@@ -372,15 +372,15 @@ void print_tea(){                                                       //打印教
 	return;
 }
 
-void delete_tea(){
+void delete_tea(){                                                 // 删除教师信息（直接在文件内部操作） 
 	FILE *fp,*ft;
 	char set[20];
 	int index=0;
 	printf("请输入要删除的教师用户名：");
 	scanf("%s",set);
 	char key[20];
-	fp=fopen("d:\\t_key.txt","r");
-	ft=fopen("d:\\temp.txt","w");
+	fp=fopen("d:\\t_key.txt","rt+");
+	ft=fopen("d:\\temp.txt","wt");
 	if(fp==NULL || ft==NULL){
 		printf("错误！\n");
 		return;
