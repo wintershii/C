@@ -35,3 +35,11 @@ void secretword(char key[]){                                    // ‰»Î√‹¬Î ±ªÿœ‘
 	key[i]='\0';
 	return;
 }
+
+void fuck(){
+	printf("1	\n");
+		remove("D:\\class.txt");
+		rename("D:\\temp2.txt","D:\\class.txt");
+	printf("2	\n");
+		
+}

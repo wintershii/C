@@ -339,7 +339,8 @@ void seek(){                                                                  //
 
 
 void new_teacher(){                                                        //–¬‘ˆΩÃ ¶–≈œ¢÷¡±æµÿ 
-	FILE *fp;
+	int index = now_tea()+1;
+	FILE *fp,*fc;
 	char set1[20];
 	char set2[20];
 	printf("\t\t\t\t\t«Î…Ë÷√–¬‘ˆΩÃ ¶’À∫≈√‹¬Î£∫\n");
@@ -347,18 +348,26 @@ void new_teacher(){                                                        //–¬‘
 	scanf("%s",set1);
 	printf("\t\t\t\t\t√‹¬Î£∫");
 	scanf("%s",set2);
+	printf("%π‹¿Ì∞‡º∂£∫");
+	scanf("%d",&index);
 	fp=fopen("D:\\t_key.txt","at");
+	fc=fopen("D:\\class.txt","at");
 	fwrite(set1,sizeof(set1),1,fp);
 	fwrite(set2,sizeof(set2),1,fp);
+	fwrite(set1,sizeof(set1),1,fc);
+	fwrite(&index,sizeof(index),1,fc);
 	fclose(fp);
+	fclose(fc);
 	printf("–¬‘ˆΩÃ ¶–≈œ¢≥…π¶£°\n");
 }  
 
 void print_tea(){                                                       //¥Ú”°ΩÃ ¶–≈œ¢ 
-	FILE *fp;
+	FILE *fp,*fc;
 	int index=0;
+	int classname;
 	fp=fopen("d:\\t_key.txt","rt");
-	if(fp==NULL){
+	fc=fopen("d:\\class.txt","rt");
+	if(fp==NULL||fc==NULL){
 		printf("‘› ±√ª”–ΩÃ ¶–≈œ¢£°\n");
 		return;
 	}
@@ -366,11 +375,16 @@ void print_tea(){                                                       //¥Ú”°ΩÃ
 		char user[20],key[20];
 		fread(user,sizeof(user),1,fp);
 		fread(key,sizeof(key),1,fp);
+		rewind(fc);
+		fseek(fc,sizeof(user)*(index+1)+sizeof(classname)*index,0);
+		fread(&classname,sizeof(classname),1,fc);
 		printf("\n");
 		printf("\t\t\t\t\t\t”√ªß√˚£∫");
 		printf("%s\n",user);
 		printf("\t\t\t\t\t\t√‹¬Î£∫");
 		printf("%s\n",key);
+		printf("\t\t\t\t\t\tπ‹¿Ì∞‡º∂£∫");
+		printf("%d\n",classname);
 		printf("\t\t\t\t\t\t-----------------------------\n");
 		index++;
 	}
@@ -379,21 +393,26 @@ void print_tea(){                                                       //¥Ú”°ΩÃ
 }
 
 void delete_tea(){                                                 // …æ≥˝ΩÃ ¶–≈œ¢£®÷±Ω”‘⁄Œƒº˛ƒ⁄≤ø≤Ÿ◊˜£© 
-	FILE *fp,*ft;
+	FILE *fp,*ft,*fc,*ft2;
 	char set[20];
 	int index=0;
+	int classname;
 	printf("«Î ‰»Î“™…æ≥˝µƒΩÃ ¶”√ªß√˚£∫");
 	scanf("%s",set);
 	char key[20];
+	char user[20];
 	fp=fopen("d:\\t_key.txt","rt+");
-	ft=fopen("d:\\temp.txt","wt");
-	if(fp==NULL || ft==NULL){
+	ft=fopen("d:\\temp.txt","wt+");
+	fc=fopen("d:\\class.txt","rt+");
+	ft2=fopen("d:\\sbdongxi.txt","wt+");
+	if(fp==NULL || ft==NULL||fc==NULL || ft2==NULL){
 		printf("¥ÌŒÛ£°\n");
 		return;
 	}
 	while(fread(key,sizeof(key),1,fp)){
 		if(strcmp(key,set)!=0){
-		   fwrite(key,sizeof(key),1,ft);
+		   fwrite(key,sizeof(key)
+		   ,1,ft);
 		   index++;
 		}
 		else{
@@ -401,10 +420,27 @@ void delete_tea(){                                                 // …æ≥˝ΩÃ ¶–≈
 			fseek(fp,sizeof(key)*(index+2),0);
 		}
 	}
+	index=0;
+	while(fread(user,sizeof(user),1,fc)){
+		
+		if(strcmp(user,set)!=0){
+		   fread(&classname,sizeof(classname),1,fc);
+		   fwrite(user,sizeof(key),1,ft2);
+		   fwrite(&classname,sizeof(classname),1,ft2);
+		   index++;
+		}
+		else{
+			rewind(fc);
+			fseek(fc,sizeof(user)*(index+1)+sizeof(index)*(index+1),0);
+		}
+	}
 		fclose(fp);
 		fclose(ft);
-		remove("d:\\t_key.txt");
-		rename("d:\\temp.txt","d:\\t_key.txt");
-		printf("ΩÃ ¶–≈œ¢…æ≥˝≥…π¶£°\n");
+		remove("D:\\t_key.txt");
+		rename("D:\\sbdongxi.txt","D:\\t_key.txt");
+		fclose(fc);
+		fclose(ft2);
+		fuck();
+		printf("ΩÃ ¶–≈œ¢–ﬁ∏ƒ≥…π¶£°");
 	
 }

@@ -34,6 +34,7 @@ void sort_score();
 void score_seek(); 
 void delete_tea();
 int now_tea();
+void fuck();
 
 struct infomation{
 	char iname[20];
@@ -46,11 +47,16 @@ struct grade{
 	int math;
 	int english;
 	int c;
-};     
+}; 
 
 struct student{
 	struct infomation stu;
 	struct grade gra;
 	struct student *next;
+};
+
+struct _class{
+	char user[20];
+	char site[20];
 };
 

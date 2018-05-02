@@ -12,7 +12,14 @@ int compare(void const *a,void const *b){
 } 
 
 int main(){
-	record array[50];
-	qsort(array,50,sizeof(record),compare);
+	int n;
+	int array[10];
+	printf("请输入排序个数:");
+	scanf("%d",&n);
+	for(int i=0;i<n;i++){
+		printf("请输入第%d个数：",i+1);
+		scanf("%d",&array[i]);
+	}
+	qsort(array,10,sizeof(record),compare);
 	return 0;
 }
