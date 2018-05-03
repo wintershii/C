@@ -12,14 +12,14 @@ void tea_enter(){
 		if(fp==NULL){
 		printf("\t\t\t\t\tÄ¿Ç°ÏµÍ³ÖÐÃ»ÓÐÀÏÊ¦ÐÅÏ¢£¡£º\n");
 	    }
-	    printf("\t\t\t\t\tÕËºÅ£º");
+	    printf("\t\t\t\t\t\tÕËºÅ£º");
 	    scanf("%s",user);
-	    printf("\t\t\t\t\tÃÜÂë£º");
+	    printf("\t\t\t\t\t\tÃÜÂë£º");
 	    secretword(key);
 	    if(t_checkkey(user,key)==0){
-	   		printf("ÕËºÅÃÜÂëÓÐÎó£¡\n");
+	   		printf("\t\t\t\t\tÕËºÅÃÜÂëÓÐÎó£¡\n");
 	   		  getch();
-	   		printf("°´ESC¼üÈ¡ÏûµÇÂ½£¬°´ÈÎÒâ¼ü¼ÌÐøµÇÂ½£¡\n");
+	   		printf("\t\t\t\t\t°´ESC¼üÈ¡ÏûµÇÂ½£¬°´ÈÎÒâ¼ü¼ÌÐøµÇÂ½£¡\n");
 	   		char ch;
 	   		ch=getch();
 	   		if(ch==27)
@@ -181,10 +181,11 @@ void print_score(){                                   // °´ÕÕ°àÄÚÐòºÅË³Ðò´òÓ¡³öÑ
 	pTemp=pHead;
 	pTemp2=pHead2;
 	while(pTemp!=NULL){
-		printf("°àÄÚÐòºÅ£º%d\tÐÕÃû£º%s\n",pTemp2->stu.inumber,pTemp2->stu.iname);
-		printf("ÊýÑ§£º%d\n",pTemp->gra.math);
-		printf("Ó¢Óï£º%d\n",pTemp->gra.english);
-		printf("CÓïÑÔ£º%d\n",pTemp->gra.c);
+		printf("\t\t\t\t\t\t°àÄÚÐòºÅ£º%d\tÐÕÃû£º%s\n",pTemp2->stu.inumber,pTemp2->stu.iname);
+		printf("\t\t\t\t\t\tÊýÑ§£º%d\n",pTemp->gra.math);
+		printf("\t\t\t\t\t\tÓ¢Óï£º%d\n",pTemp->gra.english);
+		printf("\t\t\t\t\t\tCÓïÑÔ£º%d\n",pTemp->gra.c);
+		printf("\t\t\t\t\t\t-----------------------------\n");
 		pTemp=pTemp->next;
 		pTemp2=pTemp2->next;
 	}
@@ -197,17 +198,17 @@ void change_score(){                                  // ÐÞ¸ÄÖÆ¶¨°àÄÚÐòºÅÑ§ÉúµÄ³
 	struct student *pTemp=pHead,*pTemp2=pHead2;
 	int index;
 
-	printf("ÇëÊäÈëÒªÐÞ¸Ä³É¼¨µÄÑ§Éú°àÄÚÐòºÅ£º");
+	printf("\t\t\t\t\tÇëÊäÈëÒªÐÞ¸Ä³É¼¨µÄÑ§Éú°àÄÚÐòºÅ£º");
 	scanf("%d",&index);
 	if(index>now2_student()){
-		printf("ÊäÈëÓÐÎó£¡\n");
+		printf("\t\t\t\t\tÊäÈëÓÐÎó£¡\n");
 		return;
 	}
 	while(pTemp2->stu.inumber != index){
 		pTemp=pTemp->next;
 		pTemp2=pTemp2->next;
 	}
-		printf("°àÄÚÐòºÅ£º%d\tÐÕÃû£º%s\n",pTemp2->stu.inumber,pTemp2->stu.iname);
+		printf("\t\t\t\t\t°àÄÚÐòºÅ£º%d\tÐÕÃû£º%s\n",pTemp2->stu.inumber,pTemp2->stu.iname);
 		printf("\t\t\t\t\t\tÇëÊäÈë³É¼¨ÐÅÏ¢£º");
 	printf("\n\t\t\t\t\t\tÊýÑ§£º"); 
       scanf("%d",&pTemp->gra.math);
@@ -216,7 +217,7 @@ void change_score(){                                  // ÐÞ¸ÄÖÆ¶¨°àÄÚÐòºÅÑ§ÉúµÄ³
 	printf("\t\t\t\t\t\tCÓïÑÔ£º");
 	  scanf("%d",&pTemp->gra.c);
 		save_score(pHead);
-		printf("±£´æ³É¹¦£¡\n");
+		printf("\t\t\t\t\t±£´æ³É¹¦£¡\n");
 		return;
 }
 
@@ -226,8 +227,8 @@ void sort_score(){                                     // ¿ÉÒÔ¶Ô²»Í¬¿ÆÄ¿´Ó¸ßµ½µÍ
 	pHead2=read();
 	struct student *pTemp=pHead,*pTemp2=pHead2;
 	int index;
-	printf("ÇëÑ¡ÔñÒªÅÅÃûµÄ³É¼¨£º");
-	printf("\n\t\t\t1.ÊýÑ§\n\t\t\t2.Ó¢Óï\n\t\t\t3.CÓïÑÔ"); 
+	printf("\t\t\t\t\t\t\tÇëÑ¡ÔñÒªÅÅÃûµÄ³É¼¨£º");
+	printf("\n\t\t\t\t\t\t\t1.ÊýÑ§\n\t\t\t\t\t\t\t2.Ó¢Óï\n\t\t\t\t\t\t\t3.CÓïÑÔ"); 
 	scanf("%d",&index);
 	if(index==1){                                            //ÊýÑ§³É¼¨ÅÅÃû ÅÅÐòÓÃµ½ÁËÁ´±íµÄÃ°ÅÝÅÅÐò 
 		struct student *pfirst=NULL,*pend=NULL;
@@ -253,9 +254,10 @@ void sort_score(){                                     // ¿ÉÒÔ¶Ô²»Í¬¿ÆÄ¿´Ó¸ßµ½µÍ
 		int sort=1;
 		printf("\t\t\t\t\tÊýÑ§³É¼¨ÅÅÃû£º\n"); 
 		while(pTemp!=NULL){
-			printf("µÚ%dÃû£º  ",sort++);
-				printf("°àÄÚÐòºÅ£º%d\tÐÕÃû£º%s\n",pTemp2->stu.inumber,pTemp2->stu.iname);
-		printf("\t³É¼¨£º%d ·Ö\n",pTemp->gra.math);
+		printf("\t\t\t\t\tµÚ%dÃû£º  ",sort++);
+		printf("°àÄÚÐòºÅ£º%d\tÐÕÃû£º%s\n",pTemp2->stu.inumber,pTemp2->stu.iname);
+		printf("\t\t\t\t\t³É¼¨£º%d ·Ö\n",pTemp->gra.math);
+		printf("\t\t\t\t\t\t-----------------------------\n");		
 		pTemp=pTemp->next;
 		pTemp2=pTemp2->next;
 		}
@@ -285,9 +287,10 @@ void sort_score(){                                     // ¿ÉÒÔ¶Ô²»Í¬¿ÆÄ¿´Ó¸ßµ½µÍ
 		int sort=1;
 		printf("\t\t\t\t\tÓ¢Óï³É¼¨ÅÅÃû£º\n"); 
 		while(pTemp!=NULL){
-			printf("µÚ%dÃû£º  ",sort++);
+			printf("\t\t\t\t\tµÚ%dÃû£º  ",sort++);
 				printf("°àÄÚÐòºÅ£º%d\tÐÕÃû£º%s\n",pTemp2->stu.inumber,pTemp2->stu.iname);
-		printf("\t³É¼¨£º%d ·Ö\n",pTemp->gra.english);
+		printf("\t\t\t\t\t³É¼¨£º%d ·Ö\n",pTemp->gra.english);
+		printf("\t\t\t\t\t\t-----------------------------\n"); 
 		pTemp=pTemp->next;
 		pTemp2=pTemp2->next;
 		}
@@ -317,9 +320,10 @@ void sort_score(){                                     // ¿ÉÒÔ¶Ô²»Í¬¿ÆÄ¿´Ó¸ßµ½µÍ
 		int sort=1;
 		printf("\t\t\t\t\tCÓïÑÔ³É¼¨ÅÅÃû£º\n"); 
 		while(pTemp!=NULL){
-			printf("µÚ%dÃû£º  ",sort++);
+			printf("\t\t\t\t\tµÚ%dÃû£º  ",sort++);
 				printf("°àÄÚÐòºÅ£º%d\tÐÕÃû£º%s\n",pTemp2->stu.inumber,pTemp2->stu.iname);
-		printf("\t³É¼¨£º%d ·Ö\n",pTemp->gra.c);
+		printf("\t\t\t\t\t³É¼¨£º%d ·Ö\n",pTemp->gra.c);
+		printf("\t\t\t\t\t\t-----------------------------\n");
 		pTemp=pTemp->next;
 		pTemp2=pTemp2->next;
 		}

@@ -36,10 +36,3 @@ void secretword(char key[]){                                    // ‰»Î√‹¬Î ±ªÿœ‘
 	return;
 }
 
-void fuck(){
-	printf("1	\n");
-		remove("D:\\class.txt");
-		rename("D:\\temp2.txt","D:\\class.txt");
-	printf("2	\n");
-		
-}

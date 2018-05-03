@@ -32,15 +32,15 @@ void stu_seek(){                                  //通过姓名+学号 查询自己的学籍
 	char name[20];
 	char snum[10]; 
      printf("\t\t\t\t\t\t||  请输入你的姓名与学号   ||\n");
-     printf("\t\t\t\t\t\t 姓名：");
+     printf("\t\t\t\t\t\t\t 姓名：");
      gets(name);gets(name);
-     printf("\t\t\t\t\t\t 学号：");
+     printf("\t\t\t\t\t\t\t 学号：");
      scanf("%s",snum);
      pHead=read();
      pTemp=pHead;
      while(pTemp!=NULL){
      	if(strcmp(pTemp->stu.iname,name)==0&&strcmp(pTemp->stu.snum,snum)==0){ 
-     	    printf("\n\t\t\t\t\t 你的信息如下：\n");
+     	    printf("\n\t\t\t\t\t\t 你的信息如下：\n");
      	    printf("\t\t\t\t\t\t\t 姓名：%s\n",pTemp->stu.iname);
      	    printf("\t\t\t\t\t\t\t 学号：%s\n",pTemp->stu.snum);
      	    printf("\t\t\t\t\t\t\t 班内序号：%d\n",pTemp->stu.inumber);
@@ -59,9 +59,9 @@ void score_seek(){                                  //通过姓名+学号 查询自己的成
 	char name[20];
 	char snum[10]; 
      printf("\t\t\t\t\t\t||  请输入你的姓名与学号   ||\n");
-     printf("\t\t\t\t\t\t 姓名：");
+     printf("\t\t\t\t\t\t\t 姓名：");
      gets(name);gets(name);
-     printf("\t\t\t\t\t\t 学号：");
+     printf("\t\t\t\t\t\t\t 学号：");
      scanf("%s",snum);
      pHead=read_score();
      pTemp=pHead;
@@ -69,10 +69,10 @@ void score_seek(){                                  //通过姓名+学号 查询自己的成
      pTemp2=pHead2;
      while(pTemp!=NULL){
      	if(strcmp(pTemp2->stu.iname,name)==0&&strcmp(pTemp2->stu.snum,snum)==0){ 
-     	    printf("\n\t\t\t成绩信息如下：\n");
-     	    printf("\t\t\t\t\t 姓名：%s\n",pTemp2->stu.iname);
-     	    printf("\t\t\t\t\t 学号：%s\n",pTemp2->stu.snum);
-     	    printf("\t\t\t\t\t 班内序号：%d\n",pTemp2->stu.inumber);
+     	    printf("\n\t\t\t\t\t\t成绩信息如下：\n");
+     	    printf("\t\t\t\t\t\t\t 姓名：%s\n",pTemp2->stu.iname);
+     	    printf("\t\t\t\t\t\t\t 学号：%s\n",pTemp2->stu.snum);
+     	    printf("\t\t\t\t\t\t\t 班内序号：%d\n",pTemp2->stu.inumber);
      	    printf("\t\t\t\t\t 数学：%d\t英语：%d\tC语言：%d \n",pTemp->gra.math,pTemp->gra.english,pTemp->gra.c);
      	       getch();
 				return;

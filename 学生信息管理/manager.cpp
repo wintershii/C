@@ -13,9 +13,9 @@ void enter(){                                                //登陆管理员账户
 		if(fp==NULL){
 		  fp=fopen("D:\\key.txt","wt");
 		  printf("\t\t\t\t\t请制定管理员账号与密码：\n");
-		  printf("\t\t\t\t\t账号：");
+		  printf("\t\t\t\t\t\t账号：");
 		  scanf("%s",set1);
-		  printf("\t\t\t\t\t密码：");
+		  printf("\t\t\t\t\t\t密码：");
 		  scanf("%s",set2);
 		  fwrite(set1,sizeof(set1),1,fp);
 		  fwrite(set2,sizeof(set2),1,fp);
@@ -23,9 +23,9 @@ void enter(){                                                //登陆管理员账户
 		   manager();
 		    return;
 	    }
-	   printf("\t\t\t\t\t账号：");
+	   printf("\t\t\t\t\t\t账号：");
 	   scanf("%s",user);
-	   printf("\t\t\t\t\t密码：");
+	   printf("\t\t\t\t\t\t密码：");
 	   secretword(key);
 	   if(checkkey(user,key)==0){
 	   		printf("账号密码有误！\n");
@@ -340,25 +340,19 @@ void seek(){                                                                  //
 
 void new_teacher(){                                                        //新增教师信息至本地 
 	int index = now_tea()+1;
-	FILE *fp,*fc;
+	FILE *fp;
 	char set1[20];
 	char set2[20];
 	printf("\t\t\t\t\t请设置新增教师账号密码：\n");
-	printf("\t\t\t\t\t账号：");
+	printf("\t\t\t\t\t\t账号：");
 	scanf("%s",set1);
-	printf("\t\t\t\t\t密码：");
+	printf("\t\t\t\t\t\t密码：");
 	scanf("%s",set2);
-	printf("%管理班级：");
-	scanf("%d",&index);
 	fp=fopen("D:\\t_key.txt","at");
-	fc=fopen("D:\\class.txt","at");
 	fwrite(set1,sizeof(set1),1,fp);
 	fwrite(set2,sizeof(set2),1,fp);
-	fwrite(set1,sizeof(set1),1,fc);
-	fwrite(&index,sizeof(index),1,fc);
 	fclose(fp);
-	fclose(fc);
-	printf("新增教师信息成功！\n");
+	printf("\t\t\t\t\t新增教师信息成功！\n");
 }  
 
 void print_tea(){                                                       //打印教师信息 
@@ -366,8 +360,7 @@ void print_tea(){                                                       //打印教
 	int index=0;
 	int classname;
 	fp=fopen("d:\\t_key.txt","rt");
-	fc=fopen("d:\\class.txt","rt");
-	if(fp==NULL||fc==NULL){
+	if(fp==NULL){
 		printf("暂时没有教师信息！\n");
 		return;
 	}
@@ -375,16 +368,11 @@ void print_tea(){                                                       //打印教
 		char user[20],key[20];
 		fread(user,sizeof(user),1,fp);
 		fread(key,sizeof(key),1,fp);
-		rewind(fc);
-		fseek(fc,sizeof(user)*(index+1)+sizeof(classname)*index,0);
-		fread(&classname,sizeof(classname),1,fc);
 		printf("\n");
 		printf("\t\t\t\t\t\t用户名：");
 		printf("%s\n",user);
 		printf("\t\t\t\t\t\t密码：");
 		printf("%s\n",key);
-		printf("\t\t\t\t\t\t管理班级：");
-		printf("%d\n",classname);
 		printf("\t\t\t\t\t\t-----------------------------\n");
 		index++;
 	}
@@ -393,19 +381,16 @@ void print_tea(){                                                       //打印教
 }
 
 void delete_tea(){                                                 // 删除教师信息（直接在文件内部操作） 
-	FILE *fp,*ft,*fc,*ft2;
+	FILE *fp,*ft; 
 	char set[20];
 	int index=0;
 	int classname;
-	printf("请输入要删除的教师用户名：");
+	printf("\t\t\t\t\t请输入要删除的教师用户名：");
 	scanf("%s",set);
 	char key[20];
-	char user[20];
-	fp=fopen("d:\\t_key.txt","rt+");
-	ft=fopen("d:\\temp.txt","wt+");
-	fc=fopen("d:\\class.txt","rt+");
-	ft2=fopen("d:\\sbdongxi.txt","wt+");
-	if(fp==NULL || ft==NULL||fc==NULL || ft2==NULL){
+	fp=fopen("d:\\t_key.txt","rt");
+	ft=fopen("d:\\temp.txt","wt");
+	if(fp==NULL || ft==NULL){
 		printf("错误！\n");
 		return;
 	}
@@ -420,27 +405,11 @@ void delete_tea(){                                                 // 删除教师信
 			fseek(fp,sizeof(key)*(index+2),0);
 		}
 	}
-	index=0;
-	while(fread(user,sizeof(user),1,fc)){
-		
-		if(strcmp(user,set)!=0){
-		   fread(&classname,sizeof(classname),1,fc);
-		   fwrite(user,sizeof(key),1,ft2);
-		   fwrite(&classname,sizeof(classname),1,ft2);
-		   index++;
-		}
-		else{
-			rewind(fc);
-			fseek(fc,sizeof(user)*(index+1)+sizeof(index)*(index+1),0);
-		}
-	}
+	
 		fclose(fp);
 		fclose(ft);
 		remove("D:\\t_key.txt");
-		rename("D:\\sbdongxi.txt","D:\\t_key.txt");
-		fclose(fc);
-		fclose(ft2);
-		fuck();
-		printf("教师信息修改成功！");
+		rename("D:\\temp.txt","D:\\t_key.txt");
+		printf("\t\t\t\t\t教师信息修改成功！");
 	
 }
