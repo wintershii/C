@@ -37,21 +37,18 @@ int now2_student(){                                        //ÏÔÊ¾ÎÄ¼þÖÐÏÖÔÚÒÑÂ¼È
 }
 
 int now_tea(){                                                  //ÏÔÊ¾ÎÄ¼þÖÐÏÖÔÚÒÑÂ¼ÈëµÄ½ÌÊ¦Êý                 
-	int i=1;
-	char j[100000];
-	char set[20];
+	int i=0;
+	char j[1000];
 	FILE *info;
-	info=fopen("d:\\t_key.txt","rt");
+	info=fopen("d:\\t_key","rb");
 	if(info==NULL)
 		return 0;
-	rewind(info);
-	   	while(fgets(j,sizeof(set),info)!=NULL)
-	   	{
-	   	    fseek(info,sizeof(set)*i,0);
+		rewind(info);
+	   	while(fscanf(info,"%s",j)&&!feof(info))
 	   	    i++;
-		}
+		
 		fclose(info);
-        return (i-1)/2;                                         
+        return i/2;                                         
 }
 
 int icount=now1_student();
@@ -140,3 +137,43 @@ void save_score(struct student *pHead){                        //±£´æµ±Ç°µÄÁ´±íÖ
 		fclose(fp);
 }
 
+node read_t(){
+	node pHead;
+	FILE *fp;
+	char set[20];
+	fp = fopen("D:\\t_key","rb");
+	if(fp == NULL){
+		printf("ÎÞ½ÌÊ¦ÐÅÏ¢£¡\n");
+		return NULL;
+	}
+	node pNew,pEnd;
+	pHead = (node)malloc(sizeof(struct teacher));
+	pHead->next = NULL;
+	pEnd = pHead;
+	while(!feof(fp)){
+		pNew = (node)malloc(sizeof(struct teacher));
+		fscanf(fp,"%s",pNew->user);
+		fscanf(fp,"%s",pNew->key);
+		pNew->next = NULL;
+		pEnd->next = pNew;
+		pEnd = pNew;
+	}
+	fclose(fp);
+	return pHead;
+}
+
+void save_t(node pHead){
+	FILE *fp;
+	char set[20];
+	node pTemp = pHead->next;
+	fp = fopen("D:\\t_key","wb");
+	if(fp == NULL ){
+		printf("Òì³££¡\n");
+		return;
+	}
+	while(pTemp != NULL){
+		fprintf(fp,"%s %s\n",pTemp->user,pTemp->key);
+		pTemp = pTemp->next;
+	}
+	fclose(fp);
+}

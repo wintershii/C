@@ -36,3 +36,42 @@ void secretword(char key[]){                                    //输入密码时回显
 	return;
 }
 
+void changeteakey(){
+	FILE *fp;
+	node pHead,pTemp;
+	pHead = read_t();
+	pTemp = pHead->next;
+	char user[20];
+	char oldkey[20];
+	char newkey[20];
+	getchar();
+	printf("请输入您的账号：");
+	scanf("%s",user);
+	fp = fopen("d:\\t_key","ab+");
+	if(fp == NULL){
+		printf("目前没有教师信息！");
+		return; 
+	}
+	while(pTemp != NULL){
+		if(strcmp(pTemp->user,user) == 0){
+			printf("请输入原密码：");
+			scanf("%s",oldkey);
+			if(strcmp(pTemp->key,oldkey) == 0){
+				printf("密码正确！请修改密码！\n");
+				printf("新密码：");
+				scanf("%s",newkey);
+				strcpy(pTemp->key,newkey);
+				save_t(pHead);
+				printf("修改密码成功！\n");
+				pTemp = pHead->next;
+				return;
+			}
+			else{
+				printf("密码错误！\n");
+				break; 
+			}
+		}
+		else
+			pTemp = pTemp->next;
+	}
+}

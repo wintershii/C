@@ -1,17 +1,12 @@
 #include"STUDENT.h"
 
                                  //教师端主界面 
-void tea_enter(){                                   
-	FILE *fp;                                                  //登陆教师账户 
+void tea_enter(){                                                                                   //登陆教师账户 
 	char set1[20]; 
 	char set2[20]; 
 	char key[20];
 	char user[20];
 	while(1){
-		fp=fopen("D:\\t_key.txt","rt");
-		if(fp==NULL){
-		printf("\t\t\t\t\t目前系统中没有老师信息！：\n");
-	    }
 	    printf("\t\t\t\t\t\t账号：");
 	    scanf("%s",user);
 	    printf("\t\t\t\t\t\t密码：");
@@ -34,13 +29,16 @@ int t_checkkey(char user[],char key[]){                         //检测教师账号密
 	FILE *fp;
 	char set1[20]; 
 	char set2[20]; 
-	fp=fopen("D:\\t_key.txt","rt");
+	fp=fopen("D:\\t_key","rb");
+	if(fp==NULL){
+		printf("\t\t\t\t\t目前系统中没有老师信息！：\n");
+	    }
 	while(!feof(fp)){
-		fread(set1,sizeof(set1),1,fp);
-	    fread(set2,sizeof(set2),1,fp);
+		fscanf(fp,"%s",set1);
+	    fscanf(fp,"%s",set2);
 	    if(strcmp(set1,user)==0&&strcmp(set2,key)==0){ 
 	       printf("\t\t\t\t\t\t||   尊敬的老师，欢迎您    ||\n");
-
+			fclose(fp);
 	       getch();
 	         teacher();
 	       return 1;

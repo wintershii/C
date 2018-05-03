@@ -339,35 +339,33 @@ void seek(){                                                                  //
 
 
 void new_teacher(){                                                        //新增教师信息至本地 
-	int index = now_tea()+1;
 	FILE *fp;
 	char set1[20];
 	char set2[20];
+	fp = fopen("d:\\t_key","ab+");
 	printf("\t\t\t\t\t请设置新增教师账号密码：\n");
 	printf("\t\t\t\t\t\t账号：");
 	scanf("%s",set1);
 	printf("\t\t\t\t\t\t密码：");
 	scanf("%s",set2);
-	fp=fopen("D:\\t_key.txt","at");
-	fwrite(set1,sizeof(set1),1,fp);
-	fwrite(set2,sizeof(set2),1,fp);
+	fp=fopen("D:\\t_key","ab");
+	fprintf(fp,"%s %s\n",set1,set2);
 	fclose(fp);
 	printf("\t\t\t\t\t新增教师信息成功！\n");
 }  
 
 void print_tea(){                                                       //打印教师信息 
-	FILE *fp,*fc;
+	FILE *fp;
 	int index=0;
-	int classname;
-	fp=fopen("d:\\t_key.txt","rt");
+	fp=fopen("d:\\t_key","rb");
 	if(fp==NULL){
 		printf("暂时没有教师信息！\n");
 		return;
 	}
 	while(index<now_tea()){
 		char user[20],key[20];
-		fread(user,sizeof(user),1,fp);
-		fread(key,sizeof(key),1,fp);
+		fscanf(fp,"%s",user);
+		fscanf(fp,"%s",key);
 		printf("\n");
 		printf("\t\t\t\t\t\t用户名：");
 		printf("%s\n",user);
@@ -388,28 +386,26 @@ void delete_tea(){                                                 // 删除教师信
 	printf("\t\t\t\t\t请输入要删除的教师用户名：");
 	scanf("%s",set);
 	char key[20];
-	fp=fopen("d:\\t_key.txt","rt");
-	ft=fopen("d:\\temp.txt","wt");
+	char key1[20];
+	fp=fopen("d:\\t_key","rb");
+	ft=fopen("d:\\temp","wb");
 	if(fp==NULL || ft==NULL){
 		printf("错误！\n");
 		return;
 	}
-	while(fread(key,sizeof(key),1,fp)){
+	while(fscanf(fp,"%s",key)&&!feof(fp)){
 		if(strcmp(key,set)!=0){
-		   fwrite(key,sizeof(key)
-		   ,1,ft);
+			fscanf(fp,"%s",key1);
+		   fprintf(ft,"%s %s\n",key,key1);
 		   index++;
 		}
-		else{
-			rewind(fp);
-			fseek(fp,sizeof(key)*(index+2),0);
-		}
+		else
+			fscanf(fp,"%s",key1);
 	}
-	
 		fclose(fp);
 		fclose(ft);
-		remove("D:\\t_key.txt");
-		rename("D:\\temp.txt","D:\\t_key.txt");
+		remove("d:\\t_key");
+		rename("d:\\temp","d:\\t_key");
 		printf("\t\t\t\t\t教师信息修改成功！");
 	
 }

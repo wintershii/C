@@ -9,6 +9,7 @@ int main() {
 	printf("\t\t\t\t\t\t||   1. 我是学生           ||\n");
 	printf("\t\t\t\t\t\t||   2. 本人是老师         ||\n");
 	printf("\t\t\t\t\t\t||   3. 老子是管理员       ||\n");
+	printf("\t\t\t\t\t\t||   4. 修改密码           ||\n");
 	printf("\t\t\t\t\t\t||   0. 不好意思走错了     ||\n");
 	printf("\t\t\t\t\t\t-----------------------------\n");
 	scanf("%d",&choice);
@@ -27,6 +28,18 @@ int main() {
 			case 3:
                 printf("\t\t\t\t\t\t||          请登陆！       ||\n\n");          //管理员初次使用系统可以设置账号密码 
                     enter(); 
+			          getch();
+			            break;
+			case 4:
+					int choice1;
+                	printf("\t\t\t\t\t\t您是 1.老师\n\t\t\t\t\t\t2.管理员\n");
+				        scanf("%d",&choice1);
+				        if(choice1 == 1)
+				        	changeteakey();
+				        else if(choice == 2)
+				        	printf("2");
+				        else
+				        	printf("输入有误！\n");
 			          getch();
 			            break;
 			case 0:

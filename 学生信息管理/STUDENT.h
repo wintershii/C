@@ -3,6 +3,12 @@
 #include<string.h>
 #include<conio.h>
 #include<windows.h>
+struct teacher{
+	char user[20];
+	char key[20];
+	struct teacher *next;
+};
+typedef struct teacher *node;
 int now1_student();
 int now2_student();
 struct student *read();
@@ -34,7 +40,9 @@ void sort_score();
 void score_seek(); 
 void delete_tea();
 int now_tea();
-void fuck();
+void changeteakey();
+node read_t();
+void save_t(node pHead);
 
 struct infomation{
 	char iname[20];
@@ -55,8 +63,5 @@ struct student{
 	struct student *next;
 };
 
-struct _class{
-	char user[20];
-	char site[20];
-};
+
 
