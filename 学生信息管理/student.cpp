@@ -1,8 +1,8 @@
 #include"STUDENT.h"
-                                   //学生端的函数 
+                                               //学生端的函数 
 
-void student_(){                                                    //学生端主界面 
-	int choice=-1;
+void student_(){                                                             //学生端主界面 
+	int choice = -1;
 	while(choice!=0){
 		system("cls");
 		printf("\t\t\t\t\t\t-----------------------------\n");  
@@ -36,10 +36,10 @@ void stu_seek(){                                  //通过姓名+学号 查询自己的学籍
      gets(name);gets(name);
      printf("\t\t\t\t\t\t\t 学号：");
      scanf("%s",snum);
-     pHead=read();
-     pTemp=pHead;
-     while(pTemp!=NULL){
-     	if(strcmp(pTemp->stu.iname,name)==0&&strcmp(pTemp->stu.snum,snum)==0){ 
+     pHead = read();
+     pTemp = pHead;
+     while( pTemp != NULL ){
+     	if(strcmp(pTemp->stu.iname,name) == 0 && strcmp(pTemp->stu.snum,snum) == 0){ 
      	    printf("\n\t\t\t\t\t\t 你的信息如下：\n");
      	    printf("\t\t\t\t\t\t\t 姓名：%s\n",pTemp->stu.iname);
      	    printf("\t\t\t\t\t\t\t 学号：%s\n",pTemp->stu.snum);
@@ -47,15 +47,15 @@ void stu_seek(){                                  //通过姓名+学号 查询自己的学籍
      	    printf("\t\t\t\t\t\t\t 手机号：%s\n\n",pTemp->stu.iPhone);
      	       return;
      	} 
-     	pTemp=pTemp->next;
+     	pTemp = pTemp->next;
 	 }
         printf("\n\t\t\t\t\t未查找到此人信息！\n");
     return;
 }
 
 void score_seek(){                                  //通过姓名+学号 查询自己的成绩信息                         
-	struct student *pHead=NULL,*pTemp=NULL;
-	struct student *pHead2=NULL,*pTemp2=NULL;
+	struct student *pHead = NULL,*pTemp = NULL;
+	struct student *pHead2 = NULL,*pTemp2 = NULL;
 	char name[20];
 	char snum[10]; 
      printf("\t\t\t\t\t\t||  请输入你的姓名与学号   ||\n");
@@ -64,11 +64,11 @@ void score_seek(){                                  //通过姓名+学号 查询自己的成
      printf("\t\t\t\t\t\t\t 学号：");
      scanf("%s",snum);
      pHead=read_score();
-     pTemp=pHead;
-     pHead2=read();
-     pTemp2=pHead2;
-     while(pTemp!=NULL){
-     	if(strcmp(pTemp2->stu.iname,name)==0&&strcmp(pTemp2->stu.snum,snum)==0){ 
+     pTemp = pHead;
+     pHead2 = read();
+     pTemp2 = pHead2;
+     while( pTemp != NULL){
+     	if(strcmp(pTemp2->stu.iname,name) == 0 && strcmp(pTemp2->stu.snum,snum) == 0){ 
      	    printf("\n\t\t\t\t\t\t成绩信息如下：\n");
      	    printf("\t\t\t\t\t\t\t 姓名：%s\n",pTemp2->stu.iname);
      	    printf("\t\t\t\t\t\t\t 学号：%s\n",pTemp2->stu.snum);
@@ -77,9 +77,10 @@ void score_seek(){                                  //通过姓名+学号 查询自己的成
      	       getch();
 				return;
      	} 
-     	pTemp=pTemp->next;
-     	pTemp2=pTemp2->next;
+     	pTemp = pTemp->next;
+     	pTemp2 = pTemp2->next;
 	 }
         printf("\n\t\t\t\t\t未查找到此人成绩信息！\n");
     return;
 }
+

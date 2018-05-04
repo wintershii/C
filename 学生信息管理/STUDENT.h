@@ -3,12 +3,33 @@
 #include<string.h>
 #include<conio.h>
 #include<windows.h>
-struct teacher{
+
+struct infomation{                                                   //学生学籍信息的结构体 
+	char iname[20];
+	int inumber;
+	char snum[10];
+	char iPhone[20];
+};
+
+struct grade{                                                       //学生成绩信息结构体 
+	int math;
+	int english;
+	int c;
+}; 
+
+struct student{                                                      //学生信息结构体 
+	struct infomation stu;
+	struct grade gra;
+	struct student *next;
+};
+
+struct teacher{                                                      // 教师用户名与密码 
 	char user[20];
 	char key[20];
 	struct teacher *next;
 };
-typedef struct teacher *node;
+typedef struct teacher *node;                                         //自定义类型：指向教师结构体类型的指针类型 
+
 int now1_student();
 int now2_student();
 struct student *read();
@@ -43,25 +64,5 @@ int now_tea();
 void changeteakey();
 node read_t();
 void save_t(node pHead);
-
-struct infomation{
-	char iname[20];
-	int inumber;
-	char snum[10];
-	char iPhone[20];
-};
-
-struct grade{
-	int math;
-	int english;
-	int c;
-}; 
-
-struct student{
-	struct infomation stu;
-	struct grade gra;
-	struct student *next;
-};
-
-
+void changemkey();
 

@@ -1,6 +1,6 @@
 [Project]
 FileName=学生信息管理系统.dev
-Name=项目1
+Name=学生信息管理系统
 Type=1
 Ver=2
 ObjFiles=
@@ -24,7 +24,7 @@ HostApplication=
 UseCustomMakefile=0
 CustomMakefile=
 CommandLine=
-Folders=common,head,source
+Folders=
 IncludeVersionInfo=0
 SupportXPThemes=0
 CompilerSet=0
@@ -51,7 +51,7 @@ AutoIncBuildNr=0
 SyncProduct=1
 
 [Unit1]
-FileName=main.cpp
+FileName=STUDENT.h
 CompileCpp=1
 Folder=
 Compile=1
@@ -61,9 +61,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit2]
-FileName=teacher.cpp
+FileName=basic.cpp
 CompileCpp=1
-Folder=source
+Folder=
 Compile=1
 Link=1
 Priority=1000
@@ -71,9 +71,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit3]
-FileName=student.cpp
+FileName=function.cpp
 CompileCpp=1
-Folder=source
+Folder=
 Compile=1
 Link=1
 Priority=1000
@@ -81,9 +81,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit4]
-FileName=basic.cpp
+FileName=main.cpp
 CompileCpp=1
-Folder=source
+Folder=
 Compile=1
 Link=1
 Priority=1000
@@ -91,9 +91,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit5]
-FileName=function.cpp
+FileName=manager.cpp
 CompileCpp=1
-Folder=source
+Folder=
 Compile=1
 Link=1
 Priority=1000
@@ -101,9 +101,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit6]
-FileName=manager.cpp
+FileName=student.cpp
 CompileCpp=1
-Folder=source
+Folder=
 Compile=1
 Link=1
 Priority=1000
@@ -111,9 +111,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit7]
-FileName=STUDENT.h
+FileName=teacher.cpp
 CompileCpp=1
-Folder=source
+Folder=
 Compile=1
 Link=1
 Priority=1000

@@ -1,17 +1,16 @@
 #include"STUDENT.h"
+                                                //π‹¿Ì‘±∂Àµƒ∫Ø ˝ 
 
-//void print_tea();
-
-void enter(){                                                //µ«¬Ωπ‹¿Ì‘±’Àªß 
+void enter(){                                                              //µ«¬Ωπ‹¿Ì‘±’Àªß 
 	FILE *fp;
 	char set1[20]; 
 	char set2[20]; 
 	char key[20];
 	char user[20];
 	while(1){
-		fp=fopen("D:\\key.txt","rt");
-		if(fp==NULL){
-		  fp=fopen("D:\\key.txt","wt");
+		fp = fopen("D:\\key.txt","rt");
+		if(fp == NULL){
+		  fp = fopen("D:\\key.txt","wt");
 		  printf("\t\t\t\t\t«Î÷∆∂®π‹¿Ì‘±’À∫≈”Î√‹¬Î£∫\n");
 		  printf("\t\t\t\t\t\t’À∫≈£∫");
 		  scanf("%s",set1);
@@ -27,15 +26,14 @@ void enter(){                                                //µ«¬Ωπ‹¿Ì‘±’Àªß
 	   scanf("%s",user);
 	   printf("\t\t\t\t\t\t√‹¬Î£∫");
 	   secretword(key);
-	   if(checkkey(user,key)==0){
-	   		printf("’À∫≈√‹¬Î”–ŒÛ£°\n");
+	   if( checkkey(user,key) == 0){
+	   		printf("\t\t\t\t\t’À∫≈√‹¬Î”–ŒÛ£°\n");
 	   		getch();
-	   		printf("∞¥ESCº¸»°œ˚µ«¬Ω£¨∞¥»Œ“‚º¸ºÃ–¯µ«¬Ω£°\n");
+	   		printf("\t\t\t\t\t∞¥ESCº¸»°œ˚µ«¬Ω£¨∞¥»Œ“‚º¸ºÃ–¯µ«¬Ω£°\n");
 	   		char ch;
-	   		ch=getch();
-	   		if(ch==27)
+	   		ch = getch();
+	   		if(ch == 27)
 	   			return;
-			   
 	       continue;
 	    }
 	return;
@@ -46,11 +44,11 @@ int checkkey(char user[],char key[]){                          //ºÏ≤‚π‹¿Ì‘±’Àªß√
 	FILE *fp;
 	char set1[20]; 
 	char set2[20]; 
-	fp=fopen("D:\\key.txt","rt");
+	fp = fopen("D:\\key.txt","rt");
 	fread(set1,sizeof(set1),1,fp);
 	fread(set2,sizeof(set2),1,fp);
 	fclose(fp);
-	if(strcmp(set1,user)==0&&strcmp(set2,key)==0){ 
+	if(strcmp(set1,user) == 0 && strcmp(set2,key) == 0){ 
 	   printf("\t\t\t\t\t\t||  ◊æ¥µƒπ‹¿Ì‘±£¨ª∂”≠ƒ˙   ||\n");
 	   getch();
 	   manager();
@@ -59,21 +57,20 @@ int checkkey(char user[],char key[]){                          //ºÏ≤‚π‹¿Ì‘±’Àªß√
 	return 0;
 }
 
-int manager() {
-	int choice=-1;
+int manager() {                                                        //π‹¿Ì‘±µƒΩÁ√Ê∫Ø ˝ 
+	int choice = -1;
 	struct student *pHead;
-	while(choice!=0){
+	while( choice != 0){
 		system("cls");
 	printf("\n\t\t\t\t\t\t-------ΩÃŒÒ–≈œ¢π‹¿ÌœµÕ≥------\n");
-    if(now1_student()==0){
-
-    printf("\t\t\t\t\t\t------ƒø«∞ªπŒ¥¬º»Îπ˝–≈œ¢------\n");
-    printf("\t\t\t\t\t\t---------«Îø™ º ◊¥Œ¬º»Î-------\n");
+    if(now1_student() == 0){
+    	printf("\t\t\t\t\t\t------ƒø«∞ªπŒ¥¬º»Îπ˝–≈œ¢------\n");
+    	printf("\t\t\t\t\t\t---------«Îø™ º ◊¥Œ¬º»Î-------\n");
     }
     else{
-	printf("\t\t\t\t\t\t----------“—¬º»Î%d—ß…˙--------\n",now1_student());
-	printf("\t\t\t\t\t\t----------“—¬º»Î%dΩÃ ¶--------\n",now_tea());
-	printf("\t\t\t\t\t\t--»Ù–Ë–¬‘ˆ—ß…˙–≈œ¢«Î—°‘ÚÃÌº”--\n");
+		printf("\t\t\t\t\t\t----------“—¬º»Î%d—ß…˙--------\n",now1_student());
+		printf("\t\t\t\t\t\t----------“—¬º»Î%dΩÃ ¶--------\n",now_tea());
+		printf("\t\t\t\t\t\t--»Ù–Ë–¬‘ˆ—ß…˙–≈œ¢«Î—°‘ÚÃÌº”--\n");
     }
 	printf("\t\t\t\t\t\t-----------------------------\n");
 	printf("\t\t\t\t\t\t || 1. ¬º»Î—ß…˙–≈œ¢        ||\n");
@@ -89,9 +86,9 @@ int manager() {
 	scanf("%d",&choice);
 		switch(choice){
 			case 1:
-			if(now1_student()!=0)
+			if( now1_student() != 0)
 			  printf("ƒ˙“—¬º»Îπ˝≥ı º–≈œ¢£¨«ÎºÃ–¯ÃÌº”—ß…˙–≈œ¢!\n");
-			         pHead=Creat();
+			         pHead = Creat();
 			               getch();
 			                 break;
 			case 2:Insert();
@@ -125,19 +122,18 @@ int manager() {
 }
 
 struct student *Creat(){                                      //¥¥Ω®¡¥±Ì£¨≥ı º¥¥Ω® ±£¨ø…“‘±£≥÷∂‡¥Œ¬º»Î£¨µ±–’√˚Œ™ø’∏Ò ±Õ£÷π¬º»Î 
-	struct student *pHead=NULL;                               //»Ù“—¬º»Îπ˝–≈œ¢£¨‘ÚÃÌº”–¬µƒΩ⁄µ„Ω¯»Î¡¥±Ì£¨∑≈‘⁄◊Ó∫Û 
+	struct student *pHead = NULL;                               //»Ù“—¬º»Îπ˝–≈œ¢£¨‘ÚÃÌº”–¬µƒΩ⁄µ„Ω¯»Î¡¥±Ì£¨∑≈‘⁄◊Ó∫Û 
  	struct student *pNew,*pEnd;
 	struct student *pTemp;
 	int judge;
 	int count=0;
-	int ojbk=now1_student();
-	if(now1_student()>0){
-		pHead=read();
-		pTemp=pHead;
-		while(pTemp->next!=NULL)
-			pTemp=pTemp->next;
-			
-		pNew=(struct student *)malloc(sizeof(struct student));
+	int ojbk = now1_student();
+	if( now1_student() > 0){
+		pHead = read();
+		pTemp = pHead;
+		while( pTemp->next != NULL)
+			pTemp = pTemp->next;
+		pNew = (struct student *)malloc(sizeof(struct student));
 		printf("\t\t\t\t\t\tÃÌº”—ß…˙–≈œ¢£∫\n");
 		printf("\t\t\t\t\t\t–’√˚£∫");
 		gets(pNew->stu.iname);
@@ -148,37 +144,37 @@ struct student *Creat(){                                      //¥¥Ω®¡¥±Ì£¨≥ı º¥¥
 		printf("\t\t\t\t\t\t∞‡ƒ⁄–Ú∫≈£∫%d\n",pNew->stu.inumber);
 		printf("\t\t\t\t\t\t ÷ª˙∫≈£∫");
 		scanf("%s",pNew->stu.iPhone);
-		    pNew->next=NULL;
-			pTemp->next=pNew;
+		    pNew->next = NULL;
+			pTemp->next = pNew;
 			save(pHead);
 			printf("\t\t\t\t\t\tÃÌº”≥…π¶£°\n");
 			return pHead;
 	}
-	pNew=(struct student *)malloc(sizeof(struct student));
+	pNew = (struct student *)malloc(sizeof(struct student));
 	printf("\t\t\t\t\t\t«Î ‰»Î—ß…˙–≈œ¢£∫");
 	printf("\n\t\t\t\t\t\t–’√˚£∫"); 
 	gets(pNew->stu.iname);
 	gets(pNew->stu.iname);
 	printf("\t\t\t\t\t\t—ß∫≈£∫");
 	scanf("%s",pNew->stu.snum);
-	pNew->stu.inumber=now1_student()+1;
+	pNew->stu.inumber = now1_student()+1;
 	printf("\t\t\t\t\t\t∞‡ƒ⁄–Ú∫≈£∫%d\n",pNew->stu.inumber);
 	printf("\t\t\t\t\t\t ÷ª˙∫≈£∫");
 	scanf("%s",pNew->stu.iPhone);
-	ojbk=now1_student()+1;
-	while(1){                                                 // ŒﬁÕ∑Ω·µ„¿‡–Õµƒ¡¥±Ì 
+	ojbk = now1_student()+1;
+	while(1){                                                            // ŒﬁÕ∑Ω·µ„¿‡–Õµƒ¡¥±Ì  
 		count++;
-		if(count==1){
-			pNew->next=pHead;
-			pEnd=pNew;
-			pHead=pNew;
+		if( count == 1){
+			pNew->next = pHead;
+			pEnd = pNew;
+			pHead = pNew;
 		}
 		else{
-			pNew->next=NULL;
-			pEnd->next=pNew;
-			pEnd=pNew;
+			pNew->next = NULL;
+			pEnd->next = pNew;
+			pEnd = pNew;
 		}
-		pNew=(struct student *)malloc(sizeof(struct student));
+		pNew = (struct student *)malloc(sizeof(struct student));
 		printf("\t\t\t\t\t\tºÃ–¯¬º»Î,–’√˚Œ™ø’ ±Õ£÷π\n");
 		printf("\t\t\t\t\t\t–’√˚£∫");
 		gets(pNew->stu.iname); 
@@ -187,37 +183,37 @@ struct student *Creat(){                                      //¥¥Ω®¡¥±Ì£¨≥ı º¥¥
 		    break;
 		printf("\t\t\t\t\t\t—ß∫≈£∫");
 		scanf("%s",pNew->stu.snum);
-		pNew->stu.inumber=ojbk+1;
+		pNew->stu.inumber = ojbk+1;
 		printf("\t\t\t\t\t\t∞‡ƒ⁄–Ú∫≈£∫%d\n",pNew->stu.inumber);
 		printf("\t\t\t\t\t\t ÷ª˙∫≈£∫");
 		scanf("%s",pNew->stu.iPhone);
 				ojbk++;
 	}
 	free(pNew);
-	pTemp=pHead;
+	pTemp = pHead;
 	printf("\t\t\t\t\t\t «∑Ò±£¥Ê’‚–©—ß…˙–≈œ¢? 1- « 0-∑Ò");
 	scanf("%d",&judge);
-	if(judge==1)
+	if(judge == 1)
 		save(pHead);
 	return pHead;
 }
 
 void print(){                                                              //¥Ú”°≥ˆ±æµÿŒƒº˛ƒ⁄µƒ—ß…˙–≈œ¢ 
-	int count=0;
-	struct student *pHead=NULL;
+	int count = 0;
+	struct student *pHead = NULL;
 	struct student *pTemp,*pEnd,*pNew;
-	pHead=read();
+	pHead = read();
 	struct student *temp;
-	int index=1;
-	temp=pHead;
-	while(temp!=NULL){
+	int index = 1;
+	temp = pHead;
+	while(temp != NULL){
 		printf("\t\t\t\t\t\tµ⁄%d∏ˆ—ß…˙:\n",index);
 		printf("\t\t\t\t\t\t–’√˚£∫%s\n",temp->stu.iname);
 		printf("\t\t\t\t\t\t—ß∫≈£∫%s\n",temp->stu.snum);
 		printf("\t\t\t\t\t\t∞‡ƒ⁄–Ú∫≈£∫%d\n",temp->stu.inumber);
 		printf("\t\t\t\t\t\t ÷ª˙∫≈£∫%s\n\n",temp->stu.iPhone);
 		printf("\t\t\t\t\t\t-----------------------------\n");
-		temp=temp->next;
+		temp = temp->next;
 		index++;
 	}
 }
@@ -226,18 +222,15 @@ void Insert(){
 	int index;
 	struct student *pHead;
 	struct student *ipnew,*p,*pPre,*pTemp;
-	struct student *pNew,*pEnd;
-	
-	pHead=read();
-	
+	struct student *pNew,*pEnd; 
+	pHead = read();
 	printf("\t\t\t\t\t\t«Î ‰»Î“™≤Â»Îµƒ—ß…˙∞‡ƒ⁄–Ú∫≈£∫");               //Ω´—ß…˙–≈œ¢≤Â»ÎΩ¯¡¥±Ì ≤¢±£¥Ê÷¡±æµÿ 
 	scanf("%d",&index);
 	printf("\t\t\t\t\t\t-----------µ±«∞“—¬º»Î%d»À---------\n",now1_student());
-	if(index>now1_student())
+	if(index > now1_student())
 	  printf("\t\t\t\t\t\t ‰»Î¥ÌŒÛ£°\n");
-	  
 	    printf("\t\t\t\t\t\t«Î ‰»Î—ß…˙µƒ–≈œ¢£∫\n");
-		ipnew=(struct student *)malloc(sizeof(struct student));
+		ipnew = (struct student *)malloc(sizeof(struct student));
 		printf("\t\t\t\t\t\t–’√˚£∫");
 		scanf("%s",ipnew->stu.iname);
 		printf("\t\t\t\t\t\t—ß∫≈£∫");
@@ -246,28 +239,25 @@ void Insert(){
 		printf("\t\t\t\t\t\t∞‡ƒ⁄–Ú∫≈£∫%d\n",ipnew->stu.inumber);
 		printf("\t\t\t\t\t\t ÷ª˙∫≈£∫");
 		scanf("%s",ipnew->stu.iPhone);	
-    if(index==1){
-		ipnew->next=pHead;
-		pHead=ipnew;
-		pTemp=pHead->next;
-		while(pTemp!=NULL){
+    if( index == 1){
+		ipnew->next = pHead;
+		pHead = ipnew;
+		pTemp = pHead->next;
+		while( pTemp != NULL){
 			pTemp->stu.inumber++;
-		    pTemp=pTemp->next;
-		 }
-		
-	    }
+		    pTemp = pTemp->next;
+		} 
+	}
 	else{
-		p=pHead;
-	for(int i=1;i<index-1;i++)
-		p=p->next;
-        
-		ipnew->next=p->next;
-		p->next=ipnew;
-		
-		pTemp=ipnew->next;
-		while(pTemp!=NULL){
+		p = pHead;
+	for(int i = 1;i < index-1;i++)
+		p = p->next;
+		ipnew->next = p->next;
+		p->next = ipnew; 
+		pTemp = ipnew->next;
+		while( pTemp != NULL){
 			pTemp->stu.inumber++;
-			pTemp=pTemp->next;
+			pTemp = pTemp->next;
 	    }
   }
         save(pHead);
@@ -279,35 +269,35 @@ void Delete(){                                                              //…æ
 	int i,index;
 	struct student *pTemp;
     struct student *pPre,*p;
-    pHead=read();
+    pHead = read();
 	printf("\t\t\t\t\t\t«Î ‰»Î“™…æ≥˝µƒ—ß…˙∞‡ƒ⁄–Ú∫≈£∫");
 	scanf("%d",&index);
-	if(index>now1_student()){
+	if(index > now1_student()){
 		printf("\t\t\t\t\t\t ‰»Î”–ŒÛ£°\n");
 		return;
 	}
-	if(index==1){
-		pHead=pHead->next;
-		pTemp=pHead;
-		while(pTemp!=NULL){
+	if(index == 1){
+		pHead = pHead->next;
+		pTemp = pHead;
+		while( pTemp != NULL){
 			pTemp->stu.inumber--;
-			pTemp=pTemp->next;
+			pTemp = pTemp->next;
 		}
 		save(pHead);
 	    printf("\t\t\t\t\t\t—ß…˙–≈œ¢…æ≥˝≥…π¶£°\n");
 		return;
 	}
-	pTemp=pHead;
-	while(pTemp->stu.inumber!=index){                                          //Œﬁ∑®…æ≥˝Õ∑Ω⁄µ„ 
-		pPre=pTemp;
-		pTemp=pTemp->next;
+	pTemp = pHead;
+	while(pTemp->stu.inumber != index){                                          //Œﬁ∑®…æ≥˝Õ∑Ω⁄µ„ 
+		pPre = pTemp;
+		pTemp = pTemp->next;
 	}
-	pPre->next=pTemp->next;
+	pPre->next = pTemp->next;
 	free(pTemp);
-	pTemp=pPre->next;
-	while(pTemp!=NULL){
+	pTemp = pPre->next;
+	while(pTemp != NULL){
 			pTemp->stu.inumber--;
-			pTemp=pTemp->next;
+			pTemp = pTemp->next;
 		}
 	
 	save(pHead);
@@ -320,11 +310,11 @@ void seek(){                                                                  //
 	int inum;
 	printf("\t\t\t\t\t\t«Î ‰»Î“™≤È’“—ß…˙µƒ∞‡ƒ⁄–Ú∫≈£∫");
 	scanf("%d",&inum);
-	pHead=read();
-	pTemp=pHead;
-	while(pTemp->stu.inumber!=inum){
-		pTemp=pTemp->next;
-	if(pTemp==NULL){
+	pHead = read();
+	pTemp = pHead;
+	while( pTemp->stu.inumber != inum){
+		pTemp = pTemp->next;
+	if( pTemp == NULL){
 	  printf("\t\t\t\t\t\tŒ¥≤È’“µΩ¥À—ß…˙–≈œ¢£°\n");
 	  getch();
       return;
@@ -333,10 +323,8 @@ void seek(){                                                                  //
 	printf("\t\t\t\t\t\t–’√˚£∫%s\n",pTemp->stu.iname);
 	printf("\t\t\t\t\t\t—ß∫≈£∫%s\n",pTemp->stu.snum);
 	printf("\t\t\t\t\t\t∞‡ƒ⁄–Ú∫≈£∫%d\n",pTemp->stu.inumber);
-	printf("\t\t\t\t\t\t ÷ª˙∫≈£∫%s",pTemp->stu.iPhone);
-	
+	printf("\t\t\t\t\t\t ÷ª˙∫≈£∫%s",pTemp->stu.iPhone); 
 }
-
 
 void new_teacher(){                                                        //–¬‘ˆΩÃ ¶–≈œ¢÷¡±æµÿ 
 	FILE *fp;
@@ -362,13 +350,13 @@ void new_teacher(){                                                        //–¬‘
 
 void print_tea(){                                                       //¥Ú”°ΩÃ ¶–≈œ¢ 
 	FILE *fp;
-	int index=0;
-	fp=fopen("d:\\t_key","r");
-	if(fp==NULL){
-		printf("‘› ±√ª”–ΩÃ ¶–≈œ¢£°\n");
+	int index = 0;
+	fp = fopen("d:\\t_key","r");
+	if(fp == NULL){
+		printf("\t\t\t\t\t\t‘› ±√ª”–ΩÃ ¶–≈œ¢£°\n");
 		return;
 	}
-	while(index<now_tea()){
+	while( index < now_tea()){
 		char user[20],key[20];
 		fscanf(fp,"%s",user);
 		fscanf(fp,"%s",key);
@@ -384,11 +372,11 @@ void print_tea(){                                                       //¥Ú”°ΩÃ
 	return;
 }
 
-void delete_tea(){                                               
+void delete_tea(){                                              //…æ≥˝ΩÃ ¶–≈œ¢∫Ø ˝£¨‘⁄Œƒº˛÷–÷±Ω”…æ≥˝                            
 	FILE *fp,*ft; 
 	char set[20];
 	char set2[20];
-	int index=0;
+	int index = 0;
 	int classname;
 	printf("\t\t\t\t\t«Î ‰»Î“™…æ≥˝µƒΩÃ ¶”√ªß√˚£∫");
 	scanf("%s",set);
@@ -396,12 +384,12 @@ void delete_tea(){
 	char key1[20];
 	fp = fopen("d:\\t_key","r");
 	ft = fopen("d:\\temp","w");
-	if(fp==NULL || ft==NULL){
-		printf("¥ÌŒÛ£°\n");
+	if(fp == NULL || ft == NULL){
+		printf("\t\t\t\t\t¥ÌŒÛ£°\n");
 		return;
 	}
-	while(fscanf(fp,"%s",key)!=EOF){
-		if(strcmp(key,set)!=0){
+	while(fscanf(fp,"%s",key) != EOF){
+		if(strcmp(key,set) != 0){
 			fscanf(fp,"%s",key1);
 		   fprintf(ft,"%s %s\n",key,key1);
 		   index++;
@@ -414,5 +402,5 @@ void delete_tea(){
 		remove("d:\\t_key");
 		rename("d:\\temp","d:\\t_key");
 		printf("\t\t\t\t\tΩÃ ¶–≈œ¢…æ≥˝≥…π¶£°");
-	
 }
+

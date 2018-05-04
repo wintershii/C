@@ -1,30 +1,31 @@
 #include"STUDENT.h"
-                    //功能函数：判断字符串真实长度（除去空格后的长度），密码回显* 
+                       //功能函数：判断字符串真实长度（除去空格后的长度），密码回显* ，修改密码
+					    
 int _ifblank(char judge[]){                                     //判断字符串是否只有空格，若只有空格则返回0，否则返回字符串中非空格字符数目 
 	char ch;
 	char true_[20];
 	int i,j;
-	for(i=0,j=0;i<strlen(judge);i++){
-		if(judge[i]==' ')
+	for(i = 0,j = 0;i < strlen(judge) ; i++){
+		if(judge[i] == ' ')
 		 continue;
 		else{
-		true_[j]=judge[i];
+		true_[j] = judge[i];
 		j++;
 	   }
 	}
-	true_[j]='\0';
+	true_[j] = '\0';
 	return strlen(true_);
 }
 
-void secretword(char key[]){                                    //输入密码时回显* 
+void secretword(char key[]){                                               //输入密码时回显* 
 	char c;
-	int i=0;
-	while((c=getch())!='\r'){
-		if(i<20&&isprint(c)){
-			key[i++]=c;
+	int i = 0;
+	while((c = getch()) != '\r'){
+		if( i < 20 && isprint(c)){
+			key[i++] = c;
 			putchar('*');
 		}
-		else if(i>0&&c=='\b'){
+		else if( i > 0 && c == '\b' ){
 			i--;
 			putchar('\b');
 			putchar(' ');
@@ -32,11 +33,11 @@ void secretword(char key[]){                                    //输入密码时回显
 		}
 	}
 	putchar('\n');
-	key[i]='\0';
+	key[i] = '\0';
 	return;
 }
 
-void changeteakey(){
+void changeteakey(){                                                       //修改教师密码的函数 
 	FILE *fp;
 	node pHead,pTemp;
 	pHead = read_t();
@@ -45,32 +46,70 @@ void changeteakey(){
 	char oldkey[20];
 	char newkey[20];
 	getchar();
-	printf("请输入您的账号：");
+	printf("\t\t\t\t\t\t请输入您的账号：");
 	scanf("%s",user);
 	if(fp == NULL){
-		printf("目前没有教师信息！");
+		printf("\t\t\t\t\t\t目前没有教师信息！");
 		return; 
 	}
 	while(pTemp != NULL){
 		if(strcmp(pTemp->user,user) == 0){
-			printf("请输入原密码：");
+			printf("\t\t\t\t\t\t请输入原密码：");
 			scanf("%s",oldkey);
 			if(strcmp(pTemp->key,oldkey) == 0){
-				printf("密码正确！请修改密码！\n");
-				printf("新密码：");
+				printf("\t\t\t\t\t\t密码正确！请修改密码！\n");
+				printf("\t\t\t\t\t\t新密码：");
 				scanf("%s",newkey);
 				strcpy(pTemp->key,newkey);
 				save_t(pHead);
-				printf("修改密码成功！\n");
+				printf("\t\t\t\t\t\t修改密码成功！\n");
 				pTemp = pHead->next;
 				return;
 			}
 			else{
-				printf("密码错误！\n");
-				break; 
+				printf("\t\t\t\t\t\t密码错误！\n");
+				continue; 
 			}
 		}
 		else
 			pTemp = pTemp->next;
 	}
+		printf("\t\t\t\t\t\t未查找到此教师信息！\n");
 }
+
+void changemkey(){                                                         //修改管理员密码的函数 
+	FILE *fp;
+	char set1[20];
+	char set2[20];
+	char user[20];
+	char key[20];
+	printf("\t\t\t\t\t\t请输入管理员账号：");
+	scanf("%s",set1);
+	fp = fopen("d:\\key.txt","rt");
+	fread(user,sizeof(user),1,fp);
+	if(strcmp(set1,user) == 0){
+		printf("\t\t\t\t\t\t请输入原密码：");
+		scanf("%s",set2);
+		fread(key,sizeof(key),1,fp);
+		fclose(fp);
+		if(strcmp(set2,key) == 0){
+			printf("\t\t\t\t\t\t密码正确！请修改密码！\n");
+			printf("\t\t\t\t\t\t新密码：");
+			scanf("%s",set2);
+			fp = fopen("d:\\key.txt","wt");
+			fwrite(set1,sizeof(set1),1,fp);
+			fwrite(set2,sizeof(set2),1,fp);
+			fclose(fp);
+			printf("\t\t\t\t\t\t密码修改成功！\n");
+		}
+		else{
+			printf("\t\t\t\t\t\t原密码输入错误！\n");
+			 return;
+		}
+	}
+	else{
+		printf("\t\t\t\t\t\t管理员账号错误！\n");
+		return;
+	}
+} 
+

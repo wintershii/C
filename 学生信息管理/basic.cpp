@@ -1,15 +1,15 @@
 #include"STUDENT.h"
-                //»ù±¾¹¦ÄÜº¯Êı£º°üÀ¨ ¶ÁÈ¡ÎÄ¼ş£¬±£´æÁ´±íÖÁÎÄ¼ş£¬ÏÔÊ¾ÎÄ¼şÄÚĞÅÏ¢ÊıÄ¿µÈ³£ÓÃº¯Êı 
+                            //»ù±¾¹¦ÄÜº¯Êı£º°üÀ¨ ¶ÁÈ¡ÎÄ¼ş£¬±£´æÁ´±íÖÁÎÄ¼ş£¬ÏÔÊ¾ÎÄ¼şÄÚĞÅÏ¢ÊıÄ¿µÈ³£ÓÃº¯Êı 
                 
 int now1_student(){                                         //ÏÔÊ¾ÎÄ¼şÖĞÏÖÔÚÒÑÂ¼ÈëÑ§¼®ĞÅÏ¢µÄÑ§ÉúÊı                 
-	int i=1;
+	int i = 1;
 	char j[100000];
 	FILE *info;
-	info=fopen("d:\\stuifo.txt","rt");
-	if(info==NULL)
+	info = fopen("d:\\stuifo.txt","rt");
+	if(info == NULL)
 		return 0;
 	rewind(info);
-	   	while(fgets(j,sizeof(struct infomation),info)!=NULL)
+	   	while( fgets(j,sizeof(struct infomation),info) != NULL)
 	   	{
 	   	    fseek(info,sizeof(struct infomation)*i,0);
 	   	    i++;
@@ -18,16 +18,15 @@ int now1_student(){                                         //ÏÔÊ¾ÎÄ¼şÖĞÏÖÔÚÒÑÂ¼
         return i-1;                                         
 }
 
-
 int now2_student(){                                        //ÏÔÊ¾ÎÄ¼şÖĞÏÖÔÚÒÑÂ¼Èë³É¼¨ĞÅÏ¢µÄÑ§ÉúÊı                 
-	int i=1;
+	int i = 1;
 	char j[100000];
 	FILE *info;
-	info=fopen("d:\\score.txt","rt");
-	if(info==NULL)
+	info = fopen("d:\\score.txt","rt");
+	if(info == NULL)
 		return 0;
 	rewind(info);
-	   	while(fgets(j,sizeof(struct grade),info)!=NULL)
+	   	while( fgets(j,sizeof(struct grade),info) != NULL)
 	   	{
 	   	    fseek(info,sizeof(struct grade)*i,0);
 	   	    i++;
@@ -37,11 +36,11 @@ int now2_student(){                                        //ÏÔÊ¾ÎÄ¼şÖĞÏÖÔÚÒÑÂ¼È
 }
 
 int now_tea(){                                                  //ÏÔÊ¾ÎÄ¼şÖĞÏÖÔÚÒÑÂ¼ÈëµÄ½ÌÊ¦Êı                 
-	int i=0;
+	int i = 0;
 	char j[1000];
 	FILE *info;
-	info=fopen("d:\\t_key","rb");
-	if(info==NULL)
+	info = fopen("d:\\t_key","rb");
+	if(info == NULL)
 		return 0;
 		rewind(info);
 	   	while(fscanf(info,"%s",j)&&!feof(info))
@@ -51,31 +50,31 @@ int now_tea(){                                                  //ÏÔÊ¾ÎÄ¼şÖĞÏÖÔÚ
         return i/2;                                         
 }
 
-int icount=now1_student();
+int icount = now1_student();
 
 struct student *read(){                                       //¶ÁÈëÑ§¼®ÎÄ¼şÄÚµÄĞÅÏ¢£¬²¢·µ»ØÁ´±íÍ·Ö¸ÕëµÄµØÖ· 
 	struct student *pHead,*pEnd,*pNew;
 	FILE *fp;                                                    //´´½¨Á´±í£¬²¢½«Ñ§¼®ÎÄ¼şÄÚÊı¾İ¶ÁÈëÁ´±í 
-	fp=fopen("d:\\stuifo.txt","rt");
-	if(fp==NULL){
+	fp = fopen("d:\\stuifo.txt","rt");
+	if(fp == NULL){
 		printf("\t\t\t\t\t\tÎ´ÔÚ±¾µØÕÒµ½Ñ§ÉúĞÅÏ¢ÎÄ¼ş£¡\n");
 		return NULL;
 	}
-	pHead=NULL;
-	int i=1,count=0;
-	while(i<=now1_student()){
+	pHead = NULL;
+	int i = 1,count = 0;
+	while(i <= now1_student()){
 		count++;
-		pNew=(struct student *)malloc(sizeof(struct student));
+		pNew = (struct student *)malloc(sizeof(struct student));
 		fread(&pNew->stu,sizeof(struct infomation),1,fp);         //¶ÁÈë½á¹¹ÌåÖĞÑ§¼®ĞÅÏ¢µÄ½á¹¹Ìå 
-		if(count==1){
-			pNew->next=pHead;
-			pEnd=pNew;
-			pHead=pNew;
+		if(count == 1){
+			pNew->next = pHead;
+			pEnd = pNew;
+			pHead = pNew;
 		}
 		else{
-			pNew->next=NULL;
-			pEnd->next=pNew;
-			pEnd=pNew;
+			pNew->next = NULL;
+			pEnd->next = pNew;
+			pEnd = pNew;
 		}
 		i++;
 	}
@@ -86,10 +85,10 @@ struct student *read(){                                       //¶ÁÈëÑ§¼®ÎÄ¼şÄÚµÄ
 void save(struct student *pHead){                            //±£´æµ±Ç°µÄÁ´±íÖÁ±¾µØÑ§¼®ÎÄ¼ş 
 	    struct student *pTemp=pHead; 
 	    FILE *fp;
-		fp=fopen("d:\\stuifo.txt","w+");
-		while(pTemp!=NULL){
+		fp = fopen("d:\\stuifo.txt","w+");
+		while(pTemp != NULL){
 			fwrite(&pTemp->stu,sizeof(struct infomation),1,fp);   //½«½á¹¹ÌåÄÚÑ§¼®ĞÅÏ¢µÄ½á¹¹ÌåĞ´ÈëÎÄ¼ş 
-			pTemp=pTemp->next;
+			pTemp = pTemp->next;
 		}
 		printf("\t\t\t\t\t\t³É¹¦½«ĞÅÏ¢±£´æÖÁ±¾µØÎÄ¼ş£¡");
 		fclose(fp);
@@ -98,26 +97,26 @@ void save(struct student *pHead){                            //±£´æµ±Ç°µÄÁ´±íÖÁ±
 struct student *read_score(){                           //¶ÁÈë³É¼¨ÎÄ¼şÄÚµÄĞÅÏ¢£¬²¢·µ»ØÁ´±íÍ·Ö¸ÕëµÄµØÖ· 
 	struct student *pHead,*pEnd,*pNew;
 	FILE *fp;                                             //´´½¨Á´±í£¬²¢½«³É¼¨ÎÄ¼şÄÚÊı¾İ¶ÁÈëÁ´±í 
-	fp=fopen("d:\\score.txt","rt");
-	if(fp==NULL){
+	fp = fopen("d:\\score.txt","rt");
+	if(fp == NULL){
 		printf("\t\t\t\t\t\tÎ´ÔÚ±¾µØÕÒµ½Ñ§ÉúĞÅÏ¢ÎÄ¼ş£¡\n");
 		return NULL;
 	}
-	pHead=NULL;
-	int i=1,count=0;
-	while(i<=now1_student()){
+	pHead = NULL;
+	int i = 1,count = 0;
+	while(i <= now1_student()){
 		count++;
-		pNew=(struct student *)malloc(sizeof(struct student));
+		pNew = (struct student *)malloc(sizeof(struct student));
 		fread(&pNew->gra,sizeof(struct grade),1,fp);
-		if(count==1){
-			pNew->next=pHead;
-			pEnd=pNew;
-			pHead=pNew;
+		if( count == 1){
+			pNew->next = pHead;
+			pEnd = pNew;
+			pHead = pNew;
 		}
 		else{
-			pNew->next=NULL;
-			pEnd->next=pNew;
-			pEnd=pNew;
+			pNew->next = NULL;
+			pEnd->next = pNew;
+			pEnd = pNew;
 		}
 		i++;
 	}
@@ -126,12 +125,12 @@ struct student *read_score(){                           //¶ÁÈë³É¼¨ÎÄ¼şÄÚµÄĞÅÏ¢£¬
 }
 
 void save_score(struct student *pHead){                        //±£´æµ±Ç°µÄÁ´±íÖÁ±¾µØ³É¼¨ÎÄ¼ş 
-	    struct student *pTemp=pHead; 
+	    struct student *pTemp = pHead; 
 	    FILE *fp;
-		fp=fopen("d:\\score.txt","wt+");
-		while(pTemp!=NULL){
+		fp = fopen("d:\\score.txt","wt+");
+		while( pTemp != NULL){
 			fwrite(&pTemp->gra,sizeof(struct grade),1,fp);
-			pTemp=pTemp->next;
+			pTemp = pTemp->next;
 		}
 		printf("\t\t\t\t\t\t³É¹¦½«ĞÅÏ¢±£´æÖÁ±¾µØÎÄ¼ş£¡");
 		fclose(fp);
@@ -146,7 +145,7 @@ node read_t(){
 	char set[20];
 	fp = fopen("D:\\t_key","a+");
 	if(fp == NULL){
-		printf("Ä¿Ç°½ÌÊ¦ĞÅÏ¢£¡\n");
+		printf("\t\t\t\t\t\t´íÎó£¡\n");
 		return pHead;
 	}
 	node pNew,pEnd;
@@ -170,7 +169,7 @@ void save_t(node pHead){
 	node pTemp = pHead->next;
 	fp = fopen("D:\\t_key","w");
 	if(fp == NULL ){
-		printf("Òì³££¡\n");
+		printf("\t\t\t\t\t\tÒì³££¡\n");
 		return;
 	}
 	while(pTemp != NULL){

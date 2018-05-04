@@ -1,8 +1,8 @@
 #include"STUDENT.h"
 
 int main() {                                                       
-	int choice=-1;                  
-	while(choice!=0){                                                    //打印主页面，分三个端口 
+	int choice = -1;                  
+	while( choice != 0){                                                    //打印主页面，分三个端口 
 		system("cls");                                                   //学生端，学生只可查询自己的信息和成绩 
 	printf("\n\t\t\t\t\t\t-------学生信息管理系统------\n");             //教师端，教师可以管理学生的信息和成绩 
 	printf("\t\t\t\t\t\t-----------------------------\n");               //管理员端，管理员可以管理学生和老师的信息 
@@ -32,12 +32,12 @@ int main() {
 			            break;
 			case 4:
 					int choice1;
-                	printf("\t\t\t\t\t\t您是 1.老师\n\t\t\t\t\t\t2.管理员\n");
+                	printf("\t\t\t\t\t\t您是\n \t\t\t\t\t\t\t1.老师\n\t\t\t\t\t\t\t2.管理员\n");
 				        scanf("%d",&choice1);
 				        if(choice1 == 1)
 				        	changeteakey();
-				        else if(choice == 2)
-				        	printf("2");
+				        else if(choice1 == 2)
+				        	changemkey();
 				        else
 				        	printf("输入有误！\n");
 			          getch();
@@ -51,3 +51,4 @@ int main() {
 		}
 	}
 }
+
