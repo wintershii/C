@@ -47,7 +47,6 @@ void changeteakey(){
 	getchar();
 	printf("请输入您的账号：");
 	scanf("%s",user);
-	fp = fopen("d:\\t_key","ab+");
 	if(fp == NULL){
 		printf("目前没有教师信息！");
 		return; 

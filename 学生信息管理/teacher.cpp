@@ -1,6 +1,6 @@
 #include"STUDENT.h"
 
-                                 //教师端主界面 
+                                       //教师端主界面 
 void tea_enter(){                                                                                   //登陆教师账户 
 	char set1[20]; 
 	char set2[20]; 
@@ -29,7 +29,7 @@ int t_checkkey(char user[],char key[]){                         //检测教师账号密
 	FILE *fp;
 	char set1[20]; 
 	char set2[20]; 
-	fp=fopen("D:\\t_key","rb");
+	fp=fopen("D:\\t_key","r");
 	if(fp==NULL){
 		printf("\t\t\t\t\t目前系统中没有老师信息！：\n");
 	    }

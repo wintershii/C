@@ -340,24 +340,30 @@ void seek(){                                                                  //
 
 void new_teacher(){                                                        //新增教师信息至本地 
 	FILE *fp;
-	char set1[20];
-	char set2[20];
-	fp = fopen("d:\\t_key","ab+");
+	node pHead,pTemp,pEnd;
+	pHead = read_t();
+	pEnd = pHead;
+	pTemp = pHead->next;
+	while(pTemp != NULL){
+		pEnd = pEnd->next;
+		pTemp = pTemp->next;
+	}
+	pTemp = (node)malloc(sizeof(struct teacher));
 	printf("\t\t\t\t\t请设置新增教师账号密码：\n");
 	printf("\t\t\t\t\t\t账号：");
-	scanf("%s",set1);
+	scanf("%s",pTemp->user);
 	printf("\t\t\t\t\t\t密码：");
-	scanf("%s",set2);
-	fp=fopen("D:\\t_key","ab");
-	fprintf(fp,"%s %s\n",set1,set2);
-	fclose(fp);
+	scanf("%s",pTemp->key);
+	pTemp->next = NULL;
+	pEnd->next = pTemp;
+	save_t(pHead);
 	printf("\t\t\t\t\t新增教师信息成功！\n");
 }  
 
 void print_tea(){                                                       //打印教师信息 
 	FILE *fp;
 	int index=0;
-	fp=fopen("d:\\t_key","rb");
+	fp=fopen("d:\\t_key","r");
 	if(fp==NULL){
 		printf("暂时没有教师信息！\n");
 		return;
@@ -378,22 +384,23 @@ void print_tea(){                                                       //打印教
 	return;
 }
 
-void delete_tea(){                                                 // 删除教师信息（直接在文件内部操作） 
+void delete_tea(){                                               
 	FILE *fp,*ft; 
 	char set[20];
+	char set2[20];
 	int index=0;
 	int classname;
 	printf("\t\t\t\t\t请输入要删除的教师用户名：");
 	scanf("%s",set);
 	char key[20];
 	char key1[20];
-	fp=fopen("d:\\t_key","rb");
-	ft=fopen("d:\\temp","wb");
+	fp = fopen("d:\\t_key","r");
+	ft = fopen("d:\\temp","w");
 	if(fp==NULL || ft==NULL){
 		printf("错误！\n");
 		return;
 	}
-	while(fscanf(fp,"%s",key)&&!feof(fp)){
+	while(fscanf(fp,"%s",key)!=EOF){
 		if(strcmp(key,set)!=0){
 			fscanf(fp,"%s",key1);
 		   fprintf(ft,"%s %s\n",key,key1);
@@ -406,6 +413,6 @@ void delete_tea(){                                                 // 删除教师信
 		fclose(ft);
 		remove("d:\\t_key");
 		rename("d:\\temp","d:\\t_key");
-		printf("\t\t\t\t\t教师信息修改成功！");
+		printf("\t\t\t\t\t教师信息删除成功！");
 	
 }
