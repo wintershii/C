@@ -8,16 +8,20 @@ typedef struct{
 	int top2;
 }doublestack;
 
-doublestack *Initstack(doublestack *stack){
-	stack = (doublestack *)malloc(sizeof(doublestack));
+doublestack *Initstack(doublestack *stack){					//初始化两栈数组 
+	stack = (doublestack *)malloc(sizeof(doublestack));		//令top1 = -1，top2 = MAX 
 	stack->top1 = -1;
 	stack->top2 = MAX;
 	return stack;
 }
 
-void push(doublestack *stack){
+void push(doublestack *stack){					//选择压1栈或2栈 
 	int index;
 	while(1){
+		if(stack->top1 + 1 == stack->top2){
+			printf("目前栈满！无法继续压栈\n");
+			return;
+		} 
 		int choice;
 		printf("请选择压1栈或压2栈？\n");
 		scanf("%d",&choice);

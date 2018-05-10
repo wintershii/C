@@ -1,17 +1,17 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-typedef struct STACKNODE{
+typedef struct STACKNODE{			//栈结构的单链表 
 	int date;
 	struct STACKNODE *next;
 }stacknode,*linkstack;
 
-typedef struct LinkStack{
+typedef struct LinkStack{			//栈结构 
 	linkstack top;
 	int count;
 }link;
 
-link *Initstack(link *stack){
+link *Initstack(link *stack){						//初始化栈，给栈顶指针赋值NULL 
 	stack = (link *)malloc(sizeof(struct LinkStack));
 	stack->count = 0;
 	stack->top = NULL;

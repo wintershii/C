@@ -7,37 +7,38 @@ typedef struct{
 	int top;
 }SqStack;
 
-SqStack *InitStack(SqStack *stack){
-	stack = (SqStack *)malloc(sizeof(SqStack));
+SqStack *InitStack(SqStack *stack){					//初始化栈，申请内存空间，并给top赋-1 
+	stack = (SqStack *)malloc(sizeof(SqStack));           
 	stack->top = -1;
 	printf("初始化成功！\n");
 	return stack;
 }     
 
 void push(SqStack *stack){
-	int index = ++stack->top;
-	if(index == MAX-1){
+	int index = stack->top+1;			
+	if(index == MAX-1){						//满栈返回 
 		printf("目前栈满！\n");
 		return;
 	}
 	printf("请输入要压栈的数据：");
 	scanf("%d",&stack->date[index]);
+	stack->top++;						//压栈成功，栈顶标记加一 
 	printf("压栈成功！\n");
 }
 
 void pop(SqStack *stack){
 	printf("%d\n",stack->top);
 	int index = stack->top;
-	if(index == -1){
+	if(index == -1){					//空栈返回 
 		printf("目前为空栈!\n");
 		return;
 	}
 	printf("要弹栈的数据为：%d ",stack->date[index]);
-	stack->top--;
+	stack->top--;					//弹栈成功，栈顶标记减一 
 	printf("弹栈成功！\n");
 }
 
-void print_stack(SqStack *stack){
+void print_stack(SqStack *stack){			//遍历栈内数据 
 	printf("%d\n",stack->top);
 	int index = stack->top;
 	if(index == -1 ){
