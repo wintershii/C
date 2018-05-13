@@ -2,7 +2,7 @@
 int main()
 {
     int array[5] = {1, 2, 3, 4, 5};
-    printf("%p %p\n", &array, &array[0]);
+    printf("%p %p\n", array, &array[0]);
     printf("%p %p\n", &array + 1, &array[0] + 1);
     int (*pArray)[5] = &array;			//数组指针 
     for (int i = 0; i < 5; i++) {
@@ -10,7 +10,6 @@ int main()
     }
     printf("\n");
     int *p = array;
-    // array += 1;
     printf("%d %d\n", p[1], *(array + 1));		//array为指针常量 
     int array2[2][5] = {
         {1, 2, 3, 4, 5},

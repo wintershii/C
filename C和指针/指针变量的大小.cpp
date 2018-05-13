@@ -1,8 +1,9 @@
 #include <stdio.h>
 int main()
 {
-    int a = 2;
-    int * x = &a;
-    printf("%d\n", sizeof(x));
+	int a[3] = {1,2,3}; 
+    int *p = a;
+    printf("%d\n", sizeof(a));
+    printf("%d\n", sizeof(p));
     return 0;
 }
