@@ -3,7 +3,7 @@
 #include <time.h>
 #define MAX 10
 
-int main()
+int main(int argc,char **argv)
 {
 	char name1[20],name2[20];
 	char c;

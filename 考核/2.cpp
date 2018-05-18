@@ -10,8 +10,9 @@ typedef struct node
 
 void CreateListTail(LinkList * L, int n);
 
-LinkList listReverse(LinkList * L);
+void listReverse(LinkList L);
 
+LinkList listReverse2(LinkList L);
 int main()
 {
     LinkList L;
@@ -23,14 +24,20 @@ int main()
         p = p->next;
     }
     putchar('\n');
-    p = listReverse(&L);
-    p = p->next;
+    listReverse(L);
+    p = L->next;
 	while (p) 
 	{
         printf("%d ", p->data);
         p = p->next;
     }
     putchar('\n');
+    p = listReverse2(L); 
+    while (p) 
+	{
+        printf("%d ", p->data);
+        p = p->next;
+    }
     return 0;
 }
 
@@ -51,36 +58,36 @@ void CreateListTail(LinkList * L, int n)
     r->next = NULL;
 }
 
-void swap(int *x,int *y)
+void listReverse(LinkList L)
 {
-	int temp = *x;
-	*x = *y;
-	*y = temp;
+	printf("头插法逆置：\n");
+	LinkList temp = L->next;
+    L->next = NULL;
+    LinkList tail;
+    while(temp)
+    {
+        tail = temp;
+        temp = temp->next;
+        tail->next = L->next;
+        L->next = tail;
+    }
 }
 
-LinkList listReverse(LinkList * L)
+LinkList listReverse2(LinkList L)
 {
-	LinkList pHead = *L;
-	LinkList pTemp = pHead->next;
-	int index = 0;
-	while(pTemp)
+	printf("再就地逆置：\n");
+	if(L->next == NULL || L->next->next == NULL)
 	{
-		index++;
-		pTemp = pTemp->next;
+		return L;
+	} 
+	LinkList pRev = NULL,pCur = L->next;
+    while(pCur != NULL)
+    {
+    	LinkList temp = pCur;
+    	pCur = pCur->next;
+    	temp->next = pRev;
+    	pRev = temp;
 	}
-	for(int i = index/2; i >= 1; i--)
-	{
-		LinkList pPre = pHead->next,pDel = pHead->next;
-		for(int j = 1; j < index/2-i+1; j++)
-		{
-			pPre = pPre->next;
-		}
-		for(int j = 1; j < index/2+i; j++)
-		{
-			pDel = pDel->next;
-		}
-		swap(&pPre->data,&pDel->data);
-	}
-	return pHead;
+    return pRev;
 }
 
