@@ -73,17 +73,55 @@ int manager() {                                                        //¹ÜÀíÔ±µ
 		printf("\t\t\t\t\t\t--ÈôĞèĞÂÔöÑ§ÉúĞÅÏ¢ÇëÑ¡ÔòÌí¼Ó--\n");
     }
 	printf("\t\t\t\t\t\t-----------------------------\n");
-	printf("\t\t\t\t\t\t || 1. Â¼ÈëÑ§ÉúĞÅÏ¢        ||\n");
-	printf("\t\t\t\t\t\t || 2. ²åÈëÑ§ÉúĞÅÏ¢        ||\n");
-	printf("\t\t\t\t\t\t || 3. É¾³ıÑ§ÉúĞÅÏ¢        ||\n");
-	printf("\t\t\t\t\t\t || 4. ´òÓ¡Ñ§ÉúĞÅÏ¢±í      ||\n");
-	printf("\t\t\t\t\t\t || 5. ²éÕÒÑ§ÉúĞÅÏ¢        ||\n");
-	printf("\t\t\t\t\t\t || 6. ĞÂÔö½ÌÊ¦ĞÅÏ¢        ||\n");
-	printf("\t\t\t\t\t\t || 7. ´òÓ¡½ÌÊ¦ĞÅÏ¢        ||\n");
-	printf("\t\t\t\t\t\t || 8. É¾³ı½ÌÊ¦ĞÅÏ¢        ||\n");
-	printf("\t\t\t\t\t\t || 0. ÍË³ö                ||\n");
+	printf("\t\t\t\t\t\t ||  1. Â¼ÈëÑ§ÉúĞÅÏ¢        ||\n");
+	printf("\t\t\t\t\t\t ||  2. ²åÈëÑ§ÉúĞÅÏ¢        ||\n");
+	printf("\t\t\t\t\t\t ||  3. É¾³ıÑ§ÉúĞÅÏ¢        ||\n");
+	printf("\t\t\t\t\t\t ||  4. ´òÓ¡Ñ§ÉúĞÅÏ¢±í      ||\n");
+	printf("\t\t\t\t\t\t ||  5. ²éÕÒÑ§ÉúĞÅÏ¢        ||\n");
+	printf("\t\t\t\t\t\t ||  6. ĞÂÔö½ÌÊ¦ĞÅÏ¢        ||\n");
+	printf("\t\t\t\t\t\t ||  7. ´òÓ¡½ÌÊ¦ĞÅÏ¢        ||\n");
+	printf("\t\t\t\t\t\t ||  8. É¾³ı½ÌÊ¦ĞÅÏ¢        ||\n");
+	printf("\t\t\t\t\t\t ||  0. ÍË³ö                ||\n");
 	printf("\t\t\t\t\t\t-----------------------------\n");
-	scanf("%d",&choice);
+	int x = 52;
+		int y = 6;
+		char ch = 0;
+		choice = 1;
+		gotoxy(x,y);
+		printf("*\b");
+		while(ch != 13)
+		{
+			if(choice == 0)
+			{
+				choice = 9;
+				puts("-");
+				gotoxy(x,14);
+				printf("*\b");
+				y= 14;
+			}
+			if(choice == 10)
+			{
+				choice = 1;
+				puts("-");
+				gotoxy(x,6);
+				printf("*\b");
+				y = 6;
+			}
+			ch = getch();
+			if(ch == 72){
+				puts(" ");
+				gotoxy(x,--y);
+				printf("*\b");
+				choice--;
+			}
+			if(ch == 80){
+				puts(" ");
+				gotoxy(x,++y);
+				printf("*\b");
+				choice++;
+			}
+		}
+		gotoxy(5,17);
 		switch(choice){
 			case 1:
 			if( now1_student() != 0)
@@ -112,8 +150,8 @@ int manager() {                                                        //¹ÜÀíÔ±µ
 			case 8:delete_tea();
 			 		getch();
 			 		   break;
-			case 0:
-				    break;
+			case 9:
+				    return 0;
 			default:
 					break;
 		}
@@ -204,18 +242,14 @@ void print(){                                                              //´òÓ
 	struct student *pTemp,*pEnd,*pNew;
 	pHead = read();
 	struct student *temp;
-	int index = 1;
 	temp = pHead;
+	printf("\t\t\t\t\t---------------------------------------\n");
+	printf("\t\t\t\t\t||°àÄÚĞòºÅ\tĞÕÃû\tÑ§ºÅ\tÊÖ»úºÅ||\n");
 	while(temp != NULL){
-		printf("\t\t\t\t\t\tµÚ%d¸öÑ§Éú:\n",index);
-		printf("\t\t\t\t\t\tĞÕÃû£º%s\n",temp->stu.iname);
-		printf("\t\t\t\t\t\tÑ§ºÅ£º%s\n",temp->stu.snum);
-		printf("\t\t\t\t\t\t°àÄÚĞòºÅ£º%d\n",temp->stu.inumber);
-		printf("\t\t\t\t\t\tÊÖ»úºÅ£º%s\n\n",temp->stu.iPhone);
-		printf("\t\t\t\t\t\t-----------------------------\n");
+		printf("\t\t\t\t\t||   %d\t\t%s\t%s\t %s  ||\n",temp->stu.inumber,temp->stu.iname,temp->stu.snum,temp->stu.iPhone);
 		temp = temp->next;
-		index++;
 	}
+	printf("\t\t\t\t\t---------------------------------------\n");
 }
 
 void Insert(){                                                              
@@ -320,10 +354,10 @@ void seek(){                                                                  //
       return;
  	   }
 	}
-	printf("\t\t\t\t\t\tĞÕÃû£º%s\n",pTemp->stu.iname);
-	printf("\t\t\t\t\t\tÑ§ºÅ£º%s\n",pTemp->stu.snum);
-	printf("\t\t\t\t\t\t°àÄÚĞòºÅ£º%d\n",pTemp->stu.inumber);
-	printf("\t\t\t\t\t\tÊÖ»úºÅ£º%s",pTemp->stu.iPhone); 
+	printf("\t\t\t\t\t---------------------------------------\n");
+	printf("\t\t\t\t\t||°àÄÚĞòºÅ\tĞÕÃû\tÑ§ºÅ\tÊÖ»úºÅ||\n");
+	printf("\t\t\t\t\t||   %d\t\t%s\t%s\t %s  ||\n",pTemp->stu.inumber,pTemp->stu.iname,pTemp->stu.snum,pTemp->stu.iPhone);
+	printf("\t\t\t\t\t---------------------------------------\n");
 }
 
 void new_teacher(){                                                        //ĞÂÔö½ÌÊ¦ĞÅÏ¢ÖÁ±¾µØ 

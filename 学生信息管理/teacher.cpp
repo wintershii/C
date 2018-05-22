@@ -63,21 +63,59 @@ void teacher(){                                                 //ΩÃ ¶∂À÷˜ΩÁ√Ê
 	printf("\t\t\t\t\t\t--»Ù–Ë–¬‘ˆ—ß…˙–≈œ¢«Î—°‘ÚÃÌº”--\n");
     }
 	printf("\t\t\t\t\t\t-----------------------------\n");
-	printf("\t\t\t\t\t\t || 1. ¬º»Î—ß…˙–≈œ¢        ||\n");
-	printf("\t\t\t\t\t\t || 2. ≤Â»Î—ß…˙–≈œ¢        ||\n");
-	printf("\t\t\t\t\t\t || 3. ¥Ú”°—ß…˙–≈œ¢±Ì      ||\n");
-	printf("\t\t\t\t\t\t || 4. ≤È’“—ß…˙–≈œ¢        ||\n");
-	printf("\t\t\t\t\t\t || 5. ¬º»Î≥…º®–≈œ¢        ||\n");
-	printf("\t\t\t\t\t\t || 6. ¥Ú”°≥…º®–≈œ¢        ||\n");
-	printf("\t\t\t\t\t\t || 7. –ﬁ∏ƒ≥…º®–≈œ¢        ||\n");
-	printf("\t\t\t\t\t\t || 8. ∞‡ƒ⁄≥…º®≈≈√˚        ||\n");	
-	printf("\t\t\t\t\t\t || 0. ÕÀ≥ˆ                ||\n");
+	printf("\t\t\t\t\t\t ||  1. ¬º»Î—ß…˙–≈œ¢        ||\n");
+	printf("\t\t\t\t\t\t ||  2. ≤Â»Î—ß…˙–≈œ¢        ||\n");
+	printf("\t\t\t\t\t\t ||  3. ¥Ú”°—ß…˙–≈œ¢±Ì      ||\n");
+	printf("\t\t\t\t\t\t ||  4. ≤È’“—ß…˙–≈œ¢        ||\n");
+	printf("\t\t\t\t\t\t ||  5. ¬º»Î≥…º®–≈œ¢        ||\n");
+	printf("\t\t\t\t\t\t ||  6. ¥Ú”°≥…º®–≈œ¢        ||\n");
+	printf("\t\t\t\t\t\t ||  7. –ﬁ∏ƒ≥…º®–≈œ¢        ||\n");
+	printf("\t\t\t\t\t\t ||  8. ∞‡ƒ⁄≥…º®≈≈√˚        ||\n");	
+	printf("\t\t\t\t\t\t ||  0. ÕÀ≥ˆ                ||\n");
 	printf("\t\t\t\t\t\t----------------------------\n");
-	scanf("%d",&choice);
+	int x = 52;
+		int y = 6;
+		char ch = 0;
+		choice = 1;
+		gotoxy(x,y);
+		printf("*\b");
+		while(ch != 13)
+		{
+			if(choice == 0)
+			{
+				choice = 9;
+				puts("-");
+				gotoxy(x,14);
+				printf("*\b");
+				y= 14;
+			}
+			if(choice == 10)
+			{
+				choice = 1;
+				puts("-");
+				gotoxy(x,6);
+				printf("*\b");
+				y = 6;
+			}
+			ch = getch();
+			if(ch == 72){
+				puts(" ");
+				gotoxy(x,--y);
+				printf("*\b");
+				choice--;
+			}
+			if(ch == 80){
+				puts(" ");
+				gotoxy(x,++y);
+				printf("*\b");
+				choice++;
+			}
+		}
+		gotoxy(5,17);
 		switch(choice){
 			case 1:
 			   if( now1_student() !=0 )
-			       printf("ƒ˙“—¬º»Îπ˝≥ı º–≈œ¢£¨«ÎºÃ–¯ÃÌº”—ß…˙–≈œ¢!\n");
+			       printf("\t\t\t\t\t\tƒ˙“—¬º»Îπ˝≥ı º–≈œ¢£¨«ÎºÃ–¯ÃÌº”—ß…˙–≈œ¢!\n");
 			   pHead = Creat();
 			     getch();
 			       break;
@@ -102,8 +140,8 @@ void teacher(){                                                 //ΩÃ ¶∂À÷˜ΩÁ√Ê
 			case 8: sort_score();
 			   getch();
 			     break;
-			case 0:
-				 break;
+			case 9:
+				 return;
 			default:
 				 break;
 		}
@@ -117,8 +155,13 @@ struct student *scanf_score(){   //¥¥Ω®¡¥±Ì£¨ø™ º¬º»Î—ß…˙≥…º®–≈œ¢£¨ ◊¥Œ¬º»Î ±”–º
 	int judge;
 	int count = 0;
 		if( now2_student() > 0){
-			printf("ƒ˙“—æ≠¬º»Îπ˝—ß…˙≥…º®£°«ÎÃÌº”‘›Œ¥¬º»Îµƒ≥…º®–≈œ¢\n");
 			pHead = read_score();
+			if(now1_student() == now2_student())
+			{
+				printf("\t\t\t\t\t\tƒø«∞√ª”––Ë“™¬º»Îµƒ≥…º®£°");
+				return pHead;
+			}
+			printf("\t\t\t\t\t\tƒ˙“—æ≠¬º»Îπ˝—ß…˙≥…º®£°«ÎÃÌº”‘›Œ¥¬º»Îµƒ≥…º®–≈œ¢\n");
 			pTemp = pHead;
 			while( pTemp->next->next != NULL){
 			      pTemp = pTemp->next;
@@ -136,7 +179,7 @@ struct student *scanf_score(){   //¥¥Ω®¡¥±Ì£¨ø™ º¬º»Î—ß…˙≥…º®–≈œ¢£¨ ◊¥Œ¬º»Î ±”–º
 	        scanf("%d",&pNew->gra.c);
 	        pNew->next = NULL;
 			pTemp->next = pNew;
-			printf("–¬‘ˆ≥…º®–≈œ¢≥…π¶£°\n");
+			printf("\t\t\t\t\t\t–¬‘ˆ≥…º®–≈œ¢≥…π¶£°\n");
 			save_score(pHead);
 			return pHead;
 		}
@@ -176,15 +219,16 @@ void print_score(){                                   // ∞¥’’∞‡ƒ⁄–Ú∫≈À≥–Ú¥Ú”°≥ˆ—
 	pHead2 = read();
 	pTemp = pHead;
 	pTemp2 = pHead2;
+	if(pTemp != NULL)
+	printf("\t\t\t\t\t\t≥…º®–≈œ¢»Áœ¬\n");
+	printf("\t\t\t\t\t----------------------------------------------\n"); 
+	printf("\t\t\t\t\t|| ∞‡ƒ⁄–Ú∫≈\t –’√˚\t ˝—ß\t”¢”Ô\tC”Ô—‘\t||\n");
 	while( pTemp != NULL){
-		printf("\t\t\t\t\t\t∞‡ƒ⁄–Ú∫≈£∫%d\t–’√˚£∫%s\n",pTemp2->stu.inumber,pTemp2->stu.iname);
-		printf("\t\t\t\t\t\t ˝—ß£∫%d\n",pTemp->gra.math);
-		printf("\t\t\t\t\t\t”¢”Ô£∫%d\n",pTemp->gra.english);
-		printf("\t\t\t\t\t\tC”Ô—‘£∫%d\n",pTemp->gra.c);
-		printf("\t\t\t\t\t\t-----------------------------\n");
+     	printf("\t\t\t\t\t||    %d\t\t %s\t%d\t%d\t%d\t||\n",pTemp2->stu.inumber,pTemp2->stu.iname,pTemp->gra.math,pTemp->gra.english,pTemp->gra.c);   	
 		pTemp = pTemp->next;
 		pTemp2 = pTemp2->next;
 	}
+	printf("\t\t\t\t\t----------------------------------------------\n");
 }
 
 void change_score(){                                  // –ﬁ∏ƒ÷∆∂®∞‡ƒ⁄–Ú∫≈—ß…˙µƒ≥…º®–≈œ¢ 
@@ -223,9 +267,52 @@ void sort_score(){                                     // ø…“‘∂‘≤ªÕ¨ø∆ƒø¥”∏ﬂµΩµÕ
 	pHead2 = read();
 	struct student *pTemp = pHead,*pTemp2 = pHead2;
 	int index;
-	printf("\t\t\t\t\t\t\t«Î—°‘Ò“™≈≈√˚µƒ≥…º®£∫");
-	printf("\n\t\t\t\t\t\t\t1. ˝—ß\n\t\t\t\t\t\t\t2.”¢”Ô\n\t\t\t\t\t\t\t3.C”Ô—‘"); 
-	scanf("%d",&index);
+	system("cls");
+	printf("\t\t\t\t\t\t\t«Î—°‘Ò“™≈≈√˚µƒ≥…º®£∫\n");
+	printf("\t\t\t\t\t\t-----------------------------\n");
+	printf("\t\t\t\t\t\t||         1. ˝—ß           ||\n");
+	printf("\t\t\t\t\t\t||         2.”¢”Ô           ||\n"); 
+	printf("\t\t\t\t\t\t||         3.C”Ô—‘          ||\n"); 
+	printf("\t\t\t\t\t\t-----------------------------\n");
+		int x = 57;
+		int y = 2;
+		char ch = 0;
+		index = 1;
+		gotoxy(x,y);
+		printf("*\b");
+		while(ch != 13)
+		{
+			if(index == 0)
+			{
+				index = 3;
+				puts("-");
+				gotoxy(x,4);
+				printf("*\b");
+				y= 4;
+			}
+			if(index == 4)
+			{
+				index = 1;
+				puts("-");
+				gotoxy(x,2);
+				printf("*\b");
+				y = 2;
+			}
+			ch = getch();
+			if(ch == 72){
+				puts(" ");
+				gotoxy(x,--y);
+				printf("*\b");
+				index--;
+			}
+			if(ch == 80){
+				puts(" ");
+				gotoxy(x,++y);
+				printf("*\b");
+				index++;
+			}
+		}
+		gotoxy(5,10);
 	if(index == 1){                                            // ˝—ß≥…º®≈≈√˚ ≈≈–Ú”√µΩ¡À¡¥±Ìµƒ√∞≈›≈≈–Ú 
 		struct student *pfirst = NULL,*pend = NULL;
 		pfirst = pHead;
@@ -249,14 +336,14 @@ void sort_score(){                                     // ø…“‘∂‘≤ªÕ¨ø∆ƒø¥”∏ﬂµΩµÕ
 		pTemp = pHead;pTemp2 = pHead2;
 		int sort = 1;
 		printf("\t\t\t\t\t ˝—ß≥…º®≈≈√˚£∫\n"); 
+		printf("\t\t\t\t\t\t----------------------------------\n");
+		printf("\t\t\t\t\t\t√˚¥Œ\t∞‡ƒ⁄–Ú∫≈\t–’√˚\t∑÷ ˝\n");
 		while( pTemp != NULL ){
-		printf("\t\t\t\t\tµ⁄%d√˚£∫  ",sort++);
-		printf("∞‡ƒ⁄–Ú∫≈£∫%d\t–’√˚£∫%s\n",pTemp2->stu.inumber,pTemp2->stu.iname);
-		printf("\t\t\t\t\t≥…º®£∫%d ∑÷\n",pTemp->gra.math);
-		printf("\t\t\t\t\t\t-----------------------------\n");		
+		printf("\t\t\t\t\t\t%d\t%d\t\t%s\t%d\n",sort++,pTemp2->stu.inumber,pTemp2->stu.iname,pTemp->gra.math);		
 		pTemp = pTemp->next;
 		pTemp2 = pTemp2->next;
 		}
+		printf("\t\t\t\t\t\t----------------------------------\n");
 	}
 	else if( index == 2 ){                                      // ”¢”Ô≥…º®≈≈√˚ 
 		struct student *pfirst = NULL,*pend = NULL;
@@ -281,14 +368,14 @@ void sort_score(){                                     // ø…“‘∂‘≤ªÕ¨ø∆ƒø¥”∏ﬂµΩµÕ
 		pTemp = pHead;pTemp2 = pHead2;
 		int sort = 1;
 		printf("\t\t\t\t\t”¢”Ô≥…º®≈≈√˚£∫\n"); 
+		printf("\t\t\t\t\t\t----------------------------------\n");
+		printf("\t\t\t\t\t\t√˚¥Œ\t∞‡ƒ⁄–Ú∫≈\t–’√˚\t∑÷ ˝\n");
 		while( pTemp != NULL ){
-			printf("\t\t\t\t\tµ⁄%d√˚£∫  ",sort++);
-				printf("∞‡ƒ⁄–Ú∫≈£∫%d\t–’√˚£∫%s\n",pTemp2->stu.inumber,pTemp2->stu.iname);
-		printf("\t\t\t\t\t≥…º®£∫%d ∑÷\n",pTemp->gra.english);
-		printf("\t\t\t\t\t\t-----------------------------\n"); 
+		printf("\t\t\t\t\t\t%d\t%d\t\t%s\t%d\n",sort++,pTemp2->stu.inumber,pTemp2->stu.iname,pTemp->gra.english);		
 		pTemp = pTemp->next;
 		pTemp2 = pTemp2->next;
 		}
+		printf("\t\t\t\t\t\t----------------------------------\n");
 	}
 	else if( index == 3){                                     // C”Ô—‘≥…º®≈≈√˚ 
 		struct student *pfirst = NULL,*pend = NULL;
@@ -313,17 +400,17 @@ void sort_score(){                                     // ø…“‘∂‘≤ªÕ¨ø∆ƒø¥”∏ﬂµΩµÕ
 		pTemp = pHead;pTemp2 = pHead2;
 		int sort=1;
 		printf("\t\t\t\t\tC”Ô—‘≥…º®≈≈√˚£∫\n"); 
+		printf("\t\t\t\t\t\t----------------------------------\n");
+		printf("\t\t\t\t\t\t√˚¥Œ\t∞‡ƒ⁄–Ú∫≈\t–’√˚\t∑÷ ˝\n");
 		while( pTemp != NULL ){
-			printf("\t\t\t\t\tµ⁄%d√˚£∫  ",sort++);
-				printf("∞‡ƒ⁄–Ú∫≈£∫%d\t–’√˚£∫%s\n",pTemp2->stu.inumber,pTemp2->stu.iname);
-		printf("\t\t\t\t\t≥…º®£∫%d ∑÷\n",pTemp->gra.c);
-		printf("\t\t\t\t\t\t-----------------------------\n");
-		pTemp = pTemp->next;
-		pTemp2 = pTemp2->next;
+			printf("\t\t\t\t\t\t%d\t%d\t\t%s\t%d\n",sort++,pTemp2->stu.inumber,pTemp2->stu.iname,pTemp->gra.c);		
+			pTemp = pTemp->next;
+			pTemp2 = pTemp2->next;
 		}
+		printf("\t\t\t\t\t\t----------------------------------\n");
 	}
 	else{
-		printf(" ‰»Î”–ŒÛ£°");
+		printf("\t\t\t\t\t\t ‰»Î”–ŒÛ£°");
 		return;
 	}  
 }

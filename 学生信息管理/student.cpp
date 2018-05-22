@@ -3,14 +3,52 @@
 
 void student_(){                                                             //Ñ§Éú¶ËÖ÷½çÃæ 
 	int choice = -1;
-	while(choice!=0){
+	while(choice != 0){
 		system("cls");
 		printf("\t\t\t\t\t\t-----------------------------\n");  
-		printf("\t\t\t\t\t\t|| 1.    ²é¿´ÎÒµÄÐÅÏ¢      ||\n");
-		printf("\t\t\t\t\t\t|| 2.    ²éÑ¯ÎÒµÄ³É¼¨      ||\n");
-		printf("\t\t\t\t\t\t|| 0.        ÍË³ö          ||\n");
+		printf("\t\t\t\t\t\t||   1.  ²é¿´ÎÒµÄÐÅÏ¢      ||\n");
+		printf("\t\t\t\t\t\t||   2.  ²éÑ¯ÎÒµÄ³É¼¨      ||\n");
+		printf("\t\t\t\t\t\t||   0.      ÍË³ö          ||\n");
 		printf("\t\t\t\t\t\t-----------------------------\n");  
-		scanf("%d",&choice);
+		int x = 52;
+		int y = 1;
+		char ch = 0;
+		choice = 1;
+		gotoxy(x,y);
+		printf("*\b");
+		while(ch != 13)
+		{
+			if(choice == 0)
+			{
+				choice = 3;
+				puts("-");
+				gotoxy(x,3);
+				printf("*\b");
+				y= 3;
+			}
+			if(choice == 4)
+			{
+				choice = 1;
+				puts("-");
+				gotoxy(x,1);
+				printf("*\b");
+				y = 1;
+			}
+			ch = getch();
+			if(ch == 72){
+				puts(" ");
+				gotoxy(x,--y);
+				printf("*\b");
+				choice--;
+			}
+			if(ch == 80){
+				puts(" ");
+				gotoxy(x,++y);
+				printf("*\b");
+				choice++;
+			}
+		}
+		gotoxy(5,10);
 		 switch(choice){
 			case 1:
 				stu_seek();
@@ -20,9 +58,13 @@ void student_(){                                                             //Ñ
 				score_seek();
 					getch();
 				  		break;
-			case 0:
+			case 3:
 			    return;
-		 } 
+			default:
+				    printf("\t\t\t\t\t\tÇëÕýÈ·ÊäÈëËùÌáÊ¾µÄÄÚÈÝ£¡\n");
+				        break;
+		 }
+		 continue;
 	}
 	return;
 }
@@ -33,18 +75,20 @@ void stu_seek(){                                  //Í¨¹ýÐÕÃû+Ñ§ºÅ ²éÑ¯×Ô¼ºµÄÑ§¼®
 	char snum[10]; 
      printf("\t\t\t\t\t\t||  ÇëÊäÈëÄãµÄÐÕÃûÓëÑ§ºÅ   ||\n");
      printf("\t\t\t\t\t\t\t ÐÕÃû£º");
-     gets(name);gets(name);
+     scanf("%s",name);
      printf("\t\t\t\t\t\t\t Ñ§ºÅ£º");
      scanf("%s",snum);
      pHead = read();
      pTemp = pHead;
      while( pTemp != NULL ){
      	if(strcmp(pTemp->stu.iname,name) == 0 && strcmp(pTemp->stu.snum,snum) == 0){ 
-     	    printf("\n\t\t\t\t\t\t ÄãµÄÐÅÏ¢ÈçÏÂ£º\n");
-     	    printf("\t\t\t\t\t\t\t ÐÕÃû£º%s\n",pTemp->stu.iname);
-     	    printf("\t\t\t\t\t\t\t Ñ§ºÅ£º%s\n",pTemp->stu.snum);
-     	    printf("\t\t\t\t\t\t\t °àÄÚÐòºÅ£º%d\n",pTemp->stu.inumber);
-     	    printf("\t\t\t\t\t\t\t ÊÖ»úºÅ£º%s\n\n",pTemp->stu.iPhone);
+     	    printf("\n\t\t\t\t\t\t ÄãµÄÐÅÏ¢ÈçÏÂ£º\n\n");
+     	    printf("\t\t\t\t\t\t-----------------------------\n");
+			printf("\t\t\t\t\t\t||          ÐÕÃû£º%s        ||\n",pTemp->stu.iname);
+     	    printf("\t\t\t\t\t\t||          Ñ§ºÅ£º%s        ||\n",pTemp->stu.snum);
+     	    printf("\t\t\t\t\t\t||        °àÄÚÐòºÅ£º%d        ||\n",pTemp->stu.inumber);
+     	    printf("\t\t\t\t\t\t||         ÊÖ»úºÅ£º%s       ||\n",pTemp->stu.iPhone);
+     	    printf("\t\t\t\t\t\t-----------------------------\n");
      	       return;
      	} 
      	pTemp = pTemp->next;
@@ -60,7 +104,7 @@ void score_seek(){                                  //Í¨¹ýÐÕÃû+Ñ§ºÅ ²éÑ¯×Ô¼ºµÄ³É
 	char snum[10]; 
      printf("\t\t\t\t\t\t||  ÇëÊäÈëÄãµÄÐÕÃûÓëÑ§ºÅ   ||\n");
      printf("\t\t\t\t\t\t\t ÐÕÃû£º");
-     gets(name);gets(name);
+     scanf("%s",name);
      printf("\t\t\t\t\t\t\t Ñ§ºÅ£º");
      scanf("%s",snum);
      pHead=read_score();
@@ -68,13 +112,17 @@ void score_seek(){                                  //Í¨¹ýÐÕÃû+Ñ§ºÅ ²éÑ¯×Ô¼ºµÄ³É
      pHead2 = read();
      pTemp2 = pHead2;
      while( pTemp != NULL){
-     	if(strcmp(pTemp2->stu.iname,name) == 0 && strcmp(pTemp2->stu.snum,snum) == 0){ 
-     	    printf("\n\t\t\t\t\t\t³É¼¨ÐÅÏ¢ÈçÏÂ£º\n");
-     	    printf("\t\t\t\t\t\t\t ÐÕÃû£º%s\n",pTemp2->stu.iname);
-     	    printf("\t\t\t\t\t\t\t Ñ§ºÅ£º%s\n",pTemp2->stu.snum);
-     	    printf("\t\t\t\t\t\t\t °àÄÚÐòºÅ£º%d\n",pTemp2->stu.inumber);
-     	    printf("\t\t\t\t\t ÊýÑ§£º%d\tÓ¢Óï£º%d\tCÓïÑÔ£º%d \n",pTemp->gra.math,pTemp->gra.english,pTemp->gra.c);
-     	       getch();
+     	if(strcmp(pTemp2->stu.iname,name) == 0 && strcmp(pTemp2->stu.snum,snum) == 0){
+     		printf("\n");
+     	    printf("\t\t\t\t\t ÐÕÃû£º%s\t",pTemp2->stu.iname);
+     	    printf("Ñ§ºÅ£º%s\t",pTemp2->stu.snum);
+     	    printf("°àÄÚÐòºÅ£º%d\t\n",pTemp2->stu.inumber);
+			printf("\t\t\t\t\t\t-----------------------------\n");
+			printf("\t\t\t\t\t\t-----------------------------\n");
+     	    printf("\t\t\t\t\t\t||       ³É¼¨ÐÅÏ¢ÈçÏÂ£º     ||\n");
+     	    printf("\t\t\t\t\t\t||   ÊýÑ§    Ó¢Óï    CÓïÑÔ  ||\n");
+     	    printf("\t\t\t\t\t\t||    %d      %d       %d   ||\n",pTemp->gra.math,pTemp->gra.english,pTemp->gra.c);   
+			printf("\t\t\t\t\t\t-----------------------------\n");	
 				return;
      	} 
      	pTemp = pTemp->next;

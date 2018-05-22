@@ -38,7 +38,6 @@ void secretword(char key[]){                                               // ‰»
 }
 
 void changeteakey(){                                                       //–ﬁ∏ƒΩÃ ¶√‹¬Îµƒ∫Ø ˝ 
-	FILE *fp;
 	node pHead,pTemp;
 	pHead = read_t();
 	pTemp = pHead->next;
@@ -48,10 +47,6 @@ void changeteakey(){                                                       //–ﬁ∏
 	getchar();
 	printf("\t\t\t\t\t\t«Î ‰»Îƒ˙µƒ’À∫≈£∫");
 	scanf("%s",user);
-	if(fp == NULL){
-		printf("\t\t\t\t\t\tƒø«∞√ª”–ΩÃ ¶–≈œ¢£°");
-		return; 
-	}
 	while(pTemp != NULL){
 		if(strcmp(pTemp->user,user) == 0){
 			printf("\t\t\t\t\t\t«Î ‰»Î‘≠√‹¬Î£∫");
@@ -112,4 +107,68 @@ void changemkey(){                                                         //–ﬁ∏
 		return;
 	}
 } 
+
+void gotoxy(int x, int y)										//π‚±Í“∆∂Ø∫Ø ˝ 
+{
+    COORD coord = {x, y};
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+}
+
+void moveselect()
+{
+	int choice1;
+		int x1 = 52;
+		int y1 = 2;
+		char ch1 = 0;
+		choice1 = 1;
+			system("cls");
+		printf("\t\t\t\t\t\t-----------------------------\n");
+        printf("\t\t\t\t\t\tƒ˙ «:                        \n");
+        printf("\t\t\t\t\t\t     1. ¿œ ¶                 \n");
+		printf("\t\t\t\t\t\t     2. π‹¿Ì‘±               \n");
+		printf("\t\t\t\t\t\t     0. ◊ﬂ¥Ì¡À±ß«∏           \n");
+		printf("\t\t\t\t\t\t-----------------------------\n");
+		
+		gotoxy(x1,y1);
+		printf("*\b");
+		while(ch1 != 13)
+		{
+			if(choice1 == 0)
+			{
+				choice1 = 3;
+				puts(":");
+				gotoxy(x1,4);
+				printf("*\b");
+				y1= 4;
+			}
+			if(choice1 == 4)
+			{
+				choice1 = 1;
+				puts("-");
+				gotoxy(x1,2);
+				printf("*\b");
+				y1 = 2;
+			}
+			ch1 = getch();
+			if(ch1 == 72){
+				puts(" ");
+				gotoxy(x1,--y1);
+				printf("*\b");
+				choice1--;
+			}
+			if(ch1 == 80){
+				puts(" ");
+				gotoxy(x1,++y1);
+				printf("*\b");
+				choice1++;
+			}
+		}
+		gotoxy(10,7);
+	if(choice1 == 1)
+		changeteakey();
+	else if(choice1 == 2)
+		changemkey();
+	else
+		return;
+}
 

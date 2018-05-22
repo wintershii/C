@@ -1,7 +1,7 @@
 #include"STUDENT.h"
 
 int main() {                                                       
-	int choice = -1;                  
+	int choice = 1;                  
 	while( choice != 0){                                                    //打印主页面，分三个端口 
 		system("cls");                                                   //学生端，学生只可查询自己的信息和成绩 
 	printf("\n\t\t\t\t\t\t-------学生信息管理系统------\n");             //教师端，教师可以管理学生的信息和成绩 
@@ -12,7 +12,45 @@ int main() {
 	printf("\t\t\t\t\t\t||   4. 修改密码           ||\n");
 	printf("\t\t\t\t\t\t||   0. 不好意思走错了     ||\n");
 	printf("\t\t\t\t\t\t-----------------------------\n");
-	scanf("%d",&choice);
+		int x = 52;
+		int y = 3;
+		char ch = 0;
+		choice = 1;
+		gotoxy(x,y);
+		printf("*\b");
+		while(ch != 13)
+		{
+			if(choice == 0)
+			{
+				choice = 5;
+				puts("-");
+				gotoxy(x,7);
+				printf("*\b");
+				y= 7;
+			}
+			if(choice == 6)
+			{
+				choice = 1;
+				puts("-");
+				gotoxy(x,3);
+				printf("*\b");
+				y = 3;
+			}
+			ch = getch();
+			if(ch == 72){
+				puts(" ");
+				gotoxy(x,--y);
+				printf("*\b");
+				choice--;
+			}
+			if(ch == 80){
+				puts(" ");
+				gotoxy(x,++y);
+				printf("*\b");
+				choice++;
+			}
+		}
+		gotoxy(5,10);
 		switch(choice){
 			case 1:
 			    printf("\t\t\t\t\t\t|| 学生只能查询自己的信息  ||\n");
@@ -31,24 +69,17 @@ int main() {
 			          getch();
 			            break;
 			case 4:
-					int choice1;
-                	printf("\t\t\t\t\t\t您是\n \t\t\t\t\t\t\t1.老师\n\t\t\t\t\t\t\t2.管理员\n");
-				        scanf("%d",&choice1);
-				        if(choice1 == 1)
-				        	changeteakey();
-				        else if(choice1 == 2)
-				        	changemkey();
-				        else
-				        	printf("输入有误！\n");
+					moveselect();
 			          getch();
 			            break;
-			case 0:
-				    exit(0);
+			case 5:
+				    break;
 			default:
 				    printf("请正确输入所提示的内容！\n");
 				       getch();
 				        break;
 		}
+		
 	}
 }
 
