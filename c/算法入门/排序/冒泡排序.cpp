@@ -18,8 +18,8 @@ SqList *input(SqList *list){
 	list = (SqList *)malloc(sizeof(SqList));
 	printf("请输入数据个数：");
 	scanf("%d",&list->length);
-	for(int i = 0; i < list->length; i++){
-		printf("第%d个数据：",i+1);
+	for(int i = 1; i <= list->length; i++){
+		printf("第%d个数据：",i);
 		scanf("%d",&list->array[i]);
 	}
 	return list;
@@ -27,9 +27,9 @@ SqList *input(SqList *list){
 
 void bubblesort(SqList *list){
 	int flag = 1;
-	for(int i = 0; i <list->length-1 && flag; i++){
+	for(int i = 1; i <list->length && flag; i++){
 		flag = 0;
-		for(int j = list->length-2; j >= 0; j--){
+		for(int j = list->length-1; j >= i; j--){
 			if(list->array[j] > list->array[j+1]){
 				swap(list,j,j+1);
 				flag = 1;
@@ -40,7 +40,7 @@ void bubblesort(SqList *list){
 
 void print(SqList *list){
 	printf("排序后:\n");
-	for(int i = 0; i < list->length; i++){
+	for(int i = 1; i <= list->length; i++){
 		printf("%d  ",list->array[i]);
 	}
 	printf("\n");
