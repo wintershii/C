@@ -22,9 +22,21 @@ void enter(){                                                              //µÇÂ
 		   manager();
 		    return;
 	    }
-	   printf("\t\t\t\t\t\tÕËºÅ£º");
-	   scanf("%s",user);
-	   printf("\t\t\t\t\t\tÃÜÂë£º");
+	    system("cls");
+		printf("\t\t\t\t\t\t------------------------------\n");
+		printf("\t\t\t\t\t\t-----------¹ÜÀíÔ±µÇÂ½---------\n");
+	    printf("\t\t\t\t\t\t||   ÕËºÅ£º                 ||\n");
+	    printf("\t\t\t\t\t\t||   ÃÜÂë£º                 ||\n");
+	    printf("\t\t\t\t\t\t------------------------------\n");
+	   gotoxy(60,2);
+	   gets(user);
+	   if(user[0] == '\0')
+	    {
+	    	printf("\n\n\t\t\t\t\t\tÕËºÅ²»¿ÉÎª¿Õ£¡\n");
+	    	getch();
+			continue;
+		}
+	   gotoxy(60,3);
 	   secretword(key);
 	   if( checkkey(user,key) == 0){
 	   		printf("\t\t\t\t\tÕËºÅÃÜÂëÓÐÎó£¡\n");
@@ -36,11 +48,17 @@ void enter(){                                                              //µÇÂ
 	   			return;
 	       continue;
 	    }
+	    else if(t_checkkey(user,key) == 9)
+	    	continue;
 	return;
     }
 }
 
 int checkkey(char user[],char key[]){                          //¼ì²â¹ÜÀíÔ±ÕË»§ÃÜÂëÊÇ·ñÕýÈ· 
+	if(key[0] == '\0')
+	{
+		return 9;
+	}
 	FILE *fp;
 	char set1[20]; 
 	char set2[20]; 
@@ -49,7 +67,7 @@ int checkkey(char user[],char key[]){                          //¼ì²â¹ÜÀíÔ±ÕË»§Ã
 	fread(set2,sizeof(set2),1,fp);
 	fclose(fp);
 	if(strcmp(set1,user) == 0 && strcmp(set2,key) == 0){ 
-	   printf("\t\t\t\t\t\t||  ×ð¾´µÄ¹ÜÀíÔ±£¬»¶Ó­Äú   ||\n");
+	   printf("\t\t\t\t\t\t||  ×ð¾´µÄ¹ÜÀíÔ±£¬»¶Ó­Äú    ||\n");
 	   getch();
 	   manager();
 	   return 1;
@@ -88,7 +106,7 @@ int manager() {                                                        //¹ÜÀíÔ±µ
 		char ch = 0;
 		choice = 1;
 		gotoxy(x,y);
-		printf("*\b");
+		printf(">\b");
 		while(ch != 13)
 		{
 			if(choice == 0)
@@ -96,7 +114,7 @@ int manager() {                                                        //¹ÜÀíÔ±µ
 				choice = 9;
 				puts("-");
 				gotoxy(x,14);
-				printf("*\b");
+				printf(">\b");
 				y= 14;
 			}
 			if(choice == 10)
@@ -104,20 +122,20 @@ int manager() {                                                        //¹ÜÀíÔ±µ
 				choice = 1;
 				puts("-");
 				gotoxy(x,6);
-				printf("*\b");
+				printf(">\b");
 				y = 6;
 			}
 			ch = getch();
 			if(ch == 72){
 				puts(" ");
 				gotoxy(x,--y);
-				printf("*\b");
+				printf(">\b");
 				choice--;
 			}
 			if(ch == 80){
 				puts(" ");
 				gotoxy(x,++y);
-				printf("*\b");
+				printf(">\b");
 				choice++;
 			}
 		}

@@ -7,9 +7,21 @@ void tea_enter(){                                                               
 	char key[20];
 	char user[20];
 	while(1){
-	    printf("\t\t\t\t\t\t账号：");
-	    scanf("%s",user);
-	    printf("\t\t\t\t\t\t密码：");
+		system("cls");
+		printf("\t\t\t\t\t\t------------------------------\n");
+		printf("\t\t\t\t\t\t-----------教师登陆-----------\n");
+	    printf("\t\t\t\t\t\t||   账号：                 ||\n");
+	    printf("\t\t\t\t\t\t||   密码：                 ||\n");
+	    printf("\t\t\t\t\t\t------------------------------\n");
+		gotoxy(60,2);
+		gets(user);
+	    if(user[0] == '\0')
+	    {
+	    	printf("\n\n\t\t\t\t\t\t账号不可为空！\n");
+	    	getch();
+			continue;
+		}
+	    gotoxy(60,3);
 	    secretword(key);
 	    if(t_checkkey(user,key) == 0){
 	   		printf("\t\t\t\t\t账号密码有误！\n");
@@ -21,11 +33,17 @@ void tea_enter(){                                                               
 	   			return;
 	        continue;
 	    }
+	    else if(t_checkkey(user,key) == 9)
+	    	continue;
 	    return;
     }
 }
 
 int t_checkkey(char user[],char key[]){                         //检测教师账号密码是否正确 
+	if(key[0] == '\0')
+	{
+		return 9;
+	}
 	FILE *fp;
 	char set1[20]; 
 	char set2[20]; 
@@ -37,7 +55,7 @@ int t_checkkey(char user[],char key[]){                         //检测教师账号密
 		fscanf(fp,"%s",set1);
 	    fscanf(fp,"%s",set2);
 	    if( strcmp(set1,user) == 0 && strcmp(set2,key) == 0){ 
-	       printf("\t\t\t\t\t\t||   尊敬的老师，欢迎您    ||\n");
+	       printf("\t\t\t\t\t\t||   尊敬的老师，欢迎您     ||\n");
 			fclose(fp);
 	       	getch();
 	         teacher();
@@ -78,7 +96,7 @@ void teacher(){                                                 //教师端主界面
 		char ch = 0;
 		choice = 1;
 		gotoxy(x,y);
-		printf("*\b");
+		printf(">\b");
 		while(ch != 13)
 		{
 			if(choice == 0)
@@ -86,7 +104,7 @@ void teacher(){                                                 //教师端主界面
 				choice = 9;
 				puts("-");
 				gotoxy(x,14);
-				printf("*\b");
+				printf(">\b");
 				y= 14;
 			}
 			if(choice == 10)
@@ -94,20 +112,20 @@ void teacher(){                                                 //教师端主界面
 				choice = 1;
 				puts("-");
 				gotoxy(x,6);
-				printf("*\b");
+				printf(">\b");
 				y = 6;
 			}
 			ch = getch();
 			if(ch == 72){
 				puts(" ");
 				gotoxy(x,--y);
-				printf("*\b");
+				printf(">\b");
 				choice--;
 			}
 			if(ch == 80){
 				puts(" ");
 				gotoxy(x,++y);
-				printf("*\b");
+				printf(">\b");
 				choice++;
 			}
 		}
@@ -279,7 +297,7 @@ void sort_score(){                                     // 可以对不同科目从高到低
 		char ch = 0;
 		index = 1;
 		gotoxy(x,y);
-		printf("*\b");
+		printf(">\b");
 		while(ch != 13)
 		{
 			if(index == 0)
@@ -287,7 +305,7 @@ void sort_score(){                                     // 可以对不同科目从高到低
 				index = 3;
 				puts("-");
 				gotoxy(x,4);
-				printf("*\b");
+				printf(">\b");
 				y= 4;
 			}
 			if(index == 4)
@@ -295,20 +313,20 @@ void sort_score(){                                     // 可以对不同科目从高到低
 				index = 1;
 				puts("-");
 				gotoxy(x,2);
-				printf("*\b");
+				printf(">\b");
 				y = 2;
 			}
 			ch = getch();
 			if(ch == 72){
 				puts(" ");
 				gotoxy(x,--y);
-				printf("*\b");
+				printf(">\b");
 				index--;
 			}
 			if(ch == 80){
 				puts(" ");
 				gotoxy(x,++y);
-				printf("*\b");
+				printf(">\b");
 				index++;
 			}
 		}

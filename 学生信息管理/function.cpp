@@ -34,6 +34,11 @@ void secretword(char key[]){                                               //ÊäÈ
 	}
 	putchar('\n');
 	key[i] = '\0';
+	if(key[0] == '\0')
+	{
+		printf("\n\t\t\t\t\t\tÃÜÂë²»¿ÉÎª¿Õ£¡\n");
+		getch();
+	}
 	return;
 }
 
@@ -44,13 +49,22 @@ void changeteakey(){                                                       //ÐÞ¸
 	char user[20];
 	char oldkey[20];
 	char newkey[20];
-	getchar();
-	printf("\t\t\t\t\t\tÇëÊäÈëÄúµÄÕËºÅ£º");
-	scanf("%s",user);
+	printf("\n\t\t\t\t\t\tÇëÊäÈëÄúµÄÕËºÅ£º");
+	gets(user);
+	if(user[0] == '\0')
+	    {
+	    	printf("\n\t\t\t\t\t\tÕËºÅ²»¿ÉÎª¿Õ£¡\n");
+			return;
+		}
 	while(pTemp != NULL){
 		if(strcmp(pTemp->user,user) == 0){
 			printf("\t\t\t\t\t\tÇëÊäÈëÔ­ÃÜÂë£º");
-			scanf("%s",oldkey);
+			gets(oldkey);
+			if(oldkey[0] == '\0')
+	    	{
+	    		printf("\n\t\t\t\t\t\tÃÜÂë²»¿ÉÎª¿Õ£¡\n");
+				return;
+			}
 			if(strcmp(pTemp->key,oldkey) == 0){
 				printf("\t\t\t\t\t\tÃÜÂëÕýÈ·£¡ÇëÐÞ¸ÄÃÜÂë£¡\n");
 				printf("\t\t\t\t\t\tÐÂÃÜÂë£º");
@@ -78,19 +92,34 @@ void changemkey(){                                                         //ÐÞ¸
 	char set2[20];
 	char user[20];
 	char key[20];
-	printf("\t\t\t\t\t\tÇëÊäÈë¹ÜÀíÔ±ÕËºÅ£º");
-	scanf("%s",set1);
+	printf("\n\t\t\t\t\t\tÇëÊäÈë¹ÜÀíÔ±ÕËºÅ£º");
+	gets(set1);
+	if(set1[0] == '\0')
+	    {
+	    	printf("\n\t\t\t\t\t\tÕËºÅ²»¿ÉÎª¿Õ£¡\n");
+			return;
+		}
 	fp = fopen("d:\\key.txt","rt");
 	fread(user,sizeof(user),1,fp);
 	if(strcmp(set1,user) == 0){
 		printf("\t\t\t\t\t\tÇëÊäÈëÔ­ÃÜÂë£º");
-		scanf("%s",set2);
+		gets(set2);
+		if(set2[0] == '\0')
+	    {
+	    	printf("\n\n\t\t\t\t\t\tÃÜÂë²»¿ÉÎª¿Õ£¡\n");
+			return;
+		}
 		fread(key,sizeof(key),1,fp);
 		fclose(fp);
 		if(strcmp(set2,key) == 0){
 			printf("\t\t\t\t\t\tÃÜÂëÕýÈ·£¡ÇëÐÞ¸ÄÃÜÂë£¡\n");
 			printf("\t\t\t\t\t\tÐÂÃÜÂë£º");
-			scanf("%s",set2);
+			gets(set2);
+			while(strlen(set2) >= 19)
+			{
+				printf("\n\t\t\t\t\t\tÃÜÂë¹ý³¤£¡");
+				return;
+			}
 			fp = fopen("d:\\key.txt","wt");
 			fwrite(set1,sizeof(set1),1,fp);
 			fwrite(set2,sizeof(set2),1,fp);
@@ -130,7 +159,7 @@ void moveselect()
 		printf("\t\t\t\t\t\t-----------------------------\n");
 		
 		gotoxy(x1,y1);
-		printf("*\b");
+		printf(">\b");
 		while(ch1 != 13)
 		{
 			if(choice1 == 0)
@@ -138,7 +167,7 @@ void moveselect()
 				choice1 = 3;
 				puts(":");
 				gotoxy(x1,4);
-				printf("*\b");
+				printf(">\b");
 				y1= 4;
 			}
 			if(choice1 == 4)
@@ -146,20 +175,20 @@ void moveselect()
 				choice1 = 1;
 				puts("-");
 				gotoxy(x1,2);
-				printf("*\b");
+				printf(">\b");
 				y1 = 2;
 			}
 			ch1 = getch();
 			if(ch1 == 72){
 				puts(" ");
 				gotoxy(x1,--y1);
-				printf("*\b");
+				printf(">\b");
 				choice1--;
 			}
 			if(ch1 == 80){
 				puts(" ");
 				gotoxy(x1,++y1);
-				printf("*\b");
+				printf(">\b");
 				choice1++;
 			}
 		}

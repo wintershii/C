@@ -15,7 +15,7 @@ void student_(){                                                             //Ñ
 		char ch = 0;
 		choice = 1;
 		gotoxy(x,y);
-		printf("*\b");
+		printf(">\b");
 		while(ch != 13)
 		{
 			if(choice == 0)
@@ -23,7 +23,7 @@ void student_(){                                                             //Ñ
 				choice = 3;
 				puts("-");
 				gotoxy(x,3);
-				printf("*\b");
+				printf(">\b");
 				y= 3;
 			}
 			if(choice == 4)
@@ -31,20 +31,20 @@ void student_(){                                                             //Ñ
 				choice = 1;
 				puts("-");
 				gotoxy(x,1);
-				printf("*\b");
+				printf(">\b");
 				y = 1;
 			}
 			ch = getch();
 			if(ch == 72){
 				puts(" ");
 				gotoxy(x,--y);
-				printf("*\b");
+				printf(">\b");
 				choice--;
 			}
 			if(ch == 80){
 				puts(" ");
 				gotoxy(x,++y);
-				printf("*\b");
+				printf(">\b");
 				choice++;
 			}
 		}
