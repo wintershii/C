@@ -1,7 +1,7 @@
 #include"STUDENT.h"
 
 int main() 
-	{                                                       
+{                                                       
 	int choice = 1;                  
 	while( choice != 0)
 	{                                                    //打印主页面，分三个端口 
@@ -40,13 +40,15 @@ int main()
 				y = 3;
 			}
 			ch = getch();
-			if(ch == 72){
+			if(ch == 72)
+			{
 				puts(" ");
 				gotoxy(x,--y);
 				printf(">\b");
 				choice--;
 			}
-			if(ch == 80){
+			if(ch == 80)
+			{
 				puts(" ");
 				gotoxy(x,++y);
 				printf(">\b");
@@ -55,33 +57,36 @@ int main()
 		}
 		gotoxy(5,10);									//结束图形界面 
 		
-		switch(choice){
-			case 1:
-			    printf("\t\t\t\t\t\t|| 学生只能查询自己的信息  ||\n");
-			      	getch();
-			        student_();
-			          getch();
-			            break;
-			case 2:
-				printf("\t\t\t\t\t\t||          请登陆！       ||\n");            //教师端和管理员端都需要账号密码登陆 
-				    tea_enter();                                                  //教师端的账号密码可由管理员设置 
-			          getch();
-			            break;
-			case 3:
-                printf("\t\t\t\t\t\t||          请登陆！       ||\n\n");          //管理员初次使用系统可以设置账号密码 
-                    enter(); 
-			          getch();
-			            break;
-			case 4:
-					moveselect();
-			          getch();
-			            break;
-			case 5:
-				    exit(0);
-			default:
-				    printf("请正确输入所提示的内容！\n");
-				       getch();
-				        break;
+	switch(choice)
+	{
+		case 1:
+			printf("\t\t\t\t\t\t|| 学生只能查询自己的信息  ||\n");
+			    getch();
+			    student_();							//调用学生界面函数 
+			      getch();
+			    break;
+		case 2:
+			printf("\t\t\t\t\t\t||          请登陆！       ||\n");            //教师端和管理员端都需要账号密码登陆 
+			// 进入教师登陆界面 
+				tea_enter();                                                  //教师端的账号密码可由管理员设置 
+			      getch();
+			    break;
+		case 3:
+            printf("\t\t\t\t\t\t||          请登陆！       ||\n\n");          //管理员初次使用系统可以设置账号密码 
+            //进入管理员登陆界面     
+				enter(); 						
+			      getch();
+			    break;
+		case 4:
+			moveselect();						//进入修改密码界面 
+			      getch();
+			    break;
+		case 5:
+				    exit(0);					//退出程序 
+		default:
+			printf("请正确输入所提示的内容！\n");
+				getch();
+				break;
 		}
 		
 	}

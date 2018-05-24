@@ -1,12 +1,14 @@
 #include"STUDENT.h"
                                              //½ÌÊ¦¶ËÖ÷½çÃæ 
 
-void tea_enter(){                                                                //µÇÂ½½ÌÊ¦ÕË»§ 
+void tea_enter()
+{                                                                //µÇÂ½½ÌÊ¦ÕË»§ 
 	char set1[20]; 
 	char set2[20]; 
 	char key[20];
 	char user[20];
-	while(1){
+	while(1)
+	{
 		system("cls");
 		printf("\t\t\t\t\t\t------------------------------\n");
 		printf("\t\t\t\t\t\t-----------½ÌÊ¦µÇÂ½-----------\n");
@@ -23,7 +25,8 @@ void tea_enter(){                                                               
 		}
 	    gotoxy(60,3);
 	    secretword(key);
-	    if(t_checkkey(user,key) == 0){
+	    if(t_checkkey(user,key) == 0)
+		{
 	   		printf("\t\t\t\t\tÕËºÅÃÜÂëÓÐÎó£¡\n");
 	   		  	getch();
 	   		printf("\t\t\t\t\t°´ESC¼üÈ¡ÏûµÇÂ½£¬°´ÈÎÒâ¼ü¼ÌÐøµÇÂ½£¡\n");
@@ -39,7 +42,8 @@ void tea_enter(){                                                               
     }
 }
 
-int t_checkkey(char user[],char key[]){                         //¼ì²â½ÌÊ¦ÕËºÅÃÜÂëÊÇ·ñÕýÈ· 
+int t_checkkey(char user[],char key[])
+{                         						//¼ì²â½ÌÊ¦ÕËºÅÃÜÂëÊÇ·ñÕýÈ· 
 	if(key[0] == '\0')
 	{
 		return 9;
@@ -48,50 +52,58 @@ int t_checkkey(char user[],char key[]){                         //¼ì²â½ÌÊ¦ÕËºÅÃÜ
 	char set1[20]; 
 	char set2[20]; 
 	fp=fopen("D:\\t_key","r");
-	if(fp == NULL){
+	if(fp == NULL)
+	{
 		printf("\t\t\t\t\tÄ¿Ç°ÏµÍ³ÖÐÃ»ÓÐÀÏÊ¦ÐÅÏ¢£¡£º\n");
-	    }
-	while(!feof(fp)){
+	}
+	while(!feof(fp))
+	{
 		fscanf(fp,"%s",set1);
 	    fscanf(fp,"%s",set2);
-	    if( strcmp(set1,user) == 0 && strcmp(set2,key) == 0){ 
-	       printf("\t\t\t\t\t\t||   ×ð¾´µÄÀÏÊ¦£¬»¶Ó­Äú     ||\n");
+	    if( strcmp(set1,user) == 0 && strcmp(set2,key) == 0)
+		{ 
+	        printf("\t\t\t\t\t\t||   ×ð¾´µÄÀÏÊ¦£¬»¶Ó­Äú     ||\n");
 			fclose(fp);
 	       	getch();
-	         teacher();
+	        teacher();
 	       return 1;
 	   }
 	}
 	return 0;
 }
 
-void teacher(){                                                 //½ÌÊ¦¶ËÖ÷½çÃæ 
+void teacher()
+{                                                 //½ÌÊ¦¶ËÖ÷½çÃæ 
 	int choice = -1;
 	struct student *pHead;
-	while(choice != 0){
+	while(choice != 0)
+	{
 		system("cls");
-	printf("\n\t\t\t\t\t\t-------Ñ§ÉúÐÅÏ¢¹ÜÀíÏµÍ³------\n");
-    if( now1_student() == 0){
-    printf("\t\t\t\t\t\t------Ä¿Ç°»¹Î´Â¼Èë¹ýÐÅÏ¢------\n");
-    printf("\t\t\t\t\t\t---------Çë¿ªÊ¼Ê×´ÎÂ¼Èë-------\n");
-    }
-    else{
-	printf("\t\t\t\t\t\t---------Ñ§¼®ÒÑÂ¼Èë%dÈË-------\n",now1_student());
-	printf("\t\t\t\t\t\t---------³É¼¨ÒÑÂ¼Èë%dÈË-------\n",now2_student());
-	printf("\t\t\t\t\t\t--ÈôÐèÐÂÔöÑ§ÉúÐÅÏ¢ÇëÑ¡ÔòÌí¼Ó--\n");
-    }
-	printf("\t\t\t\t\t\t-----------------------------\n");
-	printf("\t\t\t\t\t\t ||  1. Â¼ÈëÑ§ÉúÐÅÏ¢        ||\n");
-	printf("\t\t\t\t\t\t ||  2. ²åÈëÑ§ÉúÐÅÏ¢        ||\n");
-	printf("\t\t\t\t\t\t ||  3. ´òÓ¡Ñ§ÉúÐÅÏ¢±í      ||\n");
-	printf("\t\t\t\t\t\t ||  4. ²éÕÒÑ§ÉúÐÅÏ¢        ||\n");
-	printf("\t\t\t\t\t\t ||  5. Â¼Èë³É¼¨ÐÅÏ¢        ||\n");
-	printf("\t\t\t\t\t\t ||  6. ´òÓ¡³É¼¨ÐÅÏ¢        ||\n");
-	printf("\t\t\t\t\t\t ||  7. ÐÞ¸Ä³É¼¨ÐÅÏ¢        ||\n");
-	printf("\t\t\t\t\t\t ||  8. °àÄÚ³É¼¨ÅÅÃû        ||\n");	
-	printf("\t\t\t\t\t\t ||  0. ÍË³ö                ||\n");
-	printf("\t\t\t\t\t\t----------------------------\n");
-	int x = 52;
+		printf("\n\t\t\t\t\t\t-------Ñ§ÉúÐÅÏ¢¹ÜÀíÏµÍ³------\n");
+    	if( now1_student() == 0)
+		{
+    		printf("\t\t\t\t\t\t------Ä¿Ç°»¹Î´Â¼Èë¹ýÐÅÏ¢------\n");
+    		printf("\t\t\t\t\t\t---------Çë¿ªÊ¼Ê×´ÎÂ¼Èë-------\n");
+    	}
+    	else
+		{
+			printf("\t\t\t\t\t\t---------Ñ§¼®ÒÑÂ¼Èë%dÈË-------\n",now1_student());
+			printf("\t\t\t\t\t\t---------³É¼¨ÒÑÂ¼Èë%dÈË-------\n",now2_student());
+			printf("\t\t\t\t\t\t--ÈôÐèÐÂÔöÑ§ÉúÐÅÏ¢ÇëÑ¡ÔòÌí¼Ó--\n");
+    	}
+		printf("\t\t\t\t\t\t-----------------------------\n");
+		printf("\t\t\t\t\t\t ||  1. Â¼ÈëÑ§ÉúÐÅÏ¢        ||\n");
+		printf("\t\t\t\t\t\t ||  2. ²åÈëÑ§ÉúÐÅÏ¢        ||\n");
+		printf("\t\t\t\t\t\t ||  3. ´òÓ¡Ñ§ÉúÐÅÏ¢±í      ||\n");
+		printf("\t\t\t\t\t\t ||  4. ²éÕÒÑ§ÉúÐÅÏ¢        ||\n");
+		printf("\t\t\t\t\t\t ||  5. Â¼Èë³É¼¨ÐÅÏ¢        ||\n");
+		printf("\t\t\t\t\t\t ||  6. ´òÓ¡³É¼¨ÐÅÏ¢        ||\n");
+		printf("\t\t\t\t\t\t ||  7. ÐÞ¸Ä³É¼¨ÐÅÏ¢        ||\n");
+		printf("\t\t\t\t\t\t ||  8. °àÄÚ³É¼¨ÅÅÃû        ||\n");	
+		printf("\t\t\t\t\t\t ||  0. ÍË³ö                ||\n");
+		printf("\t\t\t\t\t\t----------------------------\n");
+		
+		int x = 52;
 		int y = 6;
 		char ch = 0;
 		choice = 1;
@@ -116,13 +128,15 @@ void teacher(){                                                 //½ÌÊ¦¶ËÖ÷½çÃæ
 				y = 6;
 			}
 			ch = getch();
-			if(ch == 72){
+			if(ch == 72)
+			{
 				puts(" ");
 				gotoxy(x,--y);
 				printf(">\b");
 				choice--;
 			}
-			if(ch == 80){
+			if(ch == 80)
+			{
 				puts(" ");
 				gotoxy(x,++y);
 				printf(">\b");
@@ -130,7 +144,9 @@ void teacher(){                                                 //½ÌÊ¦¶ËÖ÷½çÃæ
 			}
 		}
 		gotoxy(5,17);
-		switch(choice){
+		
+		switch(choice)
+		{
 			case 1:
 			   if( now1_student() !=0 )
 			       printf("\t\t\t\t\t\tÄúÒÑÂ¼Èë¹ý³õÊ¼ÐÅÏ¢£¬Çë¼ÌÐøÌí¼ÓÑ§ÉúÐÅÏ¢!\n");
@@ -166,13 +182,15 @@ void teacher(){                                                 //½ÌÊ¦¶ËÖ÷½çÃæ
 	}
 }
   
-struct student *scanf_score(){   //´´½¨Á´±í£¬¿ªÊ¼Â¼ÈëÑ§Éú³É¼¨ÐÅÏ¢£¬Ê×´ÎÂ¼ÈëÊ±ÓÐ¼¸¸öÑ§ÉúÑ§¼®ÐÅÏ¢¾ÍÂ¼Èë¼¸¸ö³É¼¨ÐÅÏ¢ 
+struct student *scanf_score()
+{   										//´´½¨Á´±í£¬¿ªÊ¼Â¼ÈëÑ§Éú³É¼¨ÐÅÏ¢£¬Ê×´ÎÂ¼ÈëÊ±ÓÐ¼¸¸öÑ§ÉúÑ§¼®ÐÅÏ¢¾ÍÂ¼Èë¼¸¸ö³É¼¨ÐÅÏ¢ 
 	struct student *pHead = NULL,*pHead2 = read();     //ÈôÒÑÂ¼Èë¹ýÐÅÏ¢£¬µ«ÓÐÐÂµÄÑ§¼®ÐÅÏ¢Â¼Èë£¬¾Í¼ÌÐøÂ¼Èë´ËÑ§ÉúµÄ³É¼¨ 
  	struct student *pNew,*pEnd;
 	struct student *pTemp,*pTemp2 = pHead2;
 	int judge;
 	int count = 0;
-		if( now2_student() > 0){
+		if( now2_student() > 0)
+		{
 			pHead = read_score();
 			if(now1_student() == now2_student())
 			{
@@ -181,7 +199,8 @@ struct student *scanf_score(){   //´´½¨Á´±í£¬¿ªÊ¼Â¼ÈëÑ§Éú³É¼¨ÐÅÏ¢£¬Ê×´ÎÂ¼ÈëÊ±ÓÐ¼
 			}
 			printf("\t\t\t\t\t\tÄúÒÑ¾­Â¼Èë¹ýÑ§Éú³É¼¨£¡ÇëÌí¼ÓÔÝÎ´Â¼ÈëµÄ³É¼¨ÐÅÏ¢\n");
 			pTemp = pHead;
-			while( pTemp->next->next != NULL){
+			while( pTemp->next->next != NULL)
+			{
 			      pTemp = pTemp->next;
 			      pTemp2 = pTemp2->next;
 			}
@@ -201,23 +220,26 @@ struct student *scanf_score(){   //´´½¨Á´±í£¬¿ªÊ¼Â¼ÈëÑ§Éú³É¼¨ÐÅÏ¢£¬Ê×´ÎÂ¼ÈëÊ±ÓÐ¼
 			save_score(pHead);
 			return pHead;
 		}
-	while( pTemp2 != NULL){
+	while( pTemp2 != NULL)
+	{
 		printf("%d  %s\t%s\n",pTemp2->stu.inumber,pTemp2->stu.iname,pTemp2->stu.snum);
-	pNew = (struct student *)malloc(sizeof(struct student));
-	printf("\t\t\t\t\t\tÇëÊäÈë³É¼¨ÐÅÏ¢£º");
-	printf("\n\t\t\t\t\t\tÊýÑ§£º"); 
-      scanf("%d",&pNew->gra.math);
-	printf("\t\t\t\t\t\tÓ¢Óï£º");
-      scanf("%d",&pNew->gra.english);
-	printf("\t\t\t\t\t\tCÓïÑÔ£º");
-	  scanf("%d",&pNew->gra.c);		
+		pNew = (struct student *)malloc(sizeof(struct student));
+		printf("\t\t\t\t\t\tÇëÊäÈë³É¼¨ÐÅÏ¢£º");
+		printf("\n\t\t\t\t\t\tÊýÑ§£º"); 
+    	scanf("%d",&pNew->gra.math);
+		printf("\t\t\t\t\t\tÓ¢Óï£º");
+    	scanf("%d",&pNew->gra.english);
+		printf("\t\t\t\t\t\tCÓïÑÔ£º");
+		scanf("%d",&pNew->gra.c);		
 		count++;
-		if( count == 1){
+		if( count == 1)
+		{
 			pNew->next = pHead;
 			pEnd = pNew;
 			pHead = pNew;
 		}
-		else{
+		else
+		{
 			pNew->next = NULL;
 			pEnd->next = pNew;
 			pEnd = pNew;
@@ -231,7 +253,8 @@ struct student *scanf_score(){   //´´½¨Á´±í£¬¿ªÊ¼Â¼ÈëÑ§Éú³É¼¨ÐÅÏ¢£¬Ê×´ÎÂ¼ÈëÊ±ÓÐ¼
 	return pHead;
 }
               
-void print_score(){                                   // °´ÕÕ°àÄÚÐòºÅË³Ðò´òÓ¡³öÑ§ÉúÐÅÏ¢ 
+void print_score()
+{                                   // °´ÕÕ°àÄÚÐòºÅË³Ðò´òÓ¡³öÑ§ÉúÐÅÏ¢ 
 	struct student *pHead,*pTemp,*pHead2,*pTemp2;
 	pHead = read_score();
 	pHead2 = read();
@@ -241,7 +264,8 @@ void print_score(){                                   // °´ÕÕ°àÄÚÐòºÅË³Ðò´òÓ¡³öÑ
 	printf("\t\t\t\t\t\t³É¼¨ÐÅÏ¢ÈçÏÂ\n");
 	printf("\t\t\t\t\t----------------------------------------------\n"); 
 	printf("\t\t\t\t\t|| °àÄÚÐòºÅ\t ÐÕÃû\tÊýÑ§\tÓ¢Óï\tCÓïÑÔ\t||\n");
-	while( pTemp != NULL){
+	while( pTemp != NULL)
+	{
      	printf("\t\t\t\t\t||    %d\t\t %s\t%d\t%d\t%d\t||\n",pTemp2->stu.inumber,pTemp2->stu.iname,pTemp->gra.math,pTemp->gra.english,pTemp->gra.c);   	
 		pTemp = pTemp->next;
 		pTemp2 = pTemp2->next;
@@ -249,7 +273,8 @@ void print_score(){                                   // °´ÕÕ°àÄÚÐòºÅË³Ðò´òÓ¡³öÑ
 	printf("\t\t\t\t\t----------------------------------------------\n");
 }
 
-void change_score(){                                  // ÐÞ¸ÄÖÆ¶¨°àÄÚÐòºÅÑ§ÉúµÄ³É¼¨ÐÅÏ¢ 
+void change_score()
+{                                  					// ÐÞ¸ÄÖÆ¶¨°àÄÚÐòºÅÑ§ÉúµÄ³É¼¨ÐÅÏ¢ 
 	struct student *pHead = NULL,*pHead2 = NULL;
     pHead = read_score();
 	pHead2 = read();
@@ -258,11 +283,13 @@ void change_score(){                                  // ÐÞ¸ÄÖÆ¶¨°àÄÚÐòºÅÑ§ÉúµÄ³
 
 	printf("\t\t\t\t\tÇëÊäÈëÒªÐÞ¸Ä³É¼¨µÄÑ§Éú°àÄÚÐòºÅ£º");
 	scanf("%d",&index);
-	if( index > now2_student() ){
+	if( index > now2_student() )
+	{
 		printf("\t\t\t\t\tÊäÈëÓÐÎó£¡\n");
 		return;
 	}
-	while( pTemp2->stu.inumber != index){
+	while( pTemp2->stu.inumber != index)
+	{
 		pTemp = pTemp->next;
 		pTemp2 = pTemp2->next;
 	}
@@ -279,7 +306,8 @@ void change_score(){                                  // ÐÞ¸ÄÖÆ¶¨°àÄÚÐòºÅÑ§ÉúµÄ³
 		return;
 }
 
-void sort_score(){                                     // ¿ÉÒÔ¶Ô²»Í¬¿ÆÄ¿´Ó¸ßµ½µÍ½øÐÐ³É¼¨ÅÅÃû 
+void sort_score()
+{                                     					// ¿ÉÒÔ¶Ô²»Í¬¿ÆÄ¿´Ó¸ßµ½µÍ½øÐÐ³É¼¨ÅÅÃû 
 	struct student *pHead = NULL,*pHead2 = NULL;
 	pHead = read_score();
 	pHead2 = read();
@@ -292,6 +320,7 @@ void sort_score(){                                     // ¿ÉÒÔ¶Ô²»Í¬¿ÆÄ¿´Ó¸ßµ½µÍ
 	printf("\t\t\t\t\t\t||         2.Ó¢Óï           ||\n"); 
 	printf("\t\t\t\t\t\t||         3.CÓïÑÔ          ||\n"); 
 	printf("\t\t\t\t\t\t-----------------------------\n");
+		
 		int x = 57;
 		int y = 2;
 		char ch = 0;
@@ -317,13 +346,15 @@ void sort_score(){                                     // ¿ÉÒÔ¶Ô²»Í¬¿ÆÄ¿´Ó¸ßµ½µÍ
 				y = 2;
 			}
 			ch = getch();
-			if(ch == 72){
+			if(ch == 72)
+			{
 				puts(" ");
 				gotoxy(x,--y);
 				printf(">\b");
 				index--;
 			}
-			if(ch == 80){
+			if(ch == 80)
+			{
 				puts(" ");
 				gotoxy(x,++y);
 				printf(">\b");
@@ -331,12 +362,16 @@ void sort_score(){                                     // ¿ÉÒÔ¶Ô²»Í¬¿ÆÄ¿´Ó¸ßµ½µÍ
 			}
 		}
 		gotoxy(5,10);
-	if(index == 1){                                            //ÊýÑ§³É¼¨ÅÅÃû ÅÅÐòÓÃµ½ÁËÁ´±íµÄÃ°ÅÝÅÅÐò 
+	if(index == 1)
+	{                                            //ÊýÑ§³É¼¨ÅÅÃû ÅÅÐòÓÃµ½ÁËÁ´±íµÄÃ°ÅÝÅÅÐò 
 		struct student *pfirst = NULL,*pend = NULL;
 		pfirst = pHead;
-		while( pfirst != pend){
-			while( pfirst->next != pend){
-			     if( pfirst->gra.math < pfirst->next->gra.math){
+		while( pfirst != pend)
+		{
+			while( pfirst->next != pend)
+			{
+			     if( pfirst->gra.math < pfirst->next->gra.math)
+				 {
 			     	 struct grade temp = pfirst->gra;
 			     	 pfirst->gra = pfirst->next->gra;
 			     	 pfirst->next->gra = temp;
@@ -363,12 +398,16 @@ void sort_score(){                                     // ¿ÉÒÔ¶Ô²»Í¬¿ÆÄ¿´Ó¸ßµ½µÍ
 		}
 		printf("\t\t\t\t\t\t----------------------------------\n");
 	}
-	else if( index == 2 ){                                      // Ó¢Óï³É¼¨ÅÅÃû 
+	else if( index == 2 )
+	{                                      // Ó¢Óï³É¼¨ÅÅÃû 
 		struct student *pfirst = NULL,*pend = NULL;
 		pfirst = pHead;
-		while( pfirst != pend){
-			while( pfirst->next != pend){
-			     if( pfirst->gra.english < pfirst->next->gra.english){
+		while( pfirst != pend)
+		{
+			while( pfirst->next != pend)
+			{
+			     if( pfirst->gra.english < pfirst->next->gra.english)
+				 {
 			     	 struct grade temp = pfirst->gra;
 			     	 pfirst->gra = pfirst->next->gra;
 			     	 pfirst->next->gra = temp;
@@ -395,12 +434,16 @@ void sort_score(){                                     // ¿ÉÒÔ¶Ô²»Í¬¿ÆÄ¿´Ó¸ßµ½µÍ
 		}
 		printf("\t\t\t\t\t\t----------------------------------\n");
 	}
-	else if( index == 3){                                     // CÓïÑÔ³É¼¨ÅÅÃû 
+	else if( index == 3)
+	{                                     // CÓïÑÔ³É¼¨ÅÅÃû 
 		struct student *pfirst = NULL,*pend = NULL;
 		pfirst = pHead;
-		while( pfirst != pend){
-			while( pfirst->next != pend){
-			     if( pfirst->gra.c < pfirst->next->gra.c){
+		while( pfirst != pend)
+		{
+			while( pfirst->next != pend)
+			{
+			     if( pfirst->gra.c < pfirst->next->gra.c)
+				 {
 			     	 struct grade temp = pfirst->gra;
 			     	 pfirst->gra = pfirst->next->gra;
 			     	 pfirst->next->gra = temp;

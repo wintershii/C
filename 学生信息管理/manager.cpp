@@ -1,15 +1,18 @@
 #include"STUDENT.h"
                                                 //π‹¿Ì‘±∂Àµƒ∫Ø ˝ 
 
-void enter(){                                                              //µ«¬Ωπ‹¿Ì‘±’Àªß 
+void enter()
+{                                                              //µ«¬Ωπ‹¿Ì‘±’Àªß 
 	FILE *fp;
 	char set1[20]; 
 	char set2[20]; 
 	char key[20];
 	char user[20];
-	while(1){
+	while(1)
+	{
 		fp = fopen("D:\\key.txt","rt");
-		if(fp == NULL){
+		if(fp == NULL)						//µ± ◊¥ŒΩ¯»Î≥Ã–Ú ±£¨≥ı ºªØπ‹¿Ì‘±’À∫≈√‹¬Î 
+		{
 		  fp = fopen("D:\\key.txt","wt");
 		  printf("\t\t\t\t\t«Î÷∆∂®π‹¿Ì‘±’À∫≈”Î√‹¬Î£∫\n");
 		  printf("\t\t\t\t\t\t’À∫≈£∫");
@@ -22,7 +25,7 @@ void enter(){                                                              //µ«¬
 		   manager();
 		    return;
 	    }
-	    system("cls");
+	    system("cls");							//’˝≥£µ«¬Ω 
 		printf("\t\t\t\t\t\t------------------------------\n");
 		printf("\t\t\t\t\t\t-----------π‹¿Ì‘±µ«¬Ω---------\n");
 	    printf("\t\t\t\t\t\t||   ’À∫≈£∫                 ||\n");
@@ -38,7 +41,8 @@ void enter(){                                                              //µ«¬
 		}
 	   gotoxy(60,3);
 	   secretword(key);
-	   if( checkkey(user,key) == 0){
+	   if( checkkey(user,key) == 0)
+	   {
 	   		printf("\t\t\t\t\t’À∫≈√‹¬Î”–ŒÛ£°\n");
 	   		getch();
 	   		printf("\t\t\t\t\t∞¥ESCº¸»°œ˚µ«¬Ω£¨∞¥»Œ“‚º¸ºÃ–¯µ«¬Ω£°\n");
@@ -54,7 +58,8 @@ void enter(){                                                              //µ«¬
     }
 }
 
-int checkkey(char user[],char key[]){                          //ºÏ≤‚π‹¿Ì‘±’Àªß√‹¬Î «∑Ò’˝»∑ 
+int checkkey(char user[],char key[])
+{                          						//ºÏ≤‚π‹¿Ì‘±’Àªß√‹¬Î «∑Ò’˝»∑ 
 	if(key[0] == '\0')
 	{
 		return 9;
@@ -66,26 +71,31 @@ int checkkey(char user[],char key[]){                          //ºÏ≤‚π‹¿Ì‘±’Àªß√
 	fread(set1,sizeof(set1),1,fp);
 	fread(set2,sizeof(set2),1,fp);
 	fclose(fp);
-	if(strcmp(set1,user) == 0 && strcmp(set2,key) == 0){ 
+	if(strcmp(set1,user) == 0 && strcmp(set2,key) == 0)
+	{ 
 	   printf("\t\t\t\t\t\t||  ◊æ¥µƒπ‹¿Ì‘±£¨ª∂”≠ƒ˙    ||\n");
 	   getch();
 	   manager();
 	   return 1;
-	   }
+	}
 	return 0;
 }
 
-int manager() {                                                        //π‹¿Ì‘±µƒΩÁ√Ê∫Ø ˝ 
+int manager() 
+{                                                        //π‹¿Ì‘±µƒΩÁ√Ê∫Ø ˝ 
 	int choice = -1;
 	struct student *pHead;
-	while( choice != 0){
+	while( choice != 0)
+	{
 		system("cls");
 	printf("\n\t\t\t\t\t\t-------ΩÃŒÒ–≈œ¢π‹¿ÌœµÕ≥------\n");
-    if(now1_student() == 0){
+    if(now1_student() == 0)
+	{
     	printf("\t\t\t\t\t\t------ƒø«∞ªπŒ¥¬º»Îπ˝–≈œ¢------\n");
     	printf("\t\t\t\t\t\t---------«Îø™ º ◊¥Œ¬º»Î-------\n");
     }
-    else{
+    else
+	{
 		printf("\t\t\t\t\t\t----------“—¬º»Î%d—ß…˙--------\n",now1_student());
 		printf("\t\t\t\t\t\t----------“—¬º»Î%dΩÃ ¶--------\n",now_tea());
 		printf("\t\t\t\t\t\t--»Ù–Ë–¬‘ˆ—ß…˙–≈œ¢«Î—°‘ÚÃÌº”--\n");
@@ -140,32 +150,33 @@ int manager() {                                                        //π‹¿Ì‘±µ
 			}
 		}
 		gotoxy(5,17);
-		switch(choice){
+		switch(choice)
+		{
 			case 1:
 			if( now1_student() != 0)
 			  printf("ƒ˙“—¬º»Îπ˝≥ı º–≈œ¢£¨«ÎºÃ–¯ÃÌº”—ß…˙–≈œ¢!\n");
-			         pHead = Creat();
-			               getch();
+			         pHead = Creat();						//»ÙŒƒº˛ƒ⁄Œﬁ—ß…˙–≈œ¢£¨‘Úø™ º¬º»Î 
+			               getch();							//»ÙŒƒº˛ƒ⁄“—”–—ß…˙–≈œ¢£¨‘⁄◊Ó∫ÛÃÌº”“ª∏ˆ—ß…˙–≈œ¢ 
 			                 break;
-			case 2:Insert();
+			case 2:Insert();									//≤Â»Î—ß…˙–≈œ¢µΩ÷∏∂®Œª÷√ 
 			       getch();
 			           break;
-			case 3:Delete();
+			case 3:Delete();									//…æ≥˝÷∆∂®–Ú∫≈—ß…˙–≈œ¢ 
 			       getch();
 			           break;
-			case 4:print();
+			case 4:print();										//¥Ú”°—ß…˙–≈œ¢±Ì 
 			        getch(); 
 			           break;
-			case 5:seek(); 
+			case 5:seek(); 										//∞¥–Ú∫≈≤È’“—ß…˙–≈œ¢ 
 			        getch();
 				       break;
-			case 6:new_teacher();
+			case 6:new_teacher();								//ÃÌº”¿œ ¶–≈œ¢ 
 			 		getch();
 			 		   break;
-			case 7:print_tea();
+			case 7:print_tea();									//¥Ú”°ΩÃ ¶–≈œ¢±Ì 
 			 		getch();
 			 		   break;
-			case 8:delete_tea();
+			case 8:delete_tea();								//…æ≥˝ΩÃ ¶–≈œ¢ 
 			 		getch();
 			 		   break;
 			case 9:
@@ -177,14 +188,16 @@ int manager() {                                                        //π‹¿Ì‘±µ
 	return 0;
 }
 
-struct student *Creat(){                                      //¥¥Ω®¡¥±Ì£¨≥ı º¥¥Ω® ±£¨ø…“‘±£≥÷∂‡¥Œ¬º»Î£¨µ±–’√˚Œ™ø’∏Ò ±Õ£÷π¬º»Î 
+struct student *Creat()
+{                                      //¥¥Ω®¡¥±Ì£¨≥ı º¥¥Ω® ±£¨ø…“‘±£≥÷∂‡¥Œ¬º»Î£¨µ±–’√˚Œ™ø’∏Ò ±Õ£÷π¬º»Î 
 	struct student *pHead = NULL;                               //»Ù“—¬º»Îπ˝–≈œ¢£¨‘ÚÃÌº”–¬µƒΩ⁄µ„Ω¯»Î¡¥±Ì£¨∑≈‘⁄◊Ó∫Û 
  	struct student *pNew,*pEnd;
 	struct student *pTemp;
 	int judge;
 	int count=0;
 	int ojbk = now1_student();
-	if( now1_student() > 0){
+	if( now1_student() > 0)
+	{
 		pHead = read();
 		pTemp = pHead;
 		while( pTemp->next != NULL)
@@ -218,14 +231,17 @@ struct student *Creat(){                                      //¥¥Ω®¡¥±Ì£¨≥ı º¥¥
 	printf("\t\t\t\t\t\t ÷ª˙∫≈£∫");
 	scanf("%s",pNew->stu.iPhone);
 	ojbk = now1_student()+1;
-	while(1){                                                            // ŒﬁÕ∑Ω·µ„¿‡–Õµƒ¡¥±Ì  
+	while(1)
+	{                                                            // ŒﬁÕ∑Ω·µ„¿‡–Õµƒ¡¥±Ì  
 		count++;
-		if( count == 1){
+		if( count == 1)
+		{
 			pNew->next = pHead;
 			pEnd = pNew;
 			pHead = pNew;
 		}
-		else{
+		else
+		{
 			pNew->next = NULL;
 			pEnd->next = pNew;
 			pEnd = pNew;
@@ -254,7 +270,8 @@ struct student *Creat(){                                      //¥¥Ω®¡¥±Ì£¨≥ı º¥¥
 	return pHead;
 }
 
-void print(){                                                              //¥Ú”°≥ˆ±æµÿŒƒº˛ƒ⁄µƒ—ß…˙–≈œ¢ 
+void print()
+{                                                              //¥Ú”°≥ˆ±æµÿŒƒº˛ƒ⁄µƒ—ß…˙–≈œ¢ 
 	int count = 0;
 	struct student *pHead = NULL;
 	struct student *pTemp,*pEnd,*pNew;
@@ -263,14 +280,16 @@ void print(){                                                              //¥Ú”
 	temp = pHead;
 	printf("\t\t\t\t\t---------------------------------------\n");
 	printf("\t\t\t\t\t||∞‡ƒ⁄–Ú∫≈\t–’√˚\t—ß∫≈\t ÷ª˙∫≈||\n");
-	while(temp != NULL){
+	while(temp != NULL)
+	{
 		printf("\t\t\t\t\t||   %d\t\t%s\t%s\t %s  ||\n",temp->stu.inumber,temp->stu.iname,temp->stu.snum,temp->stu.iPhone);
 		temp = temp->next;
 	}
 	printf("\t\t\t\t\t---------------------------------------\n");
 }
 
-void Insert(){                                                              
+void Insert()
+{                                                              
 	int index;
 	struct student *pHead;
 	struct student *ipnew,*p,*pPre,*pTemp;
@@ -281,6 +300,7 @@ void Insert(){
 	printf("\t\t\t\t\t\t-----------µ±«∞“—¬º»Î%d»À---------\n",now1_student());
 	if(index > now1_student())
 	  printf("\t\t\t\t\t\t ‰»Î¥ÌŒÛ£°\n");
+	
 	    printf("\t\t\t\t\t\t«Î ‰»Î—ß…˙µƒ–≈œ¢£∫\n");
 		ipnew = (struct student *)malloc(sizeof(struct student));
 		printf("\t\t\t\t\t\t–’√˚£∫");
@@ -291,23 +311,28 @@ void Insert(){
 		printf("\t\t\t\t\t\t∞‡ƒ⁄–Ú∫≈£∫%d\n",ipnew->stu.inumber);
 		printf("\t\t\t\t\t\t ÷ª˙∫≈£∫");
 		scanf("%s",ipnew->stu.iPhone);	
-    if( index == 1){
+    if( index == 1)
+	{
 		ipnew->next = pHead;
 		pHead = ipnew;
 		pTemp = pHead->next;
-		while( pTemp != NULL){
+		while( pTemp != NULL)
+		{
 			pTemp->stu.inumber++;
 		    pTemp = pTemp->next;
 		} 
 	}
-	else{
+	else
+	{
 		p = pHead;
 	for(int i = 1;i < index-1;i++)
 		p = p->next;
+		
 		ipnew->next = p->next;
 		p->next = ipnew; 
 		pTemp = ipnew->next;
-		while( pTemp != NULL){
+		while( pTemp != NULL)
+		{
 			pTemp->stu.inumber++;
 			pTemp = pTemp->next;
 	    }
@@ -316,7 +341,8 @@ void Insert(){
   return;
 }
 
-void Delete(){                                                              //…æ≥˝—ß…˙–≈œ¢ ≤¢±£¥Ê 
+void Delete()
+{                                                              //…æ≥˝—ß…˙–≈œ¢ ≤¢±£¥Ê 
 	struct student *pHead;
 	int i,index;
 	struct student *pTemp;
@@ -324,14 +350,17 @@ void Delete(){                                                              //…æ
     pHead = read();
 	printf("\t\t\t\t\t\t«Î ‰»Î“™…æ≥˝µƒ—ß…˙∞‡ƒ⁄–Ú∫≈£∫");
 	scanf("%d",&index);
-	if(index > now1_student()){
+	if(index > now1_student())
+	{
 		printf("\t\t\t\t\t\t ‰»Î”–ŒÛ£°\n");
 		return;
 	}
-	if(index == 1){
+	if(index == 1)
+	{
 		pHead = pHead->next;
 		pTemp = pHead;
-		while( pTemp != NULL){
+		while( pTemp != NULL)
+		{
 			pTemp->stu.inumber--;
 			pTemp = pTemp->next;
 		}
@@ -340,23 +369,26 @@ void Delete(){                                                              //…æ
 		return;
 	}
 	pTemp = pHead;
-	while(pTemp->stu.inumber != index){                                          //Œﬁ∑®…æ≥˝Õ∑Ω⁄µ„ 
+	while(pTemp->stu.inumber != index)
+	{                                          					//Œﬁ∑®…æ≥˝Õ∑Ω⁄µ„ 
 		pPre = pTemp;
 		pTemp = pTemp->next;
 	}
 	pPre->next = pTemp->next;
 	free(pTemp);
 	pTemp = pPre->next;
-	while(pTemp != NULL){
+	while(pTemp != NULL)
+	{
 			pTemp->stu.inumber--;
 			pTemp = pTemp->next;
-		}
+	}
 	
 	save(pHead);
 	printf("\t\t\t\t\t\t—ß…˙–≈œ¢…æ≥˝≥…π¶£°\n");
 }
 
-void seek(){                                                                  //∏˘æ›∞‡ƒ⁄–Ú∫≈≤È’“—ß…˙–≈œ¢ 
+void seek()
+{                                                                  //∏˘æ›∞‡ƒ⁄–Ú∫≈≤È’“—ß…˙–≈œ¢ 
 	struct student *pHead;
 	struct student *pTemp;
 	int inum;
@@ -364,13 +396,15 @@ void seek(){                                                                  //
 	scanf("%d",&inum);
 	pHead = read();
 	pTemp = pHead;
-	while( pTemp->stu.inumber != inum){
+	while( pTemp->stu.inumber != inum)
+	{
 		pTemp = pTemp->next;
-	if( pTemp == NULL){
-	  printf("\t\t\t\t\t\tŒ¥≤È’“µΩ¥À—ß…˙–≈œ¢£°\n");
-	  getch();
-      return;
- 	   }
+		if( pTemp == NULL)
+		{
+			printf("\t\t\t\t\t\tŒ¥≤È’“µΩ¥À—ß…˙–≈œ¢£°\n");
+			getch();
+    		return;
+ 		}
 	}
 	printf("\t\t\t\t\t---------------------------------------\n");
 	printf("\t\t\t\t\t||∞‡ƒ⁄–Ú∫≈\t–’√˚\t—ß∫≈\t ÷ª˙∫≈||\n");
@@ -378,13 +412,15 @@ void seek(){                                                                  //
 	printf("\t\t\t\t\t---------------------------------------\n");
 }
 
-void new_teacher(){                                                        //–¬‘ˆΩÃ ¶–≈œ¢÷¡±æµÿ 
+void new_teacher()
+{                                                        //–¬‘ˆΩÃ ¶–≈œ¢÷¡±æµÿ 
 	FILE *fp;
 	node pHead,pTemp,pEnd;
 	pHead = read_t();
 	pEnd = pHead;
 	pTemp = pHead->next;
-	while(pTemp != NULL){
+	while(pTemp != NULL)
+	{
 		pEnd = pEnd->next;
 		pTemp = pTemp->next;
 	}
@@ -400,15 +436,18 @@ void new_teacher(){                                                        //–¬‘
 	printf("\t\t\t\t\t–¬‘ˆΩÃ ¶–≈œ¢≥…π¶£°\n");
 }  
 
-void print_tea(){                                                       //¥Ú”°ΩÃ ¶–≈œ¢ 
+void print_tea()
+{                                                       //¥Ú”°ΩÃ ¶–≈œ¢ 
 	FILE *fp;
 	int index = 0;
 	fp = fopen("d:\\t_key","r");
-	if(fp == NULL){
+	if(fp == NULL)
+	{
 		printf("\t\t\t\t\t\t‘› ±√ª”–ΩÃ ¶–≈œ¢£°\n");
 		return;
 	}
-	while( index < now_tea()){
+	while( index < now_tea())
+	{
 		char user[20],key[20];
 		fscanf(fp,"%s",user);
 		fscanf(fp,"%s",key);
@@ -424,7 +463,8 @@ void print_tea(){                                                       //¥Ú”°ΩÃ
 	return;
 }
 
-void delete_tea(){                                              //…æ≥˝ΩÃ ¶–≈œ¢∫Ø ˝£¨‘⁄Œƒº˛÷–÷±Ω”…æ≥˝                            
+void delete_tea()
+{                                              //…æ≥˝ΩÃ ¶–≈œ¢∫Ø ˝£¨‘⁄Œƒº˛÷–÷±Ω”…æ≥˝                            
 	FILE *fp,*ft; 
 	char set[20];
 	char set2[20];
@@ -436,15 +476,18 @@ void delete_tea(){                                              //…æ≥˝ΩÃ ¶–≈œ¢∫Ø
 	char key1[20];
 	fp = fopen("d:\\t_key","r");
 	ft = fopen("d:\\temp","w");
-	if(fp == NULL || ft == NULL){
+	if(fp == NULL || ft == NULL)
+	{
 		printf("\t\t\t\t\t¥ÌŒÛ£°\n");
 		return;
 	}
-	while(fscanf(fp,"%s",key) != EOF){
-		if(strcmp(key,set) != 0){
+	while(fscanf(fp,"%s",key) != EOF)
+	{
+		if(strcmp(key,set) != 0)
+		{
 			fscanf(fp,"%s",key1);
-		   fprintf(ft,"%s %s\n",key,key1);
-		   index++;
+		    fprintf(ft,"%s %s\n",key,key1);
+		    index++;
 		}
 		else
 			fscanf(fp,"%s",key1);

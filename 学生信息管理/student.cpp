@@ -1,9 +1,11 @@
 #include"STUDENT.h"
                                                //Ñ§Éú¶ËµÄº¯Êı 
 
-void student_(){                                                             //Ñ§Éú¶ËÖ÷½çÃæ 
+void student_()
+{                                                             //Ñ§Éú¶ËÖ÷½çÃæ 
 	int choice = -1;
-	while(choice != 0){
+	while(choice != 0)
+	{
 		system("cls");
 		printf("\t\t\t\t\t\t-----------------------------\n");  
 		printf("\t\t\t\t\t\t||   1.  ²é¿´ÎÒµÄĞÅÏ¢      ||\n");
@@ -35,13 +37,15 @@ void student_(){                                                             //Ñ
 				y = 1;
 			}
 			ch = getch();
-			if(ch == 72){
+			if(ch == 72)
+			{
 				puts(" ");
 				gotoxy(x,--y);
 				printf(">\b");
 				choice--;
 			}
-			if(ch == 80){
+			if(ch == 80)
+			{
 				puts(" ");
 				gotoxy(x,++y);
 				printf(">\b");
@@ -49,7 +53,8 @@ void student_(){                                                             //Ñ
 			}
 		}
 		gotoxy(5,10);
-		 switch(choice){
+		 switch(choice)
+		 {
 			case 1:
 				stu_seek();
 					getch(); 
@@ -69,7 +74,8 @@ void student_(){                                                             //Ñ
 	return;
 }
 
-void stu_seek(){                                  //Í¨¹ıĞÕÃû+Ñ§ºÅ ²éÑ¯×Ô¼ºµÄÑ§¼®ĞÅÏ¢                         
+void stu_seek()
+{                                  				//Í¨¹ıĞÕÃû+Ñ§ºÅ ²éÑ¯×Ô¼ºµÄÑ§¼®ĞÅÏ¢                         
 	struct student *pHead,*pTemp;
 	char name[20];
 	char snum[10]; 
@@ -80,8 +86,10 @@ void stu_seek(){                                  //Í¨¹ıĞÕÃû+Ñ§ºÅ ²éÑ¯×Ô¼ºµÄÑ§¼®
      scanf("%s",snum);
      pHead = read();
      pTemp = pHead;
-     while( pTemp != NULL ){
-     	if(strcmp(pTemp->stu.iname,name) == 0 && strcmp(pTemp->stu.snum,snum) == 0){ 
+     while( pTemp != NULL )
+	 {
+     	if(strcmp(pTemp->stu.iname,name) == 0 && strcmp(pTemp->stu.snum,snum) == 0)
+		 { 
      	    printf("\n\t\t\t\t\t\t ÄãµÄĞÅÏ¢ÈçÏÂ£º\n\n");
      	    printf("\t\t\t\t\t\t-----------------------------\n");
 			printf("\t\t\t\t\t\t||          ĞÕÃû£º%s        ||\n",pTemp->stu.iname);
@@ -97,7 +105,8 @@ void stu_seek(){                                  //Í¨¹ıĞÕÃû+Ñ§ºÅ ²éÑ¯×Ô¼ºµÄÑ§¼®
     return;
 }
 
-void score_seek(){                                  //Í¨¹ıĞÕÃû+Ñ§ºÅ ²éÑ¯×Ô¼ºµÄ³É¼¨ĞÅÏ¢                         
+void score_seek()
+{                                  				//Í¨¹ıĞÕÃû+Ñ§ºÅ ²éÑ¯×Ô¼ºµÄ³É¼¨ĞÅÏ¢                         
 	struct student *pHead = NULL,*pTemp = NULL;
 	struct student *pHead2 = NULL,*pTemp2 = NULL;
 	char name[20];
@@ -111,8 +120,10 @@ void score_seek(){                                  //Í¨¹ıĞÕÃû+Ñ§ºÅ ²éÑ¯×Ô¼ºµÄ³É
      pTemp = pHead;
      pHead2 = read();
      pTemp2 = pHead2;
-     while( pTemp != NULL){
-     	if(strcmp(pTemp2->stu.iname,name) == 0 && strcmp(pTemp2->stu.snum,snum) == 0){
+     while( pTemp != NULL)
+	 {
+     	if(strcmp(pTemp2->stu.iname,name) == 0 && strcmp(pTemp2->stu.snum,snum) == 0)
+		 {
      		printf("\n");
      	    printf("\t\t\t\t\t ĞÕÃû£º%s\t",pTemp2->stu.iname);
      	    printf("Ñ§ºÅ£º%s\t",pTemp2->stu.snum);

@@ -1,31 +1,38 @@
 #include"STUDENT.h"
                        //¹¦ÄÜº¯Êı£ºÅĞ¶Ï×Ö·û´®ÕæÊµ³¤¶È£¨³ıÈ¥¿Õ¸ñºóµÄ³¤¶È£©£¬ÃÜÂë»ØÏÔ* £¬ĞŞ¸ÄÃÜÂë
 					    
-int _ifblank(char judge[]){                                     //ÅĞ¶Ï×Ö·û´®ÊÇ·ñÖ»ÓĞ¿Õ¸ñ£¬ÈôÖ»ÓĞ¿Õ¸ñÔò·µ»Ø0£¬·ñÔò·µ»Ø×Ö·û´®ÖĞ·Ç¿Õ¸ñ×Ö·ûÊıÄ¿ 
+int _ifblank(char judge[])
+{                                     //ÅĞ¶Ï×Ö·û´®ÊÇ·ñÖ»ÓĞ¿Õ¸ñ£¬ÈôÖ»ÓĞ¿Õ¸ñÔò·µ»Ø0£¬·ñÔò·µ»Ø×Ö·û´®ÖĞ·Ç¿Õ¸ñ×Ö·ûÊıÄ¿ 
 	char ch;
 	char true_[20];
 	int i,j;
-	for(i = 0,j = 0;i < strlen(judge) ; i++){
+	for(i = 0,j = 0;i < strlen(judge) ; i++)
+	{
 		if(judge[i] == ' ')
-		 continue;
-		else{
+			continue;
+		else
+		{
 		true_[j] = judge[i];
 		j++;
-	   }
+	    }
 	}
 	true_[j] = '\0';
 	return strlen(true_);
 }
 
-void secretword(char key[]){                                               //ÊäÈëÃÜÂëÊ±»ØÏÔ* 
+void secretword(char key[])
+{                                               //ÊäÈëÃÜÂëÊ±»ØÏÔ* 
 	char c;
 	int i = 0;
-	while((c = getch()) != '\r'){
-		if( i < 20 && isprint(c)){
+	while((c = getch()) != '\r')
+	{
+		if( i < 20 && isprint(c))
+		{
 			key[i++] = c;
 			putchar('*');
 		}
-		else if( i > 0 && c == '\b' ){
+		else if( i > 0 && c == '\b' )
+		{
 			i--;
 			putchar('\b');
 			putchar(' ');
@@ -42,7 +49,8 @@ void secretword(char key[]){                                               //ÊäÈ
 	return;
 }
 
-void changeteakey(){                                                       //ĞŞ¸Ä½ÌÊ¦ÃÜÂëµÄº¯Êı 
+void changeteakey()
+{                                                       //ĞŞ¸Ä½ÌÊ¦ÃÜÂëµÄº¯Êı 
 	node pHead,pTemp;
 	pHead = read_t();
 	pTemp = pHead->next;
@@ -52,12 +60,14 @@ void changeteakey(){                                                       //ĞŞ¸
 	printf("\n\t\t\t\t\t\tÇëÊäÈëÄúµÄÕËºÅ£º");
 	gets(user);
 	if(user[0] == '\0')
-	    {
-	    	printf("\n\t\t\t\t\t\tÕËºÅ²»¿ÉÎª¿Õ£¡\n");
-			return;
-		}
-	while(pTemp != NULL){
-		if(strcmp(pTemp->user,user) == 0){
+	{
+	    printf("\n\t\t\t\t\t\tÕËºÅ²»¿ÉÎª¿Õ£¡\n");
+		return;
+	}
+	while(pTemp != NULL)
+	{
+		if(strcmp(pTemp->user,user) == 0)
+		{
 			printf("\t\t\t\t\t\tÇëÊäÈëÔ­ÃÜÂë£º");
 			gets(oldkey);
 			if(oldkey[0] == '\0')
@@ -65,7 +75,8 @@ void changeteakey(){                                                       //ĞŞ¸
 	    		printf("\n\t\t\t\t\t\tÃÜÂë²»¿ÉÎª¿Õ£¡\n");
 				return;
 			}
-			if(strcmp(pTemp->key,oldkey) == 0){
+			if(strcmp(pTemp->key,oldkey) == 0)
+			{
 				printf("\t\t\t\t\t\tÃÜÂëÕıÈ·£¡ÇëĞŞ¸ÄÃÜÂë£¡\n");
 				printf("\t\t\t\t\t\tĞÂÃÜÂë£º");
 				scanf("%s",newkey);
@@ -75,7 +86,8 @@ void changeteakey(){                                                       //ĞŞ¸
 				pTemp = pHead->next;
 				return;
 			}
-			else{
+			else
+			{
 				printf("\t\t\t\t\t\tÃÜÂë´íÎó£¡\n");
 				continue; 
 			}
@@ -86,7 +98,8 @@ void changeteakey(){                                                       //ĞŞ¸
 		printf("\t\t\t\t\t\tÎ´²éÕÒµ½´Ë½ÌÊ¦ĞÅÏ¢£¡\n");
 }
 
-void changemkey(){                                                         //ĞŞ¸Ä¹ÜÀíÔ±ÃÜÂëµÄº¯Êı 
+void changemkey()
+{                                                         //ĞŞ¸Ä¹ÜÀíÔ±ÃÜÂëµÄº¯Êı 
 	FILE *fp;
 	char set1[20];
 	char set2[20];
@@ -95,13 +108,14 @@ void changemkey(){                                                         //ĞŞ¸
 	printf("\n\t\t\t\t\t\tÇëÊäÈë¹ÜÀíÔ±ÕËºÅ£º");
 	gets(set1);
 	if(set1[0] == '\0')
-	    {
-	    	printf("\n\t\t\t\t\t\tÕËºÅ²»¿ÉÎª¿Õ£¡\n");
-			return;
-		}
+	{
+	    printf("\n\t\t\t\t\t\tÕËºÅ²»¿ÉÎª¿Õ£¡\n");
+		return;
+	}
 	fp = fopen("d:\\key.txt","rt");
 	fread(user,sizeof(user),1,fp);
-	if(strcmp(set1,user) == 0){
+	if(strcmp(set1,user) == 0)
+	{
 		printf("\t\t\t\t\t\tÇëÊäÈëÔ­ÃÜÂë£º");
 		gets(set2);
 		if(set2[0] == '\0')
@@ -111,7 +125,8 @@ void changemkey(){                                                         //ĞŞ¸
 		}
 		fread(key,sizeof(key),1,fp);
 		fclose(fp);
-		if(strcmp(set2,key) == 0){
+		if(strcmp(set2,key) == 0)
+		{
 			printf("\t\t\t\t\t\tÃÜÂëÕıÈ·£¡ÇëĞŞ¸ÄÃÜÂë£¡\n");
 			printf("\t\t\t\t\t\tĞÂÃÜÂë£º");
 			gets(set2);
@@ -126,12 +141,14 @@ void changemkey(){                                                         //ĞŞ¸
 			fclose(fp);
 			printf("\t\t\t\t\t\tÃÜÂëĞŞ¸Ä³É¹¦£¡\n");
 		}
-		else{
+		else
+		{
 			printf("\t\t\t\t\t\tÔ­ÃÜÂëÊäÈë´íÎó£¡\n");
 			 return;
 		}
 	}
-	else{
+	else
+	{
 		printf("\t\t\t\t\t\t¹ÜÀíÔ±ÕËºÅ´íÎó£¡\n");
 		return;
 	}
@@ -143,7 +160,7 @@ void gotoxy(int x, int y)										//¹â±êÒÆ¶¯º¯Êı
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
 
-void moveselect()
+void moveselect()								//ĞŞ¸ÄÃÜÂëÊ±µÄ½çÃæ 
 {
 	int choice1;
 		int x1 = 52;
@@ -194,9 +211,9 @@ void moveselect()
 		}
 		gotoxy(10,7);
 	if(choice1 == 1)
-		changeteakey();
+		changeteakey();							//ĞŞ¸Ä½ÌÊ¦ÃÜÂë 
 	else if(choice1 == 2)
-		changemkey();
+		changemkey();							//ĞŞ¸Ä¹ÜÀíÔ±ÃÜÂë 
 	else
 		return;
 }
