@@ -32,7 +32,7 @@ void enter()
 	    printf("\t\t\t\t\t\t||   ÃÜÂë£º                 ||\n");
 	    printf("\t\t\t\t\t\t------------------------------\n");
 	   gotoxy(60,2);
-	   gets(user);
+	   m_gets(user);
 	   if(user[0] == '\0')
 	    {
 	    	printf("\n\n\t\t\t\t\t\tÕËºÅ²»¿ÉÎª¿Õ£¡\n");

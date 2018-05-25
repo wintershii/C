@@ -16,7 +16,8 @@ void tea_enter()
 	    printf("\t\t\t\t\t\t||   密码：                 ||\n");
 	    printf("\t\t\t\t\t\t------------------------------\n");
 		gotoxy(60,2);
-		gets(user);
+		
+		s_gets(user);
 	    if(user[0] == '\0')
 	    {
 	    	printf("\n\n\t\t\t\t\t\t账号不可为空！\n");
@@ -27,7 +28,7 @@ void tea_enter()
 	    secretword(key);
 	    if(t_checkkey(user,key) == 0)
 		{
-	   		printf("\t\t\t\t\t账号密码有误！\n");
+	   		printf("\n\t\t\t\t\t账号密码有误！\n");
 	   		  	getch();
 	   		printf("\t\t\t\t\t按ESC键取消登陆，按任意键继续登陆！\n");
 	   		char ch;

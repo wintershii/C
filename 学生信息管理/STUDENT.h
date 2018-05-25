@@ -67,4 +67,6 @@ void save_t(node pHead);
 void changemkey();
 void gotoxy(int x, int y);
 void moveselect();
+void s_gets(char *word); 
+void m_gets(char word[]);
 

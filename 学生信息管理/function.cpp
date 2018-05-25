@@ -26,7 +26,7 @@ void secretword(char key[])
 	int i = 0;
 	while((c = getch()) != '\r')
 	{
-		if( i < 20 && isprint(c))
+		if( i < 19 && isprint(c))
 		{
 			key[i++] = c;
 			putchar('*');
@@ -58,7 +58,7 @@ void changeteakey()
 	char oldkey[20];
 	char newkey[20];
 	printf("\n\t\t\t\t\t\t请输入您的账号：");
-	gets(user);
+	s_gets(user);
 	if(user[0] == '\0')
 	{
 	    printf("\n\t\t\t\t\t\t账号不可为空！\n");
@@ -69,7 +69,7 @@ void changeteakey()
 		if(strcmp(pTemp->user,user) == 0)
 		{
 			printf("\t\t\t\t\t\t请输入原密码：");
-			gets(oldkey);
+			s_gets(oldkey);
 			if(oldkey[0] == '\0')
 	    	{
 	    		printf("\n\t\t\t\t\t\t密码不可为空！\n");
@@ -218,3 +218,48 @@ void moveselect()								//修改密码时的界面
 		return;
 }
 
+void s_gets(char word[])
+{
+	int i;
+	char ch;
+	for(i = 0; i < 19 && (ch = getch()) != '\r'; i++)
+	{
+		if(isprint(ch))
+		{
+			word[i] = ch;
+			putchar(ch);
+		}
+		else if(ch == '\b' )
+		{
+			i--;
+			putchar('\b');
+			putchar(' ');
+			putchar('\b');
+		}
+	}
+	word[i] = '\0';
+	putchar('\n');
+}
+
+void m_gets(char word[])
+{
+	int i;
+	char ch;
+	for(i = 0; i < 19 && (ch = getch()) != '\r'; i++)
+	{
+		if(isprint(ch))
+		{
+			word[i] = ch;
+			putchar(ch);
+		}
+		else if(ch == '\b' )
+		{
+			i--;
+			putchar('\b');
+			putchar(' ');
+			putchar('\b');
+		}
+	}
+	word[19] = '\0';
+	putchar('\n');
+}
