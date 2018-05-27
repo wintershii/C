@@ -13,31 +13,61 @@ void CreateListTail(LinkList * L, int n);
 void listReverse(LinkList L);
 
 LinkList listReverse2(LinkList L);
+
+void listReverse3(LinkList *L);
+
 int main()
 {
     LinkList L;
     CreateListTail(&L, 10);
     LNode * p = L->next;
-    while (p) 
-	{
-        printf("%d ", p->data);
-        p = p->next;
-    }
-    putchar('\n');
-    listReverse(L);
-    p = L->next;
+    printf("原链表：\n");
 	while (p) 
 	{
         printf("%d ", p->data);
         p = p->next;
     }
     putchar('\n');
-    p = listReverse2(L); 
+    
+/*	listReverse(L);
+    p = L->next;
+	while (p) 
+	{
+        printf("%d ", p->data);
+        p = p->next;
+    }
+    
+	putchar('\n');
+	
+    printf("递归逆置：\n");
+    p = listReverse2(L->next); 
     while (p) 
 	{
         printf("%d ", p->data);
         p = p->next;
     }
+    
+    
+    p = L->next;
+    printf("原链表：\n");
+	while (p) 
+	{
+        printf("%d ", p->data);
+        p = p->next;
+    }
+    putchar('\n');					*/
+    
+    
+    
+    printf("值交换逆置：\n");
+    listReverse3(&L);
+    p = L->next; 
+    while (p) 
+	{
+        printf("%d ", p->data);
+        p = p->next;
+    }
+    
     return 0;
 }
 
@@ -60,7 +90,11 @@ void CreateListTail(LinkList * L, int n)
 
 void listReverse(LinkList L)
 {
-	printf("头插法逆置：\n");
+	printf("迭代逆置：\n");
+	if(L->next == NULL || L->next->next == NULL)
+	{
+		return;
+	} 
 	LinkList temp = L->next;
     L->next = NULL;
     LinkList tail;
@@ -75,19 +109,44 @@ void listReverse(LinkList L)
 
 LinkList listReverse2(LinkList L)
 {
-	printf("再就地逆置：\n");
-	if(L->next == NULL || L->next->next == NULL)
+	if(L->next == NULL)
 	{
 		return L;
-	} 
-	LinkList pRev = NULL,pCur = L->next;
-    while(pCur != NULL)
-    {
-    	LinkList temp = pCur;
-    	pCur = pCur->next;
-    	temp->next = pRev;
-    	pRev = temp;
 	}
-    return pRev;
+	LinkList newhead = listReverse2(L->next); 
+    L->next->next = L;
+    L->next = NULL;
+    return newhead;
 }
+
+void listReverse3(LinkList *L)
+{
+	int index = 0;
+	LinkList temp = (*L)->next;
+	for(; temp != NULL; index++)
+	{
+		temp = temp->next;
+	}
+	
+	for(int i = 0; i < index/2; i++)
+	{
+		LinkList pre = (*L)->next,aft = (*L)->next;
+		for(int j = 0; j < i; j++)
+		{
+			pre = pre->next;
+		}
+		for(int k = 0; k < index-i-1; k++)
+		{
+			aft = aft->next;
+		}
+		int temp = pre->data;
+		pre->data = aft->data;
+		aft->data = temp;
+	}
+}
+
+
+
+
+
 
