@@ -55,7 +55,7 @@ int main()
         printf("%d ", p->data);
         p = p->next;
     }
-    putchar('\n');					*/
+    putchar('\n');					*/ 
     
     
     
@@ -123,23 +123,23 @@ void listReverse3(LinkList *L)
 {
 	int index = 0;
 	LinkList temp = (*L)->next;
-	for(; temp != NULL; index++)
+	for(; temp != NULL; index++)			//遍历出节点个数index 
 	{
 		temp = temp->next;
 	}
 	
-	for(int i = 0; i < index/2; i++)
+	for(int i = 0; i < index/2; i++)		//外层循环 index/2 次 
 	{
 		LinkList pre = (*L)->next,aft = (*L)->next;
-		for(int j = 0; j < i; j++)
+		for(int j = 0; j < i; j++)					//前面的节点 
 		{
 			pre = pre->next;
 		}
-		for(int k = 0; k < index-i-1; k++)
+		for(int k = 0; k < index-i-1; k++)			//后面的节点 
 		{
 			aft = aft->next;
 		}
-		int temp = pre->data;
+		int temp = pre->data;					//交换前后节点的数据 
 		pre->data = aft->data;
 		aft->data = temp;
 	}
