@@ -64,6 +64,7 @@ void student_()
 					getch();
 				  		break;
 			case 3:
+				printf("\n\n\n\n\t\t\t\t\t\t按任意键退出...\n");
 			    return;
 			default:
 				    printf("\t\t\t\t\t\t请正确输入所提示的内容！\n");

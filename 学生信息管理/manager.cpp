@@ -43,7 +43,7 @@ void enter()
 	   secretword(key);
 	   if( checkkey(user,key) == 0)
 	   {
-	   		printf("\t\t\t\t\t账号密码有误！\n");
+	   		printf("\n\t\t\t\t\t账号密码有误！\n");
 	   		getch();
 	   		printf("\t\t\t\t\t按ESC键取消登陆，按任意键继续登陆！\n");
 	   		char ch;
@@ -92,6 +92,7 @@ int manager()
     if(now1_student() == 0)
 	{
     	printf("\t\t\t\t\t\t------目前还未录入过信息------\n");
+    	printf("\t\t\t\t\t\t-----------------------------\n");
     	printf("\t\t\t\t\t\t---------请开始首次录入-------\n");
     }
     else
@@ -180,6 +181,7 @@ int manager()
 			 		getch();
 			 		   break;
 			case 9:
+				printf("\n\n\n\n\t\t\t\t\t\t按任意键退出...\n");
 				    return 0;
 			default:
 					break;
@@ -205,8 +207,7 @@ struct student *Creat()
 		pNew = (struct student *)malloc(sizeof(struct student));
 		printf("\t\t\t\t\t\t添加学生信息：\n");
 		printf("\t\t\t\t\t\t姓名：");
-		gets(pNew->stu.iname);
-		gets(pNew->stu.iname); 
+		scanf("%s",pNew->stu.iname);
 		printf("\t\t\t\t\t\t学号：");
 		scanf("%s",pNew->stu.snum);
 		pNew->stu.inumber=now1_student()+1;
@@ -222,8 +223,7 @@ struct student *Creat()
 	pNew = (struct student *)malloc(sizeof(struct student));
 	printf("\t\t\t\t\t\t请输入学生信息：");
 	printf("\n\t\t\t\t\t\t姓名："); 
-	gets(pNew->stu.iname);
-	gets(pNew->stu.iname);
+	scanf("%s",pNew->stu.iname); 
 	printf("\t\t\t\t\t\t学号：");
 	scanf("%s",pNew->stu.snum);
 	pNew->stu.inumber = now1_student()+1;
@@ -249,10 +249,9 @@ struct student *Creat()
 		pNew = (struct student *)malloc(sizeof(struct student));
 		printf("\t\t\t\t\t\t继续录入,姓名为空时停止\n");
 		printf("\t\t\t\t\t\t姓名：");
-		gets(pNew->stu.iname); 
-		gets(pNew->stu.iname);
-		if(!_ifblank(pNew->stu.iname))
-		    break;
+		scanf("%s",pNew->stu.iname); 
+		if(strcmp(pNew->stu.iname,"break") == 0)
+			break;
 		printf("\t\t\t\t\t\t学号：");
 		scanf("%s",pNew->stu.snum);
 		pNew->stu.inumber = ojbk+1;
@@ -278,14 +277,14 @@ void print()
 	pHead = read();
 	struct student *temp;
 	temp = pHead;
-	printf("\t\t\t\t\t---------------------------------------\n");
-	printf("\t\t\t\t\t||班内序号\t姓名\t学号\t手机号||\n");
+	printf("\t\t\t\t\t------------------------------------------------------\n");
+	printf("\t\t\t\t\t||班内序号\t姓名\t学号\t\t  手机号      ||        \n");
 	while(temp != NULL)
 	{
 		printf("\t\t\t\t\t||   %d\t\t%s\t%s\t %s  ||\n",temp->stu.inumber,temp->stu.iname,temp->stu.snum,temp->stu.iPhone);
 		temp = temp->next;
 	}
-	printf("\t\t\t\t\t---------------------------------------\n");
+	printf("\t\t\t\t\t------------------------------------------------------\n");
 }
 
 void Insert()
@@ -406,10 +405,10 @@ void seek()
     		return;
  		}
 	}
-	printf("\t\t\t\t\t---------------------------------------\n");
-	printf("\t\t\t\t\t||班内序号\t姓名\t学号\t手机号||\n");
+	printf("\t\t\t\t\t------------------------------------------------------\n");
+	printf("\t\t\t\t\t||班内序号\t姓名\t学号\t\t   手机号     ||   \n");
 	printf("\t\t\t\t\t||   %d\t\t%s\t%s\t %s  ||\n",pTemp->stu.inumber,pTemp->stu.iname,pTemp->stu.snum,pTemp->stu.iPhone);
-	printf("\t\t\t\t\t---------------------------------------\n");
+	printf("\t\t\t\t\t------------------------------------------------------\n");
 }
 
 void new_teacher()

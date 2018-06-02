@@ -26,7 +26,8 @@ void tea_enter()
 		}
 	    gotoxy(60,3);
 	    secretword(key);
-	    if(t_checkkey(user,key) == 0)
+	    int check = t_checkkey(user,key);
+	    if(check == 0)
 		{
 	   		printf("\n\t\t\t\t\t账号密码有误！\n");
 	   		  	getch();
@@ -37,7 +38,7 @@ void tea_enter()
 	   			return;
 	        continue;
 	    }
-	    else if(t_checkkey(user,key) == 9)
+	    else if(check == 9)
 	    	continue;
 	    return;
     }
@@ -57,7 +58,8 @@ int t_checkkey(char user[],char key[])
 	{
 		printf("\t\t\t\t\t目前系统中没有老师信息！：\n");
 	}
-	while(!feof(fp))
+	int index = 1;
+	while(index <= now_tea())
 	{
 		fscanf(fp,"%s",set1);
 	    fscanf(fp,"%s",set2);
@@ -67,10 +69,11 @@ int t_checkkey(char user[],char key[])
 			fclose(fp);
 	       	getch();
 	        teacher();
-	       return 1;
+	        return 1;
 	   }
+	   return 0;
 	}
-	return 0;
+	
 }
 
 void teacher()
@@ -84,6 +87,7 @@ void teacher()
     	if( now1_student() == 0)
 		{
     		printf("\t\t\t\t\t\t------目前还未录入过信息------\n");
+    		printf("\t\t\t\t\t\t-----------------------------\n");
     		printf("\t\t\t\t\t\t---------请开始首次录入-------\n");
     	}
     	else
@@ -176,6 +180,7 @@ void teacher()
 			   getch();
 			     break;
 			case 9:
+				printf("\n\n\n\n\t\t\t\t\t\t按任意键退出...\n");
 				 return;
 			default:
 				 break;

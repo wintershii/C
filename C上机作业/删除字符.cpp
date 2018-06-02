@@ -27,3 +27,4 @@ int main()
 	puts(word);
 	return 0;
 }
+

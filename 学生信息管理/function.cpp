@@ -215,6 +215,7 @@ void moveselect()								//修改密码时的界面
 	else if(choice1 == 2)
 		changemkey();							//修改管理员密码 
 	else
+		printf("\n\n\n\n\t\t\t\t\t\t按任意键退出...\n");
 		return;
 }
 
@@ -222,14 +223,15 @@ void s_gets(char word[])
 {
 	int i;
 	char ch;
-	for(i = 0; i < 19 && (ch = getch()) != '\r'; i++)
+	for(i = 0; i < 19 && (ch = getch()) != '\r'; )
 	{
-		if(isprint(ch))
+		if((ch>='a' && ch <= 'z') ||  (ch >='0' && ch <='9') )
 		{
 			word[i] = ch;
 			putchar(ch);
+			i++;
 		}
-		else if(ch == '\b' )
+		else if(i > 0 && ch == '\b' )
 		{
 			i--;
 			putchar('\b');
@@ -245,14 +247,15 @@ void m_gets(char word[])
 {
 	int i;
 	char ch;
-	for(i = 0; i < 19 && (ch = getch()) != '\r'; i++)
+	for(i = 0; i < 19 && (ch = getch()) != '\r'; )
 	{
-		if(isprint(ch))
+		if((ch>='a' && ch <= 'z')  || (ch >='A' && ch <='Z' ) ||(ch >='0' && ch <='9') )
 		{
 			word[i] = ch;
 			putchar(ch);
+			i++;
 		}
-		else if(ch == '\b' )
+		else if(i > 0 && ch == '\b' )
 		{
 			i--;
 			putchar('\b');
@@ -260,6 +263,6 @@ void m_gets(char word[])
 			putchar('\b');
 		}
 	}
-	word[19] = '\0';
+	word[i] = '\0';
 	putchar('\n');
 }
