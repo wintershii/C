@@ -32,20 +32,17 @@ void Input(Record array[])
 	}
 }
 
-void Print(Record array[])
-{
-	for(int i = 0; i < n; i++)
-	{
-		printf("key:%s   ",array[i].key);
-		printf("data:%d\n",array[i].data);
-	}
-}
-
 int main()
 {
 	Record array[50];
+	Record key;
+	Record *ans;
 	Input(array);
-	qsort(array,n,sizeof(Record),n_compare);
-	Print(array);
+	printf("Òª²éÕÒ£º");
+//	scanf("%s",key.key);
+	scanf("%d",&key.data);
+//	ans = (Record *)bsearch(&key,array,n,sizeof(Record),Compare);
+	ans = (Record *)bsearch(&key,array,n,sizeof(Record),n_compare);
+	printf("%s   %d",ans->key,ans->data);
 }
 
