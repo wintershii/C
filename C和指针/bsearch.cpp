@@ -39,10 +39,15 @@ int main()
 	Record *ans;
 	Input(array);
 	printf("要查找：");
-//	scanf("%s",key.key);
 	scanf("%d",&key.data);
-//	ans = (Record *)bsearch(&key,array,n,sizeof(Record),Compare);
+	qsort(array,n,sizeof(Record),n_compare);
 	ans = (Record *)bsearch(&key,array,n,sizeof(Record),n_compare);
+	if(ans == NULL)
+	{
+		printf("所查找的值不存在！\n");
+		return 0;
+	} 
 	printf("%s   %d",ans->key,ans->data);
+	return 0;
 }
 

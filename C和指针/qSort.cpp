@@ -47,5 +47,6 @@ int main()
 	Input(array);
 	qsort(array,n,sizeof(Record),n_compare);
 	Print(array);
+	return 0;
 }
 
