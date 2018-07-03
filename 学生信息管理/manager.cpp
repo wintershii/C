@@ -247,7 +247,7 @@ struct student *Creat()
 			pEnd = pNew;
 		}
 		pNew = (struct student *)malloc(sizeof(struct student));
-		printf("\t\t\t\t\t\t继续录入,姓名为空时停止\n");
+		printf("\t\t\t\t\t\t继续录入,姓名为\"break\"时停止\n");
 		printf("\t\t\t\t\t\t姓名：");
 		scanf("%s",pNew->stu.iname); 
 		if(strcmp(pNew->stu.iname,"break") == 0)

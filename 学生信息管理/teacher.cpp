@@ -71,9 +71,9 @@ int t_checkkey(char user[],char key[])
 	        teacher();
 	        return 1;
 	   }
-	   return 0;
+	   index++;
 	}
-	
+	return 0;
 }
 
 void teacher()
