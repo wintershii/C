@@ -4,6 +4,7 @@
 #include<conio.h>
 #include<windows.h>
 
+
 struct infomation{                                                   //学生学籍信息的结构体 
 	char iname[20];
 	int inumber;

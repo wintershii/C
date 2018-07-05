@@ -92,12 +92,12 @@ void stu_seek()
      	if(strcmp(pTemp->stu.iname,name) == 0 && strcmp(pTemp->stu.snum,snum) == 0)
 		 { 
      	    printf("\n\t\t\t\t\t\t 你的信息如下：\n\n");
-     	    printf("\t\t\t\t\t\t-----------------------------\n");
-			printf("\t\t\t\t\t\t||          姓名：%s        ||\n",pTemp->stu.iname);
-     	    printf("\t\t\t\t\t\t||          学号：%s        ||\n",pTemp->stu.snum);
-     	    printf("\t\t\t\t\t\t||        班内序号：%d        ||\n",pTemp->stu.inumber);
-     	    printf("\t\t\t\t\t\t||         手机号：%s       ||\n",pTemp->stu.iPhone);
-     	    printf("\t\t\t\t\t\t-----------------------------\n");
+     	    printf("\t\t\t\t\t\t---------------------------------\n");
+			printf("\t\t\t\t\t\t||\t姓名：%s    \t||\n",pTemp->stu.iname);
+     	    printf("\t\t\t\t\t\t||\t学号：%s    \t||\n",pTemp->stu.snum);
+     	    printf("\t\t\t\t\t\t||\t班内序号：%d      \t||\n",pTemp->stu.inumber);
+     	    printf("\t\t\t\t\t\t||\t手机号：%s    \t||\n",pTemp->stu.iPhone);
+     	    printf("\t\t\t\t\t\t---------------------------------\n");
      	       return;
      	} 
      	pTemp = pTemp->next;

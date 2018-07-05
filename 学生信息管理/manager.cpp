@@ -278,10 +278,10 @@ void print()
 	struct student *temp;
 	temp = pHead;
 	printf("\t\t\t\t\t------------------------------------------------------\n");
-	printf("\t\t\t\t\t||班内序号\t姓名\t学号\t\t  手机号      ||        \n");
+	printf("\t\t\t\t\t||班内序号\t姓名\t学号\t\t  手机号  \t||        \n");
 	while(temp != NULL)
 	{
-		printf("\t\t\t\t\t||   %d\t\t%s\t%s\t %s  ||\n",temp->stu.inumber,temp->stu.iname,temp->stu.snum,temp->stu.iPhone);
+		printf("\t\t\t\t\t||   %d\t\t%s\t%s\t %s  \t||\n",temp->stu.inumber,temp->stu.iname,temp->stu.snum,temp->stu.iPhone);
 		temp = temp->next;
 	}
 	printf("\t\t\t\t\t------------------------------------------------------\n");

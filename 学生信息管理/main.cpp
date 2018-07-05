@@ -1,18 +1,20 @@
 #include"STUDENT.h"
 
 int main() 
-{                                                       
+{       
+		system("title 学生信息管理系统");      
+        system("color 70");  
 	int choice = 1;                  
 	while( choice != 0)
-	{                                                    //打印主页面，分三个端口 
+	{	                                                   //打印主页面，分三个端口 
 		system("cls");                                                   //学生端，学生只可查询自己的信息和成绩 
 	printf("\n\t\t\t\t\t\t-------学生信息管理系统------\n");             //教师端，教师可以管理学生的信息和成绩 
 	printf("\t\t\t\t\t\t-----------------------------\n");               //管理员端，管理员可以管理学生和老师的信息 
-	printf("\t\t\t\t\t\t||   1. 我是学生           ||\n");
-	printf("\t\t\t\t\t\t||   2. 本人是老师         ||\n");
-	printf("\t\t\t\t\t\t||   3. 老子是管理员       ||\n");
+	printf("\t\t\t\t\t\t||   1. 学生登陆           ||\n");
+	printf("\t\t\t\t\t\t||   2. 教师登陆           ||\n");
+	printf("\t\t\t\t\t\t||   3. 管理员登陆         ||\n");
 	printf("\t\t\t\t\t\t||   4. 修改密码           ||\n");
-	printf("\t\t\t\t\t\t||   0. 不好意思走错了     ||\n");
+	printf("\t\t\t\t\t\t||   0. 退出               ||\n");
 	printf("\t\t\t\t\t\t-----------------------------\n");
 		
 		int x = 52;										//图形界面代码开始，方向键移动光标 
