@@ -11,11 +11,11 @@ float s(float x,float y,int a)
 		for(i = 0; i < 50; i++)
 			sum += sin(y + i*l + l/2);
 			break; 
-		case 2: 
+		case 2:
 		for(i = 0; i < 50; i++) 
 			sum += cos(y + i*l + l/2);
 			break; 
-		case 3: 
+		case 3:
 		for(i = 0; i < 50; i++)
   			sum += exp(y + i*l + l/2);
   			break;

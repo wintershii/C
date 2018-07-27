@@ -96,7 +96,6 @@ list read()
 	head = (list)malloc(sizeof(node));
 	pend = head;
 	pnew = (list)malloc(sizeof(node));
-	int x;
 	while(fscanf(fp,"%d",&pnew->a) != EOF)
 	{
 		pnew->next = NULL;
